@@ -1,0 +1,31 @@
+name: Feature Request
+description: Proposer une nouvelle fonctionnalité
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problème à résoudre
+      placeholder: "En tant qu'utilisateur, je suis frustré quand..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorité MoSCoW
+      options:
+        - Must Have (MVP)
+        - Should Have (v1.0)
+        - Could Have (v2.0+)
+        - Won't Have
+    validations:
+      required: true
