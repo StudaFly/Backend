@@ -1,0 +1,42 @@
+name: Bug Report
+description: Signaler un bug
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du bug
+      placeholder: "Quand je fais X, il se passe Y au lieu de Z..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Étapes pour reproduire
+      placeholder: |
+        1. Aller sur '...'
+        2. Cliquer sur '...'
+        3. Observer l'erreur
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorité
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
