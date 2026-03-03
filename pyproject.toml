@@ -39,7 +39,6 @@ addopts = "-v"
 [tool.coverage.run]
 source = ["src"]
 branch = true
-omit = ["src/main.py"]
 
 [tool.coverage.report]
 fail_under = 70
