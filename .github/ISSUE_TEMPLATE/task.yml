@@ -1,0 +1,36 @@
+name: Task
+description: Tâche technique
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type de tâche
+      options:
+        - Refactoring
+        - Dette technique
+        - Configuration
+        - Dépendances
+        - CI/CD
+        - Documentation
+        - Tests
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critères de complétion
+      placeholder: |
+        - [ ] Les tests passent
+        - [ ] La CI est verte
+    validations:
+      required: true
