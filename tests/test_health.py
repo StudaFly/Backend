@@ -1,3 +1,10 @@
+"""
+Integration tests for root endpoints.
+Verify that the server starts correctly and responds to basic requests:
+GET / and GET /health.
+"""
+
+
 def test_root(client):
     response = client.get("/")
     assert response.status_code == 200
