@@ -1,6 +1,6 @@
 # StudaFly Backend
 
-> API Backend pour StudaFly - Prépare ton départ à l'étranger, sereinement.
+> Backend API for StudaFly - Prepare your international mobility, serenely.
 
 ![CI](https://github.com/StudaFly/Backend/actions/workflows/ci.yml/badge.svg)
 
@@ -10,39 +10,38 @@
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-# Installer les dépendances
+# Install dependencies
 pip install -r requirements.txt
 
-# Lancer le serveur
+# Start the server
 uvicorn src.main:app --reload
 ```
 
 ## Tests
 
 ```bash
-# Lancer les tests
+# Run tests
 pytest
 
-# Avec couverture
+# With coverage
 pytest --cov=src --cov-report=html
 ```
 
 ## Linting
 
 ```bash
-# Vérifier le code
+# Check code
 ruff check .
 
-# Formater le code
+# Format code
 ruff format .
 ```
 
 ## API Docs
 
-Une fois le serveur lancé :
-- Swagger UI : http://localhost:8000/docs
-- ReDoc : http://localhost:8000/redoc
+Once the server is running:
+- Swagger UI: http://localhost:8080/docs
 
-## Équipe
+## Team
 
-- **Code Owner** : @Nathcaa
+- **Code Owner**: @Nathcaa
