@@ -1,5 +1,6 @@
 from src.app.services.ai import ai_service
 
+
 async def prefetch_for_mobility(
     destination_city: str,
     destination_country: str,
