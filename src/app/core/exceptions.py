@@ -11,18 +11,18 @@ class StudaFlyException(Exception):
 
 
 class NotFoundError(StudaFlyException):
-    def __init__(self, resource: str):
+    def __init__(self, message: str = "Resource not found"):
         super().__init__(
-            message=f"{resource} not found",
+            message=message,
             code="NOT_FOUND",
             status_code=status.HTTP_404_NOT_FOUND,
         )
 
 
 class ForbiddenError(StudaFlyException):
-    def __init__(self):
+    def __init__(self, message: str = "Access forbidden"):
         super().__init__(
-            message="Access forbidden",
+            message=message,
             code="FORBIDDEN",
             status_code=status.HTTP_403_FORBIDDEN,
         )

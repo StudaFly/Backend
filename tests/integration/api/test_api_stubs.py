@@ -69,4 +69,6 @@ def test_stub_endpoint_returns_error(method, path):
         422,
         404,
         405,
+        401,
+        403,
     ), f"Unexpected status {response.status_code} for {method.upper()} {path}"

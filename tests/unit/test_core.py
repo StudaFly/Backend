@@ -49,10 +49,11 @@ def test_create_and_decode_access_token():
 
 def test_create_and_decode_refresh_token():
     user_id = uuid.uuid4()
-    token = create_refresh_token(user_id)
+    token, jti = create_refresh_token(user_id)
     payload = decode_token(token)
     assert payload["sub"] == str(user_id)
     assert payload["type"] == "refresh"
+    assert payload["jti"] == jti
 
 
 def test_decode_invalid_token_raises():
