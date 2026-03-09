@@ -10,6 +10,7 @@ requires-python = ">=3.11"
 target-version = "py311"
 line-length = 100
 src = ["src", "tests"]
+exclude = ["alembic/versions/*"]
 
 [tool.ruff.lint]
 select = [

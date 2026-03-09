@@ -1,5 +1,5 @@
 from datetime import UTC, datetime, timedelta
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from jose import JWTError, jwt
 
@@ -29,10 +29,11 @@ def create_access_token(user_id: UUID) -> str:
     return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
 
-def create_refresh_token(user_id: UUID) -> str:
+def create_refresh_token(user_id: UUID) -> tuple[str, str]:
+    jti = str(uuid4())
     expire = datetime.now(UTC) + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
-    payload = {"sub": str(user_id), "exp": expire, "type": "refresh"}
-    return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+    payload = {"sub": str(user_id), "exp": expire, "type": "refresh", "jti": jti}
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256"), jti
 
 
 def decode_token(token: str) -> dict:
