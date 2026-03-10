@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.core.dependencies import get_current_user
 from src.app.db.session import get_db
+from src.app.models.user import User
 from src.app.schemas.user import (
     RefreshRequest,
     UserCreate,
@@ -43,8 +44,8 @@ async def refresh_token(payload: RefreshRequest, db: AsyncSession = Depends(get_
 
 
 @router.post("/logout")
-async def logout(current_user: dict = Depends(get_current_user)):
-    await auth_service.logout(current_user["sub"])
+async def logout(current_user: User = Depends(get_current_user)):
+    await auth_service.logout(current_user.id)
     return {"data": None, "message": "Logged out successfully"}
 
 
