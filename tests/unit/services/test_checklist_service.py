@@ -6,6 +6,7 @@ DB session and ai_service are fully mocked — no real DB or Claude API calls.
 import json
 import uuid
 from datetime import date
+from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -38,34 +39,31 @@ CHECKLIST_JSON = json.dumps(
 
 
 def _make_destination():
-    dest = MagicMock()
-    dest.city = "Berlin"
-    dest.country = "Germany"
-    return dest
+    return SimpleNamespace(city="Berlin", country="Germany")
 
 
 def _make_mobility(user_id=USER_ID):
-    mobility = MagicMock()
-    mobility.id = MOBILITY_ID
-    mobility.user_id = user_id
-    mobility.type = "stage"
-    mobility.departure_date = date(2025, 6, 15)
-    mobility.destination = _make_destination()
-    return mobility
+    return SimpleNamespace(
+        id=MOBILITY_ID,
+        user_id=user_id,
+        type="stage",
+        departure_date=date(2025, 6, 15),
+        destination=_make_destination(),
+    )
 
 
 def _make_task_orm(user_id=USER_ID):
-    task = MagicMock()
-    task.id = TASK_ID
-    task.mobility_id = MOBILITY_ID
-    task.title = "Get passport"
-    task.description = "Renew if needed"
-    task.category = "admin"
-    task.deadline = date(2025, 3, 22)
-    task.is_completed = False
-    task.priority = 2
-    task.mobility = _make_mobility(user_id=user_id)
-    return task
+    return SimpleNamespace(
+        id=TASK_ID,
+        mobility_id=MOBILITY_ID,
+        title="Get passport",
+        description="Renew if needed",
+        category="admin",
+        deadline=date(2025, 3, 22),
+        is_completed=False,
+        priority=2,
+        mobility=_make_mobility(user_id=user_id),
+    )
 
 
 @pytest.mark.asyncio

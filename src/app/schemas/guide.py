@@ -1,12 +1,12 @@
-from pydantic import BaseModel
+from src.app.schemas.common import StudaFlyBaseModel
 
 
-class GuideSection(BaseModel):
+class GuideSection(StudaFlyBaseModel):
     title: str
     content: str
 
 
-class GuideContent(BaseModel):
+class GuideContent(StudaFlyBaseModel):
     destination_id: str
     city: str
     country: str

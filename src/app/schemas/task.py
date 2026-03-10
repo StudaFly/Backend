@@ -2,12 +2,12 @@ import uuid
 from datetime import date
 from typing import Literal
 
-from pydantic import BaseModel
+from src.app.schemas.common import StudaFlyBaseModel
 
 TaskCategory = Literal["admin", "finance", "housing", "health", "practical"]
 
 
-class TaskCreate(BaseModel):
+class TaskCreate(StudaFlyBaseModel):
     title: str
     description: str | None = None
     category: TaskCategory
@@ -15,7 +15,7 @@ class TaskCreate(BaseModel):
     priority: int = 0
 
 
-class TaskRead(BaseModel):
+class TaskRead(StudaFlyBaseModel):
     id: uuid.UUID
     mobility_id: uuid.UUID
     title: str
@@ -25,10 +25,8 @@ class TaskRead(BaseModel):
     is_completed: bool
     priority: int
 
-    model_config = {"from_attributes": True}
 
-
-class TaskUpdate(BaseModel):
+class TaskUpdate(StudaFlyBaseModel):
     title: str | None = None
     description: str | None = None
     category: TaskCategory | None = None

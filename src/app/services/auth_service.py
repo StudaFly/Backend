@@ -14,7 +14,7 @@ from src.app.core.security import (
     verify_password,
 )
 from src.app.models.user import User
-from src.app.schemas.user import TokenResponse, UserCreate, UserLogin, UserRead
+from src.app.schemas.user import AuthResponse, UserCreate, UserLogin, UserRead
 from src.app.services import cache_service
 
 logger = logging.getLogger(__name__)
@@ -23,7 +23,7 @@ _VERIFY_TTL = 24 * 3600
 _REFRESH_TTL = REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600
 
 
-async def register(db: AsyncSession, payload: UserCreate) -> User:
+async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
     existing = await db.scalar(select(User).where(User.email == payload.email))
     if existing:
         raise ConflictError("An account with this email already exists")
@@ -42,10 +42,18 @@ async def register(db: AsyncSession, payload: UserCreate) -> User:
     await cache_service.set(f"auth:verify:{verify_token}", str(user.id), ttl=_VERIFY_TTL)
     logger.info("[DEV] email verification token for %s: %s", user.email, verify_token)
 
-    return user
+    access_token = create_access_token(user.id)
+    refresh_token, jti = create_refresh_token(user.id)
+    await cache_service.set(f"auth:refresh:{user.id}", jti, ttl=_REFRESH_TTL)
+
+    return AuthResponse(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        user=UserRead.model_validate(user),
+    )
 
 
-async def login(db: AsyncSession, payload: UserLogin) -> TokenResponse:
+async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
     user = await db.scalar(select(User).where(User.email == payload.email))
     if not user or not user.password_hash:
         raise UnauthorizedError("Invalid email or password")
@@ -57,14 +65,14 @@ async def login(db: AsyncSession, payload: UserLogin) -> TokenResponse:
     refresh_token, jti = create_refresh_token(user.id)
     await cache_service.set(f"auth:refresh:{user.id}", jti, ttl=_REFRESH_TTL)
 
-    return TokenResponse(
+    return AuthResponse(
         access_token=access_token,
         refresh_token=refresh_token,
         user=UserRead.model_validate(user),
     )
 
 
-async def refresh_tokens(db: AsyncSession, refresh_token: str) -> TokenResponse:
+async def refresh_tokens(db: AsyncSession, refresh_token: str) -> AuthResponse:
     try:
         payload = decode_token(refresh_token)
     except ValueError as e:
@@ -89,7 +97,7 @@ async def refresh_tokens(db: AsyncSession, refresh_token: str) -> TokenResponse:
     new_refresh, new_jti = create_refresh_token(user.id)
     await cache_service.set(f"auth:refresh:{user.id}", new_jti, ttl=_REFRESH_TTL)
 
-    return TokenResponse(
+    return AuthResponse(
         access_token=new_access,
         refresh_token=new_refresh,
         user=UserRead.model_validate(user),

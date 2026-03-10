@@ -1,16 +1,14 @@
 import uuid
 
-from pydantic import BaseModel
+from src.app.schemas.common import StudaFlyBaseModel
 
 
-class DestinationCreate(BaseModel):
+class DestinationCreate(StudaFlyBaseModel):
     country: str
     city: str
 
 
-class DestinationRead(BaseModel):
+class DestinationRead(StudaFlyBaseModel):
     id: uuid.UUID
     country: str
     city: str
-
-    model_config = {"from_attributes": True}

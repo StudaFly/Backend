@@ -23,6 +23,7 @@ async def create(db: AsyncSession, user_id: UUID, payload: MobilityCreate) -> Mo
         type=payload.type,
         departure_date=payload.departure_date,
         return_date=payload.return_date,
+        school=payload.school,
         status="preparing",
     )
     db.add(mobility)
