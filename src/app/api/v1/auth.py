@@ -4,11 +4,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.app.core.dependencies import get_current_user
 from src.app.db.session import get_db
 from src.app.models.user import User
+from src.app.schemas.common import ResponseBase
 from src.app.schemas.user import (
+    AuthResponse,
     RefreshRequest,
     UserCreate,
     UserLogin,
-    UserRead,
     VerifyEmailRequest,
 )
 from src.app.services import auth_service
@@ -16,19 +17,19 @@ from src.app.services import auth_service
 router = APIRouter()
 
 
-@router.post("/register", status_code=201)
+@router.post("/register", response_model=ResponseBase[AuthResponse], status_code=201)
 async def register(payload: UserCreate, db: AsyncSession = Depends(get_db)):
-    user = await auth_service.register(db, payload)
-    return {
-        "data": UserRead.model_validate(user),
-        "message": "Account created. Check your logs for the email verification token.",
-    }
+    auth = await auth_service.register(db, payload)
+    return ResponseBase(
+        data=auth,
+        message="Account created. Check your logs for the email verification token.",
+    )
 
 
-@router.post("/login", response_model=None)
+@router.post("/login", response_model=ResponseBase[AuthResponse])
 async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
-    tokens = await auth_service.login(db, payload)
-    return {"data": tokens, "message": "Login successful"}
+    auth = await auth_service.login(db, payload)
+    return ResponseBase(data=auth, message="Login successful")
 
 
 @router.post("/verify-email")
@@ -37,10 +38,10 @@ async def verify_email(payload: VerifyEmailRequest, db: AsyncSession = Depends(g
     return {"data": None, "message": "Email verified successfully"}
 
 
-@router.post("/refresh")
+@router.post("/refresh", response_model=ResponseBase[AuthResponse])
 async def refresh_token(payload: RefreshRequest, db: AsyncSession = Depends(get_db)):
-    tokens = await auth_service.refresh_tokens(db, payload.refresh_token)
-    return {"data": tokens, "message": "Tokens refreshed"}
+    auth = await auth_service.refresh_tokens(db, payload.refresh_token)
+    return ResponseBase(data=auth, message="Tokens refreshed")
 
 
 @router.post("/logout")

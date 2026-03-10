@@ -30,8 +30,9 @@ def test_user_create_password_too_short():
 
 
 def test_user_update():
-    u = UserUpdate(name="Updated Name")
-    assert u.name == "Updated Name"
+    u = UserUpdate(first_name="Updated", last_name="Name")
+    assert u.first_name == "Updated"
+    assert u.last_name == "Name"
 
 
 def test_mobility_create():

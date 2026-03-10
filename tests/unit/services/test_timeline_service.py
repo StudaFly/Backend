@@ -6,6 +6,7 @@ DB session and ai_service are fully mocked — no real DB or Claude API calls.
 import json
 import uuid
 from datetime import date
+from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -35,34 +36,31 @@ TIMELINE_JSON = json.dumps(
 
 
 def _make_destination():
-    dest = MagicMock()
-    dest.city = "Barcelona"
-    dest.country = "Spain"
-    return dest
+    return SimpleNamespace(city="Barcelona", country="Spain")
 
 
 def _make_mobility(user_id=USER_ID, has_tasks=False):
-    mobility = MagicMock()
-    mobility.id = MOBILITY_ID
-    mobility.user_id = user_id
-    mobility.type = "erasmus"
-    mobility.departure_date = date(2025, 9, 1)
-    mobility.destination = _make_destination()
-    mobility.tasks = [MagicMock()] if has_tasks else []
-    return mobility
+    return SimpleNamespace(
+        id=MOBILITY_ID,
+        user_id=user_id,
+        type="erasmus",
+        departure_date=date(2025, 9, 1),
+        destination=_make_destination(),
+        tasks=[SimpleNamespace()] if has_tasks else [],
+    )
 
 
 def _make_task(title="Apply for Erasmus", category="admin", deadline=date(2025, 6, 1)):
-    task = MagicMock()
-    task.id = uuid.uuid4()
-    task.mobility_id = MOBILITY_ID
-    task.title = title
-    task.description = "Submit your application"
-    task.category = category
-    task.deadline = deadline
-    task.is_completed = False
-    task.priority = 1
-    return task
+    return SimpleNamespace(
+        id=uuid.uuid4(),
+        mobility_id=MOBILITY_ID,
+        title=title,
+        description="Submit your application",
+        category=category,
+        deadline=deadline,
+        is_completed=False,
+        priority=1,
+    )
 
 
 def _make_db(mobility, tasks):

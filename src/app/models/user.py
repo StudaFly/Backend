@@ -29,6 +29,11 @@ class User(Base):
     is_premium: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     oauth_provider: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    avatar_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    phone: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    enable_notifications: Mapped[bool] = mapped_column(
+        Boolean, default=True, nullable=False, server_default="true"
+    )
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

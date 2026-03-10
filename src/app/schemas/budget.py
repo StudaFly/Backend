@@ -1,14 +1,14 @@
-from pydantic import BaseModel
+from src.app.schemas.common import StudaFlyBaseModel
 
 
-class BudgetCategory(BaseModel):
+class BudgetCategory(StudaFlyBaseModel):
     label: str
     amount_min: float
     amount_max: float
     currency: str = "EUR"
 
 
-class BudgetEstimate(BaseModel):
+class BudgetEstimate(StudaFlyBaseModel):
     destination_id: str
     city: str
     country: str

@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.core.dependencies import get_current_user, require_admin
@@ -15,10 +15,13 @@ router = APIRouter()
 
 @router.get("/", response_model=ResponseBase[list[DestinationRead]])
 async def list_destinations(
+    query: str | None = Query(
+        default=None, description="Search by city or country (case-insensitive)"
+    ),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ) -> ResponseBase[list[DestinationRead]]:
-    destinations = await destination_service.list_all(db)
+    destinations = await destination_service.list_all(db, query=query)
     return ResponseBase(data=destinations, message="Destinations retrieved successfully")
 
 
