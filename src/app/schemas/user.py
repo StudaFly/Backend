@@ -32,6 +32,9 @@ class UserRead(StudaFlyBaseModel):
     is_premium: bool
     email_verified: bool
     oauth_provider: str | None
+    avatar_emoji: str | None
+    phone: str | None
+    enable_notifications: bool
     created_at: datetime
 
 

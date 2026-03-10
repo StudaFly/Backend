@@ -24,8 +24,12 @@ async def update(db: AsyncSession, user_id: UUID, payload: UserUpdate) -> UserRe
     first_name = data.pop("first_name", None)
     last_name = data.pop("last_name", None)
     if first_name is not None or last_name is not None:
-        parts = [p for p in [first_name, last_name] if p is not None]
-        user.name = " ".join(parts)
+        existing_parts = user.name.split(" ", 1)
+        existing_first = existing_parts[0]
+        existing_last = existing_parts[1] if len(existing_parts) > 1 else ""
+        new_first = first_name if first_name is not None else existing_first
+        new_last = last_name if last_name is not None else existing_last
+        user.name = f"{new_first} {new_last}".strip()
 
     data.pop("profile_picture_uri", None)
     data.pop("institution", None)
