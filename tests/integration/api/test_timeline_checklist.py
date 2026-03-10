@@ -21,6 +21,7 @@ PREFIX = "/api/v1"
 FAKE_ID = "00000000-0000-0000-0000-000000000001"
 TASK_ID = "00000000-0000-0000-0000-000000000002"
 
+
 class TestTimelineAuthGuard:
     def test_no_token_returns_403(self):
         r = client.get(f"{PREFIX}/mobilities/{FAKE_ID}/timeline")
@@ -103,13 +104,16 @@ def _make_task_read():
 
 @pytest.fixture
 def auth_client():
+    from src.app.core.dependencies import get_current_user
+
     fake_user = _make_fake_user()
 
-    with patch(
-        "src.app.core.dependencies.get_current_user",
-        return_value=fake_user,
-    ):
-        yield client, fake_user
+    async def override():
+        return fake_user
+
+    app.dependency_overrides[get_current_user] = override
+    yield client, fake_user
+    app.dependency_overrides.clear()
 
 
 class TestTimelineHappyPath:

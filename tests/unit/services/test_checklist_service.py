@@ -75,10 +75,10 @@ async def test_list_tasks_returns_existing():
     mobility = _make_mobility()
     existing_task = _make_task_orm()
 
-    mobility_result = AsyncMock()
+    mobility_result = MagicMock()
     mobility_result.scalar_one_or_none.return_value = mobility
 
-    tasks_result = AsyncMock()
+    tasks_result = MagicMock()
     tasks_result.scalars.return_value.all.return_value = [existing_task]
 
     call_count = {"n": 0}
@@ -113,14 +113,14 @@ async def test_list_tasks_auto_generates_when_empty():
     async def side_effect(*args, **kwargs):
         call_count["n"] += 1
         if call_count["n"] == 1:
-            r = AsyncMock()
+            r = MagicMock()
             r.scalar_one_or_none.return_value = mobility
             return r
         if call_count["n"] == 2:
-            r = AsyncMock()
+            r = MagicMock()
             r.scalars.return_value.all.return_value = []
             return r
-        r = AsyncMock()
+        r = MagicMock()
         r.scalars.return_value.all.return_value = [generated_task]
         return r
 
@@ -145,7 +145,7 @@ async def test_list_tasks_raises_not_found():
     from src.app.services import checklist_service
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = None
     mock_db.execute.return_value = r
 
@@ -159,7 +159,7 @@ async def test_list_tasks_raises_forbidden():
     from src.app.services import checklist_service
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = _make_mobility(user_id=OTHER_USER_ID)
     mock_db.execute.return_value = r
 
@@ -179,7 +179,7 @@ async def test_create_task_success():
     new_task.deadline = None
     new_task.priority = 0
 
-    mobility_result = AsyncMock()
+    mobility_result = MagicMock()
     mobility_result.scalar_one_or_none.return_value = mobility
 
     mock_db = AsyncMock()
@@ -202,7 +202,7 @@ async def test_update_task_success():
     task = _make_task_orm()
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = task
     mock_db.execute.return_value = r
     mock_db.refresh.side_effect = lambda obj: None
@@ -223,7 +223,7 @@ async def test_update_task_forbidden():
     task = _make_task_orm(user_id=OTHER_USER_ID)
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = task
     mock_db.execute.return_value = r
 
@@ -239,7 +239,7 @@ async def test_complete_task_sets_flag():
     task.is_completed = False
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = task
     mock_db.execute.return_value = r
     mock_db.refresh.side_effect = lambda obj: None
@@ -257,7 +257,7 @@ async def test_delete_task_success():
     task = _make_task_orm()
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = task
     mock_db.execute.return_value = r
 
@@ -275,7 +275,7 @@ async def test_delete_task_forbidden():
     task = _make_task_orm(user_id=OTHER_USER_ID)
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = task
     mock_db.execute.return_value = r
 
@@ -289,7 +289,7 @@ async def test_delete_task_not_found():
     from src.app.services import checklist_service
 
     mock_db = AsyncMock()
-    r = AsyncMock()
+    r = MagicMock()
     r.scalar_one_or_none.return_value = None
     mock_db.execute.return_value = r
 

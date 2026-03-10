@@ -66,10 +66,10 @@ def _make_task(title="Apply for Erasmus", category="admin", deadline=date(2025, 
 
 
 def _make_db(mobility, tasks):
-    mobility_result = AsyncMock()
+    mobility_result = MagicMock()
     mobility_result.scalar_one_or_none.return_value = mobility
 
-    tasks_result = AsyncMock()
+    tasks_result = MagicMock()
     tasks_result.scalars.return_value.all.return_value = tasks
 
     call_count = {"n": 0}
@@ -131,7 +131,7 @@ async def test_get_timeline_raises_not_found():
     from src.app.services import timeline_service
 
     mock_db = AsyncMock()
-    result_mock = AsyncMock()
+    result_mock = MagicMock()
     result_mock.scalar_one_or_none.return_value = None
     mock_db.execute.return_value = result_mock
 
@@ -146,7 +146,7 @@ async def test_get_timeline_raises_forbidden_for_wrong_user():
 
     mobility = _make_mobility(user_id=OTHER_USER_ID)
     mock_db = AsyncMock()
-    result_mock = AsyncMock()
+    result_mock = MagicMock()
     result_mock.scalar_one_or_none.return_value = mobility
     mock_db.execute.return_value = result_mock
 
