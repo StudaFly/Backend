@@ -5,6 +5,7 @@ from src.app.api.v1 import (
     auth,
     budget,
     checklist,
+    destinations,
     documents,
     guide,
     mobilities,
@@ -20,6 +21,7 @@ api_router.include_router(users.router, prefix="/users", tags=["Users"])
 api_router.include_router(mobilities.router, prefix="/mobilities", tags=["Mobilities"])
 api_router.include_router(timeline.router, prefix="/mobilities", tags=["Timeline"])
 api_router.include_router(checklist.router, prefix="/mobilities", tags=["Checklist"])
+api_router.include_router(destinations.router, prefix="/destinations", tags=["Destinations"])
 api_router.include_router(budget.router, prefix="/destinations", tags=["Budget"])
 api_router.include_router(guide.router, prefix="/destinations", tags=["Guide"])
 api_router.include_router(documents.router, prefix="", tags=["Documents"])
