@@ -44,3 +44,12 @@ async def require_premium(current_user=Depends(get_current_user)):
             detail="Premium subscription required",
         )
     return current_user
+
+
+async def require_admin(current_user=Depends(get_current_user)):
+    if current_user.role not in ("admin", "superadmin"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin role required",
+        )
+    return current_user
