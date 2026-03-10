@@ -26,8 +26,8 @@ class MobilityCreate(StudaFlyBaseModel):
                 raise ValueError("departureDate must be in ISO 8601 format (YYYY-MM-DD)")
             try:
                 return date.fromisoformat(v)
-            except ValueError:
-                raise ValueError("departureDate must be in ISO 8601 format (YYYY-MM-DD)")
+            except ValueError as e:
+                raise ValueError("departureDate must be in ISO 8601 format (YYYY-MM-DD)") from e
         return v
 
 

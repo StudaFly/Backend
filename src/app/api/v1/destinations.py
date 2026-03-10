@@ -15,7 +15,9 @@ router = APIRouter()
 
 @router.get("/", response_model=ResponseBase[list[DestinationRead]])
 async def list_destinations(
-    query: str | None = Query(default=None, description="Search by city or country (case-insensitive)"),
+    query: str | None = Query(
+        default=None, description="Search by city or country (case-insensitive)"
+    ),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ) -> ResponseBase[list[DestinationRead]]:
