@@ -25,7 +25,9 @@ async def list_tasks(
     return ResponseBase(data=tasks, message="Tasks retrieved successfully")
 
 
-@mobility_router.post("/{mobility_id}/tasks", response_model=ResponseBase[TaskRead], status_code=201)
+@mobility_router.post(
+    "/{mobility_id}/tasks", response_model=ResponseBase[TaskRead], status_code=201
+)
 async def create_task(
     mobility_id: UUID,
     payload: TaskCreate,

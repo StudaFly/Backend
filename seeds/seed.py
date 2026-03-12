@@ -15,7 +15,6 @@ Prérequis :
 import argparse
 import asyncio
 import json
-import os
 import sys
 from pathlib import Path
 from uuid import UUID
@@ -25,7 +24,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-
 from src.app.core.config import settings
 from src.app.models.destination import Destination
 from src.app.models.institution import Institution
