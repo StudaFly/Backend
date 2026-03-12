@@ -19,6 +19,7 @@ app = FastAPI(
     title="StudaFly API",
     description="Prepare your international mobility, serenely.",
     version="0.1.0",
+    redirect_slashes=False,
     lifespan=lifespan,
 )
 

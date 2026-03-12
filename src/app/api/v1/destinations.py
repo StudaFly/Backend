@@ -13,7 +13,7 @@ from src.app.services import destination_service
 router = APIRouter()
 
 
-@router.get("/", response_model=ResponseBase[list[DestinationRead]])
+@router.get("", response_model=ResponseBase[list[DestinationRead]])
 async def list_destinations(
     query: str | None = Query(
         default=None, description="Search by city or country (case-insensitive)"
@@ -24,7 +24,7 @@ async def list_destinations(
     return ResponseBase(data=destinations, message="Destinations retrieved successfully")
 
 
-@router.post("/", response_model=ResponseBase[DestinationRead], status_code=201)
+@router.post("", response_model=ResponseBase[DestinationRead], status_code=201)
 async def create_destination(
     payload: DestinationCreate,
     db: AsyncSession = Depends(get_db),
