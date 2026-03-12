@@ -10,10 +10,12 @@ from src.app.schemas.common import ResponseBase
 from src.app.schemas.task import TaskCreate, TaskRead, TaskUpdate
 from src.app.services import checklist_service
 
-router = APIRouter()
+mobility_router = APIRouter()
+
+task_router = APIRouter()
 
 
-@router.get("/{mobility_id}/tasks", response_model=ResponseBase[list[TaskRead]])
+@mobility_router.get("/{mobility_id}/tasks", response_model=ResponseBase[list[TaskRead]])
 async def list_tasks(
     mobility_id: UUID,
     db: AsyncSession = Depends(get_db),
@@ -23,7 +25,7 @@ async def list_tasks(
     return ResponseBase(data=tasks, message="Tasks retrieved successfully")
 
 
-@router.post("/{mobility_id}/tasks", response_model=ResponseBase[TaskRead], status_code=201)
+@mobility_router.post("/{mobility_id}/tasks", response_model=ResponseBase[TaskRead], status_code=201)
 async def create_task(
     mobility_id: UUID,
     payload: TaskCreate,
@@ -36,7 +38,7 @@ async def create_task(
     return ResponseBase(data=task, message="Task created successfully")
 
 
-@router.patch("/tasks/{task_id}", response_model=ResponseBase[TaskRead])
+@task_router.patch("/tasks/{task_id}", response_model=ResponseBase[TaskRead])
 async def update_task(
     task_id: UUID,
     payload: TaskUpdate,
@@ -49,7 +51,7 @@ async def update_task(
     return ResponseBase(data=task, message="Task updated successfully")
 
 
-@router.patch("/tasks/{task_id}/complete", response_model=ResponseBase[TaskRead])
+@task_router.patch("/tasks/{task_id}/complete", response_model=ResponseBase[TaskRead])
 async def complete_task(
     task_id: UUID,
     db: AsyncSession = Depends(get_db),
@@ -59,7 +61,7 @@ async def complete_task(
     return ResponseBase(data=task, message="Task marked as completed")
 
 
-@router.delete("/tasks/{task_id}", status_code=204)
+@task_router.delete("/tasks/{task_id}", status_code=204)
 async def delete_task(
     task_id: UUID,
     db: AsyncSession = Depends(get_db),

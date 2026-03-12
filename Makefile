@@ -19,6 +19,24 @@ MSG ?= auto
 migration:
 	alembic revision --autogenerate -m "$(MSG)"
 
+db-setup:
+	$(MAKE) migrate && $(MAKE) seed
+
+seed:
+	python -m seeds.seed
+
+seed-force:
+	python -m seeds.seed --force
+
+seed-dry:
+	python -m seeds.seed --dry-run
+
+seed-dest:
+	python -m seeds.seed --dest
+
+seed-inst:
+	python -m seeds.seed --inst
+
 shell:
 	python -c "import asyncio; from src.app.db.session import AsyncSessionLocal; print('Shell ready')"
 
@@ -36,4 +54,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run test lint format migrate migration shell docker-up docker-down docker-logs docker-ps
+.PHONY: run test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-inst shell docker-up docker-down docker-logs docker-ps
