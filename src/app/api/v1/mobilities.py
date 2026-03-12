@@ -13,7 +13,7 @@ from src.app.services import mobility_service
 router = APIRouter()
 
 
-@router.get("/", response_model=ResponseBase[list[MobilityRead]])
+@router.get("", response_model=ResponseBase[list[MobilityRead]])
 async def list_mobilities(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -22,7 +22,7 @@ async def list_mobilities(
     return ResponseBase(data=mobilities, message="Mobilities retrieved successfully")
 
 
-@router.post("/", response_model=ResponseBase[MobilityRead], status_code=201)
+@router.post("", response_model=ResponseBase[MobilityRead], status_code=201)
 async def create_mobility(
     payload: MobilityCreate,
     db: AsyncSession = Depends(get_db),

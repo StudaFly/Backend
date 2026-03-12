@@ -55,15 +55,15 @@ class TestChecklistAuthGuard:
         assert r.status_code == 403
 
     def test_update_task_no_token_returns_403(self):
-        r = client.patch(f"{PREFIX}/mobilities/tasks/{TASK_ID}")
+        r = client.patch(f"{PREFIX}/tasks/{TASK_ID}")
         assert r.status_code == 403
 
     def test_complete_task_no_token_returns_403(self):
-        r = client.patch(f"{PREFIX}/mobilities/tasks/{TASK_ID}/complete")
+        r = client.patch(f"{PREFIX}/tasks/{TASK_ID}/complete")
         assert r.status_code == 403
 
     def test_delete_task_no_token_returns_403(self):
-        r = client.delete(f"{PREFIX}/mobilities/tasks/{TASK_ID}")
+        r = client.delete(f"{PREFIX}/tasks/{TASK_ID}")
         assert r.status_code == 403
 
     def test_invalid_token_returns_401(self):
@@ -212,7 +212,7 @@ class TestChecklistHappyPath:
             return_value=task,
         ):
             r = client_.patch(
-                f"{PREFIX}/mobilities/tasks/{TASK_ID}/complete",
+                f"{PREFIX}/tasks/{TASK_ID}/complete",
                 headers={"Authorization": "Bearer faketoken"},
             )
 
@@ -227,7 +227,7 @@ class TestChecklistHappyPath:
             return_value=None,
         ):
             r = client_.delete(
-                f"{PREFIX}/mobilities/tasks/{TASK_ID}",
+                f"{PREFIX}/tasks/{TASK_ID}",
                 headers={"Authorization": "Bearer faketoken"},
             )
 

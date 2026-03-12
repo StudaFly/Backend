@@ -1,0 +1,157 @@
+[
+  {
+    "id": "22222222-0001-0001-0001-000000000001",
+    "name": "Epitech",
+    "logo_url": null,
+    "config": {
+      "primary_color": "#2563EB",
+      "accent_color": "#1D4ED8",
+      "custom_tasks": [
+        {
+          "title": "Valider le départ avec le service des relations internationales",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Remplir le formulaire de mobilité Epitech",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Obtenir l'attestation d'inscription Epitech",
+          "category": "admin",
+          "priority": 2
+        }
+      ],
+      "ri_contact": {
+        "email": "ri@epitech.eu",
+        "phone": "+33 1 44 08 01 01",
+        "name": "Service Relations Internationales"
+      }
+    }
+  },
+  {
+    "id": "22222222-0001-0001-0001-000000000002",
+    "name": "Sciences Po Paris",
+    "logo_url": null,
+    "config": {
+      "primary_color": "#DC2626",
+      "accent_color": "#B91C1C",
+      "custom_tasks": [
+        {
+          "title": "Déposer le dossier de mobilité Sciences Po",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Obtenir la lettre de nomination Sciences Po",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Valider le contrat pédagogique avec le responsable de programme",
+          "category": "admin",
+          "priority": 2
+        }
+      ],
+      "ri_contact": {
+        "email": "mobilites@sciencespo.fr",
+        "phone": "+33 1 45 49 50 50",
+        "name": "Direction des Relations Internationales"
+      }
+    }
+  },
+  {
+    "id": "22222222-0001-0001-0001-000000000003",
+    "name": "INSA Lyon",
+    "logo_url": null,
+    "config": {
+      "primary_color": "#0369A1",
+      "accent_color": "#0284C7",
+      "custom_tasks": [
+        {
+          "title": "Soumettre le dossier de candidature DRI INSA Lyon",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Faire valider le contrat d'études par le directeur de département",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "S'assurer de la couverture assurance INSA pour l'étranger",
+          "category": "admin",
+          "priority": 2
+        }
+      ],
+      "ri_contact": {
+        "email": "dri@insa-lyon.fr",
+        "phone": "+33 4 72 43 83 83",
+        "name": "Département Relations Internationales"
+      }
+    }
+  },
+  {
+    "id": "22222222-0001-0001-0001-000000000004",
+    "name": "Université Paris-Saclay",
+    "logo_url": null,
+    "config": {
+      "primary_color": "#7C3AED",
+      "accent_color": "#6D28D9",
+      "custom_tasks": [
+        {
+          "title": "Remplir le dossier de candidature Erasmus+ Paris-Saclay",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Faire signer le Learning Agreement par le coordinateur",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Déclarer la mobilité à la Direction de la Scolarité",
+          "category": "admin",
+          "priority": 2
+        }
+      ],
+      "ri_contact": {
+        "email": "international@universite-paris-saclay.fr",
+        "phone": "+33 1 69 15 45 00",
+        "name": "Direction des Relations Internationales et Partenariats"
+      }
+    }
+  },
+  {
+    "id": "22222222-0001-0001-0001-000000000005",
+    "name": "emlyon business school",
+    "logo_url": null,
+    "config": {
+      "primary_color": "#B45309",
+      "accent_color": "#92400E",
+      "custom_tasks": [
+        {
+          "title": "Compléter le dossier de départ emlyon",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Valider le programme d'échange avec le bureau International emlyon",
+          "category": "admin",
+          "priority": 1
+        },
+        {
+          "title": "Mettre à jour le profil emlyon avec les informations de mobilité",
+          "category": "admin",
+          "priority": 2
+        }
+      ],
+      "ri_contact": {
+        "email": "international@em-lyon.com",
+        "phone": "+33 4 78 33 78 00",
+        "name": "Bureau des Relations Internationales"
+      }
+    }
+  }
+]

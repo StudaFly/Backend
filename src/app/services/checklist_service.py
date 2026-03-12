@@ -128,7 +128,7 @@ async def update_task(
 
 async def complete_task(db: AsyncSession, user_id: UUID, task_id: UUID) -> TaskRead:
     task = await _get_task_for_user(db, user_id, task_id)
-    task.is_completed = True
+    task.is_completed = not task.is_completed
     await db.commit()
     await db.refresh(task)
     return TaskRead.model_validate(task)

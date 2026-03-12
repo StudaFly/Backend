@@ -1,0 +1,563 @@
+[
+  {
+    "id": "11111111-0001-0001-0001-000000000001",
+    "city": "Barcelone",
+    "country": "Espagne",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 900, "max": 1300 },
+      "rent": { "shared": 500, "studio": 850 },
+      "food": 280,
+      "transport": 55,
+      "misc": 160
+    },
+    "guide_content": {
+      "overview": "Barcelone est l'une des destinations Erasmus les plus prisées d'Europe, alliant culture catalane, plages méditerranéennes et vie nocturne animée.",
+      "housing": "Chercher un logement via Idealista ou Fotocasa. Les quartiers Gràcia et Poble Sec sont populaires chez les étudiants. Prévoir 1-2 mois de caution.",
+      "transport": "La T-Casual (10 trajets) coûte environ 11€. L'abonnement mensuel jeune est à 40€. Le vélo public Bicing est disponible avec abonnement annuel.",
+      "tips": [
+        "Apprendre quelques mots en catalan est très apprécié",
+        "Les supermarchés Mercadona sont les moins chers",
+        "Le menu del día (menu du midi) permet de manger bien pour 10-12€",
+        "Éviter la Barceloneta en haute saison — trop touristique"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "police": "091",
+        "santé": "CatSalut — centre d'accueil étranger"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000002",
+    "city": "Madrid",
+    "country": "Espagne",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 900, "max": 1350 },
+      "rent": { "shared": 520, "studio": 900 },
+      "food": 270,
+      "transport": 55,
+      "misc": 155
+    },
+    "guide_content": {
+      "overview": "Madrid, capitale espagnole, offre une vie culturelle intense — musées de classe mondiale, gastronomie variée et une université centrale (Complutense) reconnue.",
+      "housing": "Quartiers Malasaña, Lavapiés et Moncloa très prisés par les étudiants. Chercher via Idealista ou le tableau d'affichage de l'université.",
+      "transport": "Abonnement mensuel transports en commun : 20€ pour les moins de 26 ans. Métro + bus couvrent toute la ville.",
+      "tips": [
+        "Le Museo del Prado et le Reina Sofia sont gratuits le soir",
+        "Les tapas gratuites existent encore dans certains bars du centre",
+        "La sieste est réelle — certains commerces ferment de 14h à 17h",
+        "L'université propose souvent des activités culturelles gratuites"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Centro de Salud — carte de santé européenne acceptée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000003",
+    "city": "Lisbonne",
+    "country": "Portugal",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 800, "max": 1200 },
+      "rent": { "shared": 450, "studio": 750 },
+      "food": 250,
+      "transport": 40,
+      "misc": 140
+    },
+    "guide_content": {
+      "overview": "Lisbonne séduit par son ambiance unique, ses tramways historiques et son coût de la vie encore raisonnable. Forte communauté internationale d'étudiants.",
+      "housing": "Quartiers Mouraria, Intendente et Almada (rive sud) sont accessibles. Utiliser Uniplaces ou les groupes Facebook Erasmus Lisboa.",
+      "transport": "Pass Navegante étudiant : 30€/mois. Le tram 28 (touristique) est à éviter aux heures de pointe.",
+      "tips": [
+        "Le pastel de nata à la Pastéis de Belém vaut le déplacement",
+        "Les marchés municipaux proposent des repas complets pour 5-7€",
+        "Le Fado est gratuit dans certains bars le jeudi soir",
+        "Prévoir des chaussures confortables — la ville est très vallonnée"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "SNS 24 (ligne de santé) : 808 24 24 24"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000004",
+    "city": "Rome",
+    "country": "Italie",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 950, "max": 1400 },
+      "rent": { "shared": 550, "studio": 900 },
+      "food": 300,
+      "transport": 35,
+      "misc": 165
+    },
+    "guide_content": {
+      "overview": "Rome, ville éternelle, est un musée à ciel ouvert. Riche patrimoine, gastronomie italienne authentique et vie étudiante intense autour de La Sapienza.",
+      "housing": "Quartiers Pigneto, Trastevere et San Giovanni populaires. La Sapienza a une résidence universitaire — s'inscrire très tôt.",
+      "transport": "Abonnement mensuel ATM : 35€. Le métro (2 lignes) est limité — le bus complète bien le réseau.",
+      "tips": [
+        "L'eau des fontaines publiques (nasoni) est potable et gratuite",
+        "Les musées sont gratuits le premier dimanche du mois",
+        "Manger debout au comptoir d'un bar coûte moins cher qu'assis",
+        "Acheter une carte rechargeable pour éviter les frais bancaires"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "ASL (Azienda Sanitaria Locale) — s'inscrire dès l'arrivée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000005",
+    "city": "Milan",
+    "country": "Italie",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1100, "max": 1600 },
+      "rent": { "shared": 650, "studio": 1050 },
+      "food": 320,
+      "transport": 38,
+      "misc": 190
+    },
+    "guide_content": {
+      "overview": "Milan est la capitale économique et de la mode italienne. Forte présence d'universités de design et commerce (Politecnico, Bocconi). Ville chère mais stimulante.",
+      "housing": "Chercher tôt — le logement est tendu. Quartiers Navigli, Isola et Porta Romana plébiscités. Utiliser Bakeca ou Uniplaces.",
+      "transport": "ATM mensuel étudiant : 22€. Le réseau métro+tram+bus est efficace.",
+      "tips": [
+        "L'aperitivo milanais (18h-20h) inclut souvent un buffet pour le prix d'un verre",
+        "Outlet FoxTown accessible en train pour shopping à prix réduit",
+        "Politecnico et Bocconi organisent de nombreux events networking",
+        "Prévoir un budget chaud pour sortir — Milan est onéreuse la nuit"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "ASL Milano — carte EHIC recommandée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000006",
+    "city": "Berlin",
+    "country": "Allemagne",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 900, "max": 1300 },
+      "rent": { "shared": 550, "studio": 850 },
+      "food": 260,
+      "transport": 29,
+      "misc": 160
+    },
+    "guide_content": {
+      "overview": "Berlin est la capitale de l'innovation, de l'art et de la diversité culturelle. Vie nocturne légendaire, startups omniprésentes et coût de la vie encore accessible.",
+      "housing": "Utiliser WG-Gesucht pour trouver une colocation (WG). Quartiers Neukölln, Friedrichshain et Prenzlauer Berg très prisés. Prévoir 1-3 mois de délai.",
+      "transport": "Le Deutschlandticket à 49€/mois couvre tous les transports en Allemagne.",
+      "tips": [
+        "S'inscrire à la Bürgeramt (mairie d'arrondissement) dans les 14 jours — obligatoire",
+        "Les supermarchés Lidl et Aldi sont incontournables pour le budget",
+        "Les musées de l'île aux musées sont gratuits le jeudi soir",
+        "Berlin est cyclable — investir dans un bon vélo d'occasion"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Techniker Krankenkasse (TK) — assurance maladie étudiante recommandée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000007",
+    "city": "Munich",
+    "country": "Allemagne",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1100, "max": 1600 },
+      "rent": { "shared": 700, "studio": 1100 },
+      "food": 300,
+      "transport": 57,
+      "misc": 190
+    },
+    "guide_content": {
+      "overview": "Munich est l'une des villes les plus riches et les plus chères d'Allemagne, mais aussi l'une des plus agréables. TU Munich est une université d'excellence.",
+      "housing": "Logement très tendu — contacter le Studentenwerk dès l'admission. WG-Gesucht pour les colocations. Prévoir 6 mois d'avance.",
+      "transport": "IsarCard (abonnement mensuel MVV) : environ 57€ en zone intérieure.",
+      "tips": [
+        "L'Oktoberfest en septembre attire 6 millions de visiteurs — réserver tôt",
+        "Les Biergarten sont une institution locale — la bière y est onéreuse",
+        "Les Alpes sont à 1h en train — ski et randonnée accessibles le week-end",
+        "Mensa universitaire : repas complet pour 3-4€ avec carte étudiant"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Techniker Krankenkasse (TK) recommandée pour les étudiants étrangers"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000008",
+    "city": "Amsterdam",
+    "country": "Pays-Bas",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1100, "max": 1600 },
+      "rent": { "shared": 700, "studio": 1100 },
+      "food": 290,
+      "transport": 100,
+      "misc": 200
+    },
+    "guide_content": {
+      "overview": "Amsterdam est une ville cosmopolite, tolérante et cyclable par excellence. Excellentes universités (UvA, VU) et fort réseau international d'entreprises.",
+      "housing": "Logement extrêmement tendu — s'inscrire sur les listes d'attente dès l'admission (DUWO, HousingAnywhere). Budget élevé incontournable.",
+      "transport": "OV-chipkaart pour tous les transports. Le vélo est le moyen de transport principal — acheter un vélo d'occasion (~100-150€).",
+      "tips": [
+        "Tous les cours sont souvent en anglais — pas besoin de néerlandais",
+        "Le vélo est obligatoire — s'habituer aux règles strictes du trafic cycliste",
+        "Albert Heijn To Go pour les repas rapides et abordables",
+        "Les musées ont des réductions avec la Museumkaart (~65€/an)"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "S'inscrire auprès d'un huisarts (médecin généraliste) dès l'arrivée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000009",
+    "city": "Prague",
+    "country": "République Tchèque",
+    "cost_of_living": {
+      "currency": "CZK",
+      "monthly_budget": { "min": 600, "max": 900 },
+      "rent": { "shared": 350, "studio": 600 },
+      "food": 180,
+      "transport": 25,
+      "misc": 120
+    },
+    "guide_content": {
+      "overview": "Prague est l'une des villes Erasmus les moins chères d'Europe centrale, avec un centre médiéval classé UNESCO et une vie étudiante très active.",
+      "housing": "Résidences universitaires économiques disponibles via UK (Université Charles). Alternativement, Expats.cz pour les colocations.",
+      "transport": "Abonnement mensuel DPP : environ 550 CZK (~22€). Tram, métro et bus bien connectés.",
+      "tips": [
+        "La couronne tchèque (CZK) — éviter les bureaux de change du centre touristique",
+        "La bière locale (Pilsner Urquell, Kozel) coûte moins cher qu'une eau minérale au restaurant",
+        "Eviter les restaurants de la Place de la Vieille-Ville — pièges à touristes",
+        "Le tramway 22 traverse les plus beaux quartiers de la ville"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "VZP (assurance maladie tchèque) — s'inscrire si séjour > 3 mois"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000010",
+    "city": "Vienne",
+    "country": "Autriche",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 900, "max": 1300 },
+      "rent": { "shared": 500, "studio": 800 },
+      "food": 280,
+      "transport": 30,
+      "misc": 160
+    },
+    "guide_content": {
+      "overview": "Vienne est réputée pour sa qualité de vie exceptionnelle, sa richesse musicale et culturelle et ses universités prestigieuses (Université de Vienne, TU Wien).",
+      "housing": "OeAD gère les logements étudiants internationaux — contacter dès l'admission. Marché locatif moins tendu qu'à Paris ou Amsterdam.",
+      "transport": "Wiener Linien — abonnement annuel à 365€ (1€/jour). Métro U-Bahn très efficace.",
+      "tips": [
+        "La Wiener Melange (café viennois) dans un Kaffeehaus est une expérience culturelle",
+        "Les Bäckerei (boulangeries) proposent des petits-déjeuners à 3-5€",
+        "Le Prater et la roue panoramique sont des classiques abordables",
+        "La carte Vienna City Card offre des réductions musées + transports"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "ÖGK (Österreichische Gesundheitskasse) — carte EHIC acceptée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000011",
+    "city": "Dublin",
+    "country": "Irlande",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1300, "max": 1900 },
+      "rent": { "shared": 900, "studio": 1500 },
+      "food": 320,
+      "transport": 120,
+      "misc": 220
+    },
+    "guide_content": {
+      "overview": "Dublin, capitale anglophone de l'UE, est idéale pour améliorer son anglais. Forte présence de multinationales tech (Google, Meta, Airbnb). Coût de la vie élevé.",
+      "housing": "Crise du logement sévère — contacter le housing office de l'université dès l'admission. Daft.ie pour le marché privé. Budget conséquent impératif.",
+      "transport": "Leap Card pour réductions sur bus et Luas (tramway). Dublin Bikes pour les déplacements courts.",
+      "tips": [
+        "Le pub culture est central — Guinness à partir de 6€ en dehors du centre",
+        "Les food markets (Temple Bar Food Market) pour manger bien pas trop cher",
+        "Prévoir un imperméable — il pleut environ 150 jours par an",
+        "Les transports en commun ferment tôt — prévoir taxi/Uber la nuit"
+      ],
+      "useful_contacts": {
+        "urgences": "112 ou 999",
+        "santé": "HSE (Health Service Executive) — GP visit card recommandée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000012",
+    "city": "Stockholm",
+    "country": "Suède",
+    "cost_of_living": {
+      "currency": "SEK",
+      "monthly_budget": { "min": 1100, "max": 1600 },
+      "rent": { "shared": 600, "studio": 950 },
+      "food": 320,
+      "transport": 100,
+      "misc": 210
+    },
+    "guide_content": {
+      "overview": "Stockholm est la capitale scandinave par excellence — design, innovation, durabilité et qualité de vie. KTH et Stockholm University sont des institutions reconnues.",
+      "housing": "Longues listes d'attente SSSB (logement étudiant) — s'inscrire 2 ans à l'avance. Blocket.se pour le marché privé.",
+      "transport": "SL (Storstockholms Lokaltrafik) : abonnement mensuel ~100€. La ville est très cyclable en été.",
+      "tips": [
+        "Cuisiner à la maison est essentiel — les restaurants sont très chers",
+        "Systembolaget est le seul magasin où acheter de l'alcool (ferme tôt)",
+        "Le soleil de minuit en été et l'obscurité en hiver sont des réalités",
+        "Le Fika (pause café) est une institution sociale à respecter"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Vårdguiden 1177 — ligne de conseils médicaux"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000013",
+    "city": "Copenhague",
+    "country": "Danemark",
+    "cost_of_living": {
+      "currency": "DKK",
+      "monthly_budget": { "min": 1200, "max": 1700 },
+      "rent": { "shared": 700, "studio": 1100 },
+      "food": 350,
+      "transport": 80,
+      "misc": 230
+    },
+    "guide_content": {
+      "overview": "Copenhague est régulièrement classée parmi les meilleures villes du monde pour la qualité de vie. Ville cyclable, design danois et gastronomie nordique.",
+      "housing": "Utiliser le housing office de DTU ou KU. CIU (Copenhagen International Office) aide les étudiants Erasmus. Le marché est tendu.",
+      "transport": "Rejsekort (carte rechargeable) pour métro, bus, S-Tog. Le vélo reste le moyen le plus pratique.",
+      "tips": [
+        "La couronne danoise (DKK) — pas d'euros mais carte bancaire acceptée partout",
+        "Le Netto et Rema 1000 sont les supermarchés les moins chers",
+        "La culture du hygge implique des soirées calmes chez soi entre amis",
+        "Le Strøget est le centre piéton — éviter pour les achats (trop cher)"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Lægevagten (garde médicale) : 70 13 00 41"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000014",
+    "city": "Helsinki",
+    "country": "Finlande",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1000, "max": 1400 },
+      "rent": { "shared": 550, "studio": 850 },
+      "food": 310,
+      "transport": 60,
+      "misc": 190
+    },
+    "guide_content": {
+      "overview": "Helsinki est une capitale nordique moderne, safe et organisée. Université de Helsinki et Aalto University sont des institutions de recherche de premier plan.",
+      "housing": "HOAS (Helsinki Student Housing) gère les logements — s'inscrire dès l'admission. Délais courts comparés aux autres capitales scandinaves.",
+      "transport": "HSL : abonnement mensuel étudiants ~50€. Tram, métro et ferry couvrent la ville et les îles.",
+      "tips": [
+        "Le sauna est une institution nationale — gratuit dans de nombreuses résidences",
+        "K-Market et S-Market pour faire ses courses à prix raisonnable",
+        "L'hiver finlandais est rude (-20°C possible) — prévoir équipement adapté",
+        "Les aurores boréales sont visibles depuis la ville en hiver (rarement)"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "FSHS (Finnish Student Health Service) — gratuit pour les étudiants inscrits"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000015",
+    "city": "Varsovie",
+    "country": "Pologne",
+    "cost_of_living": {
+      "currency": "PLN",
+      "monthly_budget": { "min": 600, "max": 900 },
+      "rent": { "shared": 350, "studio": 580 },
+      "food": 200,
+      "transport": 25,
+      "misc": 130
+    },
+    "guide_content": {
+      "overview": "Varsovie est la capitale économique de l'Europe centrale, reconstruite après la Seconde Guerre mondiale. Université de Varsovie reconnue et coût de la vie très accessible.",
+      "housing": "SGH, UW proposent des résidences universitaires. OLX.pl pour le marché privé. Très bon rapport qualité-prix.",
+      "transport": "ZTM Warszawa : abonnement mensuel étudiant ~25€. Metro, tram et bus bien développés.",
+      "tips": [
+        "Le zloty (PLN) — retirer des espèces dans les Kantor (bureaux de change officiels)",
+        "Bar Mleczny (bars à lait) : repas traditionnels complets pour 3-5€",
+        "Le vieux quartier (Stare Miasto) est une reconstruction remarquable",
+        "Uber et Bolt très utilisés — moins chers qu'en Europe occidentale"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "NFZ (assurance santé nationale) — carte EHIC acceptée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000016",
+    "city": "Budapest",
+    "country": "Hongrie",
+    "cost_of_living": {
+      "currency": "HUF",
+      "monthly_budget": { "min": 600, "max": 900 },
+      "rent": { "shared": 320, "studio": 530 },
+      "food": 200,
+      "transport": 20,
+      "misc": 130
+    },
+    "guide_content": {
+      "overview": "Budapest est l'une des plus belles capitales européennes — bains thermaux, architecture Art Nouveau et nightlife réputé. ELTE et BME sont les principales universités.",
+      "housing": "Marché locatif accessible. Facebook groups Erasmus Budapest et Expats in Budapest pour trouver rapidement.",
+      "transport": "BKK (transports Budapest) : abonnement mensuel étudiant ~20€. Tramway, métro (réseau historique) et bus.",
+      "tips": [
+        "Le forint hongrois (HUF) — les prix semblent élevés mais restent faibles en euros",
+        "Les bains thermaux (Széchenyi, Gellért) sont une expérience incontournable",
+        "Les ruin bars (Szimpla Kert) sont le symbole de la nightlife locale",
+        "Le marché central (Nagy Vásárcsarnok) pour acheter fruits, légumes et spécialités"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "NEAK (caisse maladie hongroise) — carte EHIC valide"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000017",
+    "city": "Bruxelles",
+    "country": "Belgique",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 1000, "max": 1400 },
+      "rent": { "shared": 550, "studio": 850 },
+      "food": 290,
+      "transport": 50,
+      "misc": 170
+    },
+    "guide_content": {
+      "overview": "Bruxelles est la capitale de l'UE et de l'OTAN. Ville multiculturelle et multilingue (français/néerlandais/anglais), idéale pour un stage dans une institution européenne.",
+      "housing": "Kots (chambres étudiantes) sont la norme. KotMatch et Immoweb pour chercher. Communes d'Ixelles et Saint-Gilles populaires chez les étudiants.",
+      "transport": "STIB/MIVB : abonnement mensuel ~50€. La carte MOBIB est rechargeable.",
+      "tips": [
+        "Les frites belges (vraies fritures) et les gaufres de qualité — éviter les touristiques",
+        "Les bières artisanales belges sont une institution nationale",
+        "Beaucoup d'institutions UE proposent des stages rémunérés (Blue Book Traineeship)",
+        "Ixelles abrite une forte concentration de bars et restaurants étudiants"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "INAMI / RIZIV — s'affilier à une mutualité dès l'arrivée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000018",
+    "city": "Athènes",
+    "country": "Grèce",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 750, "max": 1100 },
+      "rent": { "shared": 380, "studio": 620 },
+      "food": 230,
+      "transport": 30,
+      "misc": 140
+    },
+    "guide_content": {
+      "overview": "Athènes est le berceau de la civilisation occidentale. Coût de la vie abordable, soleil quasi permanent et richesse archéologique incomparable. EKPA est la principale université.",
+      "housing": "Marché locatif accessible. Spiti.gr et XE.gr pour chercher. Quartiers Exarchia, Pangrati et Koukaki populaires chez les étudiants.",
+      "transport": "OASA : abonnement mensuel étudiant ~30€. Métro, tram et bus couvrent la ville.",
+      "tips": [
+        "L'Acropole est gratuite le premier dimanche du mois (hors juillet-août)",
+        "Les tavernes de quartier (loin du centre) proposent des menus à 8-10€",
+        "Le café frappé grec est incontournable — servi froid même en hiver",
+        "Respecter la sieste locale (14h-17h) — beaucoup de commerces ferment"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "EOPYY (assurance maladie grecque) — carte EHIC acceptée"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000019",
+    "city": "Valence",
+    "country": "Espagne",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 800, "max": 1150 },
+      "rent": { "shared": 420, "studio": 700 },
+      "food": 260,
+      "transport": 40,
+      "misc": 145
+    },
+    "guide_content": {
+      "overview": "Valence est la troisième ville d'Espagne — plages méditerranéennes, gastronomie (paella originale), vie étudiante animée et coût de la vie plus doux que Barcelone ou Madrid.",
+      "housing": "Idéalista et Fotocasa pour trouver. Quartiers Benimaclet (étudiant) et Ruzafa (bohème) très prisés. Logements moins chers qu'à Barcelone.",
+      "transport": "EMT Valencia : abonnement mensuel ~40€. Le vélo public Valenbisi très utilisé.",
+      "tips": [
+        "La paella doit être mangée à Valence — le dimanche midi, en famille",
+        "Les plages sont accessibles en bus ou vélo depuis le centre",
+        "Las Fallas en mars est la fête la plus spectaculaire d'Espagne",
+        "Le Mercado Central est l'un des plus beaux marchés couverts d'Europe"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "Centre de Salut — carte EHIC valide"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000020",
+    "city": "Porto",
+    "country": "Portugal",
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": { "min": 750, "max": 1100 },
+      "rent": { "shared": 400, "studio": 680 },
+      "food": 240,
+      "transport": 40,
+      "misc": 135
+    },
+    "guide_content": {
+      "overview": "Porto est une ville magique en bord de Douro — azulejos, vin de Porto, librairie Lello et Universidade do Porto reconnue. Plus abordable que Lisbonne.",
+      "housing": "OLX.pt et Uniplaces pour chercher. Quartiers Cedofeita, Bonfim et Campanhã accessibles et dynamiques.",
+      "transport": "Andante (carte rechargeable) pour metro, bus et tram. Abonnement mensuel étudiant ~30-40€.",
+      "tips": [
+        "Le francesinha est le sandwich local emblématique — à tester absolument",
+        "Le vin de Porto en dégustation directement à Vila Nova de Gaia (rive sud)",
+        "La Livraria Lello (inspiration Harry Potter) est payante mais remboursée sur achat",
+        "Porto est très vallonnée — prévoir des bonnes chaussures de marche"
+      ],
+      "useful_contacts": {
+        "urgences": "112",
+        "santé": "SNS 24 : 808 24 24 24"
+      }
+    }
+  }
+]

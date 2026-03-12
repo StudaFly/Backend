@@ -42,9 +42,9 @@ FAKE_ID = "00000000-0000-0000-0000-000000000001"
         ("get", f"{PREFIX}/mobilities/{FAKE_ID}/timeline"),
         ("get", f"{PREFIX}/mobilities/{FAKE_ID}/tasks"),
         ("post", f"{PREFIX}/mobilities/{FAKE_ID}/tasks"),
-        ("patch", f"{PREFIX}/mobilities/tasks/{FAKE_ID}"),
-        ("patch", f"{PREFIX}/mobilities/tasks/{FAKE_ID}/complete"),
-        ("delete", f"{PREFIX}/mobilities/tasks/{FAKE_ID}"),
+        ("patch", f"{PREFIX}/tasks/{FAKE_ID}"),
+        ("patch", f"{PREFIX}/tasks/{FAKE_ID}/complete"),
+        ("delete", f"{PREFIX}/tasks/{FAKE_ID}"),
         # Budget & Guide
         ("get", f"{PREFIX}/destinations/{FAKE_ID}/budget"),
         ("get", f"{PREFIX}/destinations/"),
