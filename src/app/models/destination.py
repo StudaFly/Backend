@@ -20,6 +20,7 @@ class Destination(Base):
     )
     country: Mapped[str] = mapped_column(String(100), nullable=False)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
+    image_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
     cost_of_living: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     guide_content: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
 

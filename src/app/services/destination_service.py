@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.core.exceptions import ConflictError, NotFoundError
 from src.app.models.destination import Destination
-from src.app.schemas.destination import DestinationCreate, DestinationRead
+from src.app.schemas.destination import DestinationCreate, DestinationRead, DestinationUpdate
 
 
 async def list_all(db: AsyncSession, query: str | None = None) -> list[DestinationRead]:
@@ -37,6 +37,9 @@ async def create(db: AsyncSession, payload: DestinationCreate) -> DestinationRea
     destination = Destination(
         country=payload.country,
         city=payload.city,
+        image_url=payload.image_url,
+        guide_content=payload.guide_content,
+        cost_of_living=payload.cost_of_living,
     )
     db.add(destination)
     await db.commit()
@@ -49,3 +52,22 @@ async def get_by_id(db: AsyncSession, destination_id: UUID) -> DestinationRead:
     if not destination:
         raise NotFoundError("Destination not found")
     return DestinationRead.model_validate(destination)
+
+
+async def update(db: AsyncSession, destination_id: UUID, payload: DestinationUpdate) -> DestinationRead:
+    destination = await db.get(Destination, destination_id)
+    if not destination:
+        raise NotFoundError("Destination not found")
+    for field, value in payload.model_dump(exclude_unset=True).items():
+        setattr(destination, field, value)
+    await db.commit()
+    await db.refresh(destination)
+    return DestinationRead.model_validate(destination)
+
+
+async def delete(db: AsyncSession, destination_id: UUID) -> None:
+    destination = await db.get(Destination, destination_id)
+    if not destination:
+        raise NotFoundError("Destination not found")
+    await db.delete(destination)
+    await db.commit()

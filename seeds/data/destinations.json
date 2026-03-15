@@ -1,170 +1,61 @@
 [
   {
-    "id": "11111111-0001-0001-0001-000000000001",
-    "city": "Barcelone",
-    "country": "Espagne",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 900, "max": 1300 },
-      "rent": { "shared": 500, "studio": 850 },
-      "food": 280,
-      "transport": 55,
-      "misc": 160
-    },
-    "guide_content": {
-      "overview": "Barcelone est l'une des destinations Erasmus les plus prisées d'Europe, alliant culture catalane, plages méditerranéennes et vie nocturne animée.",
-      "housing": "Chercher un logement via Idealista ou Fotocasa. Les quartiers Gràcia et Poble Sec sont populaires chez les étudiants. Prévoir 1-2 mois de caution.",
-      "transport": "La T-Casual (10 trajets) coûte environ 11€. L'abonnement mensuel jeune est à 40€. Le vélo public Bicing est disponible avec abonnement annuel.",
-      "tips": [
-        "Apprendre quelques mots en catalan est très apprécié",
-        "Les supermarchés Mercadona sont les moins chers",
-        "Le menu del día (menu du midi) permet de manger bien pour 10-12€",
-        "Éviter la Barceloneta en haute saison — trop touristique"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "police": "091",
-        "santé": "CatSalut — centre d'accueil étranger"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000002",
-    "city": "Madrid",
-    "country": "Espagne",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 900, "max": 1350 },
-      "rent": { "shared": 520, "studio": 900 },
-      "food": 270,
-      "transport": 55,
-      "misc": 155
-    },
-    "guide_content": {
-      "overview": "Madrid, capitale espagnole, offre une vie culturelle intense — musées de classe mondiale, gastronomie variée et une université centrale (Complutense) reconnue.",
-      "housing": "Quartiers Malasaña, Lavapiés et Moncloa très prisés par les étudiants. Chercher via Idealista ou le tableau d'affichage de l'université.",
-      "transport": "Abonnement mensuel transports en commun : 20€ pour les moins de 26 ans. Métro + bus couvrent toute la ville.",
-      "tips": [
-        "Le Museo del Prado et le Reina Sofia sont gratuits le soir",
-        "Les tapas gratuites existent encore dans certains bars du centre",
-        "La sieste est réelle — certains commerces ferment de 14h à 17h",
-        "L'université propose souvent des activités culturelles gratuites"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Centro de Salud — carte de santé européenne acceptée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000003",
-    "city": "Lisbonne",
-    "country": "Portugal",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 800, "max": 1200 },
-      "rent": { "shared": 450, "studio": 750 },
-      "food": 250,
-      "transport": 40,
-      "misc": 140
-    },
-    "guide_content": {
-      "overview": "Lisbonne séduit par son ambiance unique, ses tramways historiques et son coût de la vie encore raisonnable. Forte communauté internationale d'étudiants.",
-      "housing": "Quartiers Mouraria, Intendente et Almada (rive sud) sont accessibles. Utiliser Uniplaces ou les groupes Facebook Erasmus Lisboa.",
-      "transport": "Pass Navegante étudiant : 30€/mois. Le tram 28 (touristique) est à éviter aux heures de pointe.",
-      "tips": [
-        "Le pastel de nata à la Pastéis de Belém vaut le déplacement",
-        "Les marchés municipaux proposent des repas complets pour 5-7€",
-        "Le Fado est gratuit dans certains bars le jeudi soir",
-        "Prévoir des chaussures confortables — la ville est très vallonnée"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "SNS 24 (ligne de santé) : 808 24 24 24"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000004",
-    "city": "Rome",
-    "country": "Italie",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 950, "max": 1400 },
-      "rent": { "shared": 550, "studio": 900 },
-      "food": 300,
-      "transport": 35,
-      "misc": 165
-    },
-    "guide_content": {
-      "overview": "Rome, ville éternelle, est un musée à ciel ouvert. Riche patrimoine, gastronomie italienne authentique et vie étudiante intense autour de La Sapienza.",
-      "housing": "Quartiers Pigneto, Trastevere et San Giovanni populaires. La Sapienza a une résidence universitaire — s'inscrire très tôt.",
-      "transport": "Abonnement mensuel ATM : 35€. Le métro (2 lignes) est limité — le bus complète bien le réseau.",
-      "tips": [
-        "L'eau des fontaines publiques (nasoni) est potable et gratuite",
-        "Les musées sont gratuits le premier dimanche du mois",
-        "Manger debout au comptoir d'un bar coûte moins cher qu'assis",
-        "Acheter une carte rechargeable pour éviter les frais bancaires"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "ASL (Azienda Sanitaria Locale) — s'inscrire dès l'arrivée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000005",
-    "city": "Milan",
-    "country": "Italie",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1100, "max": 1600 },
-      "rent": { "shared": 650, "studio": 1050 },
-      "food": 320,
-      "transport": 38,
-      "misc": 190
-    },
-    "guide_content": {
-      "overview": "Milan est la capitale économique et de la mode italienne. Forte présence d'universités de design et commerce (Politecnico, Bocconi). Ville chère mais stimulante.",
-      "housing": "Chercher tôt — le logement est tendu. Quartiers Navigli, Isola et Porta Romana plébiscités. Utiliser Bakeca ou Uniplaces.",
-      "transport": "ATM mensuel étudiant : 22€. Le réseau métro+tram+bus est efficace.",
-      "tips": [
-        "L'aperitivo milanais (18h-20h) inclut souvent un buffet pour le prix d'un verre",
-        "Outlet FoxTown accessible en train pour shopping à prix réduit",
-        "Politecnico et Bocconi organisent de nombreux events networking",
-        "Prévoir un budget chaud pour sortir — Milan est onéreuse la nuit"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "ASL Milano — carte EHIC recommandée"
-      }
-    }
-  },
-  {
     "id": "11111111-0001-0001-0001-000000000006",
     "city": "Berlin",
     "country": "Allemagne",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 900, "max": 1300 },
-      "rent": { "shared": 550, "studio": 850 },
-      "food": 260,
-      "transport": 29,
-      "misc": 160
-    },
+    "image_url": "https://picsum.photos/seed/berlin/800/600",
     "guide_content": {
-      "overview": "Berlin est la capitale de l'innovation, de l'art et de la diversité culturelle. Vie nocturne légendaire, startups omniprésentes et coût de la vie encore accessible.",
-      "housing": "Utiliser WG-Gesucht pour trouver une colocation (WG). Quartiers Neukölln, Friedrichshain et Prenzlauer Berg très prisés. Prévoir 1-3 mois de délai.",
-      "transport": "Le Deutschlandticket à 49€/mois couvre tous les transports en Allemagne.",
       "tips": [
-        "S'inscrire à la Bürgeramt (mairie d'arrondissement) dans les 14 jours — obligatoire",
-        "Les supermarchés Lidl et Aldi sont incontournables pour le budget",
-        "Les musées de l'île aux musées sont gratuits le jeudi soir",
-        "Berlin est cyclable — investir dans un bon vélo d'occasion"
+        "Téléchargez l'app BVG pour les transports",
+        "Portail WG-Gesucht pour les colocations",
+        "Berliner Sparkasse pour compte étudiant sans frais",
+        "Anmeldebestätigung obligatoire dès l'arrivée"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Techniker Krankenkasse (TK) — assurance maladie étudiante recommandée"
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-6 MOIS",
+          "description": "Candidater aux résidences universitaires et publier une annonce sur WG-Gesucht. Le marché berlinois est très compétitif."
+        },
+        {
+          "title": "Inscription universitaire",
+          "timing": "-4 MOIS",
+          "description": "Envoyer le dossier d'inscription et valider le contrat pédagogique avec le référent RI d'Epitech."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir un compte Wise ou Revolut, préparer le budget des 3 premiers mois."
+        },
+        {
+          "title": "Anmeldung",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à la commune (Bürgeramt) dans les 14 jours — obligatoire légalement. Obtenir la carte étudiante."
+        }
+      ],
+      "climate": "Continental",
+      "housing": "Les résidences universitaires (Studentenwohnheim) sont très demandées, candidater 6 mois à l'avance. WG (colocation) = option populaire sur WG-Gesucht.de. Comptez 450-700 €/mois.",
+      "currency": "Euro (€)",
+      "language": "Allemand",
+      "overview": "Berlin est la capitale de l'innovation, de l'art et de la diversité culturelle. Vie nocturne légendaire, startups omniprésentes et coût de la vie encore accessible pour une capitale.",
+      "transport": "BVG : U-Bahn, S-Bahn, tram et bus. Le semesterticket (~30 €/mois) couvre toute la ville pendant vos études. Vélo fortement recommandé.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "80 000+"
+    },
+    "cost_of_living": {
+      "food": 260,
+      "misc": 100,
+      "rent": {
+        "shared": 510,
+        "studio": 700
+      },
+      "leisure": 130,
+      "currency": "EUR",
+      "transport": 55,
+      "monthly_budget": {
+        "max": 1200,
+        "min": 880
       }
     }
   },
@@ -172,83 +63,59 @@
     "id": "11111111-0001-0001-0001-000000000007",
     "city": "Munich",
     "country": "Allemagne",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1100, "max": 1600 },
-      "rent": { "shared": 700, "studio": 1100 },
-      "food": 300,
-      "transport": 57,
-      "misc": 190
-    },
+    "image_url": "https://picsum.photos/seed/munich/800/600",
     "guide_content": {
-      "overview": "Munich est l'une des villes les plus riches et les plus chères d'Allemagne, mais aussi l'une des plus agréables. TU Munich est une université d'excellence.",
-      "housing": "Logement très tendu — contacter le Studentenwerk dès l'admission. WG-Gesucht pour les colocations. Prévoir 6 mois d'avance.",
-      "transport": "IsarCard (abonnement mensuel MVV) : environ 57€ en zone intérieure.",
       "tips": [
-        "L'Oktoberfest en septembre attire 6 millions de visiteurs — réserver tôt",
-        "Les Biergarten sont une institution locale — la bière y est onéreuse",
-        "Les Alpes sont à 1h en train — ski et randonnée accessibles le week-end",
-        "Mensa universitaire : repas complet pour 3-4€ avec carte étudiant"
+        "Studentenwerk München pour les résidences",
+        "WG-Gesucht et Immobilienscout24 pour les colocations",
+        "Oktoberfest en septembre : réserver le logement 1 an avant",
+        "Stadtsparkasse München pour compte sans frais"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Techniker Krankenkasse (TK) recommandée pour les étudiants étrangers"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000008",
-    "city": "Amsterdam",
-    "country": "Pays-Bas",
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-8 MOIS",
+          "description": "Candidater très tôt aux résidences Studentenwerk. Le marché munichois est le plus tendu d'Allemagne."
+        },
+        {
+          "title": "Inscription universitaire",
+          "timing": "-4 MOIS",
+          "description": "Valider l'accord de mobilité avec Epitech et envoyer le dossier complet à l'université d'accueil."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Prévoir un budget plus élevé qu'en moyenne. Ouvrir Wise ou N26 pour les virements."
+        },
+        {
+          "title": "Anmeldung",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à la commune dans les 14 jours. Récupérer la Semesterticket auprès de l'université."
+        }
+      ],
+      "climate": "Continental (chaud l'été, enneigé l'hiver)",
+      "housing": "Le logement est extrêmement tendu à Munich. Studierendenwerk München gère les résidences (liste d'attente longue). Budget logement plus élevé qu'ailleurs en Allemagne.",
+      "currency": "Euro (€)",
+      "language": "Allemand",
+      "overview": "Munich est la capitale de la Bavière : qualité de vie exceptionnelle, économie florissante et cadre idyllique entre Alpes et lacs. La ville la plus chère d'Allemagne, mais aussi la plus appréciée.",
+      "transport": "MVV couvre Munich et toute la région. Semesterticket MVV très avantageux pour les étudiants. Vélo indispensable en ville.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "50 000+"
+    },
     "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1100, "max": 1600 },
-      "rent": { "shared": 700, "studio": 1100 },
       "food": 290,
-      "transport": 100,
-      "misc": 200
-    },
-    "guide_content": {
-      "overview": "Amsterdam est une ville cosmopolite, tolérante et cyclable par excellence. Excellentes universités (UvA, VU) et fort réseau international d'entreprises.",
-      "housing": "Logement extrêmement tendu — s'inscrire sur les listes d'attente dès l'admission (DUWO, HousingAnywhere). Budget élevé incontournable.",
-      "transport": "OV-chipkaart pour tous les transports. Le vélo est le moyen de transport principal — acheter un vélo d'occasion (~100-150€).",
-      "tips": [
-        "Tous les cours sont souvent en anglais — pas besoin de néerlandais",
-        "Le vélo est obligatoire — s'habituer aux règles strictes du trafic cycliste",
-        "Albert Heijn To Go pour les repas rapides et abordables",
-        "Les musées ont des réductions avec la Museumkaart (~65€/an)"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "S'inscrire auprès d'un huisarts (médecin généraliste) dès l'arrivée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000009",
-    "city": "Prague",
-    "country": "République Tchèque",
-    "cost_of_living": {
-      "currency": "CZK",
-      "monthly_budget": { "min": 600, "max": 900 },
-      "rent": { "shared": 350, "studio": 600 },
-      "food": 180,
-      "transport": 25,
-      "misc": 120
-    },
-    "guide_content": {
-      "overview": "Prague est l'une des villes Erasmus les moins chères d'Europe centrale, avec un centre médiéval classé UNESCO et une vie étudiante très active.",
-      "housing": "Résidences universitaires économiques disponibles via UK (Université Charles). Alternativement, Expats.cz pour les colocations.",
-      "transport": "Abonnement mensuel DPP : environ 550 CZK (~22€). Tram, métro et bus bien connectés.",
-      "tips": [
-        "La couronne tchèque (CZK) — éviter les bureaux de change du centre touristique",
-        "La bière locale (Pilsner Urquell, Kozel) coûte moins cher qu'une eau minérale au restaurant",
-        "Eviter les restaurants de la Place de la Vieille-Ville — pièges à touristes",
-        "Le tramway 22 traverse les plus beaux quartiers de la ville"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "VZP (assurance maladie tchèque) — s'inscrire si séjour > 3 mois"
+      "misc": 130,
+      "rent": {
+        "shared": 680,
+        "studio": 950
+      },
+      "leisure": 150,
+      "currency": "EUR",
+      "transport": 60,
+      "monthly_budget": {
+        "max": 1700,
+        "min": 1200
       }
     }
   },
@@ -256,195 +123,59 @@
     "id": "11111111-0001-0001-0001-000000000010",
     "city": "Vienne",
     "country": "Autriche",
+    "image_url": "https://picsum.photos/seed/vienna/800/600",
+    "guide_content": {
+      "tips": [
+        "OeAD Housing pour les résidences internationales",
+        "Willhaben.at pour les colocations",
+        "Österreichische Post pour les recommandés",
+        "Carte de musées gratuite pour les moins de 26 ans dans beaucoup d'institutions"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-6 MOIS",
+          "description": "Candidater à l'OeAD Housing et parallèlement chercher sur Willhaben.at pour les colocations."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Envoyer le dossier à l'université viennoise et valider les équivalences de cours avec Epitech."
+        },
+        {
+          "title": "Préparation",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir un compte Wise ou Revolut. Préparer les documents pour l'Anmeldung (inscription communale)."
+        },
+        {
+          "title": "Meldezettel",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à la Magistrat (Meldezettel) dans les 3 jours après l'arrivée — obligatoire légalement."
+        }
+      ],
+      "climate": "Continental (4 saisons marquées)",
+      "housing": "OeAD-Wohnraumverwaltung gère les résidences étudiantes internationales. Wiener Wohnbau pour les colocations. Budget logement raisonnable pour une capitale.",
+      "currency": "Euro (€)",
+      "language": "Allemand",
+      "overview": "Vienne conjugue prestige imperial, scène artistique mondiale et qualité de vie exceptionnelle. Régulièrement classée meilleure ville pour y étudier selon le QS World University Rankings.",
+      "transport": "Wiener Linien : U-Bahn, tram et bus couvrent toute la ville. Le Semesterticket (~75 €/sem) couvre toute la ville. Très cyclable.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "50 000+"
+    },
     "cost_of_living": {
+      "food": 260,
+      "misc": 90,
+      "rent": {
+        "shared": 490,
+        "studio": 720
+      },
+      "leisure": 120,
       "currency": "EUR",
-      "monthly_budget": { "min": 900, "max": 1300 },
-      "rent": { "shared": 500, "studio": 800 },
-      "food": 280,
-      "transport": 30,
-      "misc": 160
-    },
-    "guide_content": {
-      "overview": "Vienne est réputée pour sa qualité de vie exceptionnelle, sa richesse musicale et culturelle et ses universités prestigieuses (Université de Vienne, TU Wien).",
-      "housing": "OeAD gère les logements étudiants internationaux — contacter dès l'admission. Marché locatif moins tendu qu'à Paris ou Amsterdam.",
-      "transport": "Wiener Linien — abonnement annuel à 365€ (1€/jour). Métro U-Bahn très efficace.",
-      "tips": [
-        "La Wiener Melange (café viennois) dans un Kaffeehaus est une expérience culturelle",
-        "Les Bäckerei (boulangeries) proposent des petits-déjeuners à 3-5€",
-        "Le Prater et la roue panoramique sont des classiques abordables",
-        "La carte Vienna City Card offre des réductions musées + transports"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "ÖGK (Österreichische Gesundheitskasse) — carte EHIC acceptée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000011",
-    "city": "Dublin",
-    "country": "Irlande",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1300, "max": 1900 },
-      "rent": { "shared": 900, "studio": 1500 },
-      "food": 320,
-      "transport": 120,
-      "misc": 220
-    },
-    "guide_content": {
-      "overview": "Dublin, capitale anglophone de l'UE, est idéale pour améliorer son anglais. Forte présence de multinationales tech (Google, Meta, Airbnb). Coût de la vie élevé.",
-      "housing": "Crise du logement sévère — contacter le housing office de l'université dès l'admission. Daft.ie pour le marché privé. Budget conséquent impératif.",
-      "transport": "Leap Card pour réductions sur bus et Luas (tramway). Dublin Bikes pour les déplacements courts.",
-      "tips": [
-        "Le pub culture est central — Guinness à partir de 6€ en dehors du centre",
-        "Les food markets (Temple Bar Food Market) pour manger bien pas trop cher",
-        "Prévoir un imperméable — il pleut environ 150 jours par an",
-        "Les transports en commun ferment tôt — prévoir taxi/Uber la nuit"
-      ],
-      "useful_contacts": {
-        "urgences": "112 ou 999",
-        "santé": "HSE (Health Service Executive) — GP visit card recommandée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000012",
-    "city": "Stockholm",
-    "country": "Suède",
-    "cost_of_living": {
-      "currency": "SEK",
-      "monthly_budget": { "min": 1100, "max": 1600 },
-      "rent": { "shared": 600, "studio": 950 },
-      "food": 320,
-      "transport": 100,
-      "misc": 210
-    },
-    "guide_content": {
-      "overview": "Stockholm est la capitale scandinave par excellence — design, innovation, durabilité et qualité de vie. KTH et Stockholm University sont des institutions reconnues.",
-      "housing": "Longues listes d'attente SSSB (logement étudiant) — s'inscrire 2 ans à l'avance. Blocket.se pour le marché privé.",
-      "transport": "SL (Storstockholms Lokaltrafik) : abonnement mensuel ~100€. La ville est très cyclable en été.",
-      "tips": [
-        "Cuisiner à la maison est essentiel — les restaurants sont très chers",
-        "Systembolaget est le seul magasin où acheter de l'alcool (ferme tôt)",
-        "Le soleil de minuit en été et l'obscurité en hiver sont des réalités",
-        "Le Fika (pause café) est une institution sociale à respecter"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Vårdguiden 1177 — ligne de conseils médicaux"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000013",
-    "city": "Copenhague",
-    "country": "Danemark",
-    "cost_of_living": {
-      "currency": "DKK",
-      "monthly_budget": { "min": 1200, "max": 1700 },
-      "rent": { "shared": 700, "studio": 1100 },
-      "food": 350,
-      "transport": 80,
-      "misc": 230
-    },
-    "guide_content": {
-      "overview": "Copenhague est régulièrement classée parmi les meilleures villes du monde pour la qualité de vie. Ville cyclable, design danois et gastronomie nordique.",
-      "housing": "Utiliser le housing office de DTU ou KU. CIU (Copenhagen International Office) aide les étudiants Erasmus. Le marché est tendu.",
-      "transport": "Rejsekort (carte rechargeable) pour métro, bus, S-Tog. Le vélo reste le moyen le plus pratique.",
-      "tips": [
-        "La couronne danoise (DKK) — pas d'euros mais carte bancaire acceptée partout",
-        "Le Netto et Rema 1000 sont les supermarchés les moins chers",
-        "La culture du hygge implique des soirées calmes chez soi entre amis",
-        "Le Strøget est le centre piéton — éviter pour les achats (trop cher)"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Lægevagten (garde médicale) : 70 13 00 41"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000014",
-    "city": "Helsinki",
-    "country": "Finlande",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1000, "max": 1400 },
-      "rent": { "shared": 550, "studio": 850 },
-      "food": 310,
-      "transport": 60,
-      "misc": 190
-    },
-    "guide_content": {
-      "overview": "Helsinki est une capitale nordique moderne, safe et organisée. Université de Helsinki et Aalto University sont des institutions de recherche de premier plan.",
-      "housing": "HOAS (Helsinki Student Housing) gère les logements — s'inscrire dès l'admission. Délais courts comparés aux autres capitales scandinaves.",
-      "transport": "HSL : abonnement mensuel étudiants ~50€. Tram, métro et ferry couvrent la ville et les îles.",
-      "tips": [
-        "Le sauna est une institution nationale — gratuit dans de nombreuses résidences",
-        "K-Market et S-Market pour faire ses courses à prix raisonnable",
-        "L'hiver finlandais est rude (-20°C possible) — prévoir équipement adapté",
-        "Les aurores boréales sont visibles depuis la ville en hiver (rarement)"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "FSHS (Finnish Student Health Service) — gratuit pour les étudiants inscrits"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000015",
-    "city": "Varsovie",
-    "country": "Pologne",
-    "cost_of_living": {
-      "currency": "PLN",
-      "monthly_budget": { "min": 600, "max": 900 },
-      "rent": { "shared": 350, "studio": 580 },
-      "food": 200,
-      "transport": 25,
-      "misc": 130
-    },
-    "guide_content": {
-      "overview": "Varsovie est la capitale économique de l'Europe centrale, reconstruite après la Seconde Guerre mondiale. Université de Varsovie reconnue et coût de la vie très accessible.",
-      "housing": "SGH, UW proposent des résidences universitaires. OLX.pl pour le marché privé. Très bon rapport qualité-prix.",
-      "transport": "ZTM Warszawa : abonnement mensuel étudiant ~25€. Metro, tram et bus bien développés.",
-      "tips": [
-        "Le zloty (PLN) — retirer des espèces dans les Kantor (bureaux de change officiels)",
-        "Bar Mleczny (bars à lait) : repas traditionnels complets pour 3-5€",
-        "Le vieux quartier (Stare Miasto) est une reconstruction remarquable",
-        "Uber et Bolt très utilisés — moins chers qu'en Europe occidentale"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "NFZ (assurance santé nationale) — carte EHIC acceptée"
-      }
-    }
-  },
-  {
-    "id": "11111111-0001-0001-0001-000000000016",
-    "city": "Budapest",
-    "country": "Hongrie",
-    "cost_of_living": {
-      "currency": "HUF",
-      "monthly_budget": { "min": 600, "max": 900 },
-      "rent": { "shared": 320, "studio": 530 },
-      "food": 200,
-      "transport": 20,
-      "misc": 130
-    },
-    "guide_content": {
-      "overview": "Budapest est l'une des plus belles capitales européennes — bains thermaux, architecture Art Nouveau et nightlife réputé. ELTE et BME sont les principales universités.",
-      "housing": "Marché locatif accessible. Facebook groups Erasmus Budapest et Expats in Budapest pour trouver rapidement.",
-      "transport": "BKK (transports Budapest) : abonnement mensuel étudiant ~20€. Tramway, métro (réseau historique) et bus.",
-      "tips": [
-        "Le forint hongrois (HUF) — les prix semblent élevés mais restent faibles en euros",
-        "Les bains thermaux (Széchenyi, Gellért) sont une expérience incontournable",
-        "Les ruin bars (Szimpla Kert) sont le symbole de la nightlife locale",
-        "Le marché central (Nagy Vásárcsarnok) pour acheter fruits, légumes et spécialités"
-      ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "NEAK (caisse maladie hongroise) — carte EHIC valide"
+      "transport": 55,
+      "monthly_budget": {
+        "max": 1300,
+        "min": 930
       }
     }
   },
@@ -452,55 +183,299 @@
     "id": "11111111-0001-0001-0001-000000000017",
     "city": "Bruxelles",
     "country": "Belgique",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 1000, "max": 1400 },
-      "rent": { "shared": 550, "studio": 850 },
-      "food": 290,
-      "transport": 50,
-      "misc": 170
-    },
+    "image_url": "https://picsum.photos/seed/brussels/800/600",
     "guide_content": {
-      "overview": "Bruxelles est la capitale de l'UE et de l'OTAN. Ville multiculturelle et multilingue (français/néerlandais/anglais), idéale pour un stage dans une institution européenne.",
-      "housing": "Kots (chambres étudiantes) sont la norme. KotMatch et Immoweb pour chercher. Communes d'Ixelles et Saint-Gilles populaires chez les étudiants.",
-      "transport": "STIB/MIVB : abonnement mensuel ~50€. La carte MOBIB est rechargeable.",
       "tips": [
-        "Les frites belges (vraies fritures) et les gaufres de qualité — éviter les touristiques",
-        "Les bières artisanales belges sont une institution nationale",
-        "Beaucoup d'institutions UE proposent des stages rémunérés (Blue Book Traineeship)",
-        "Ixelles abrite une forte concentration de bars et restaurants étudiants"
+        "Immoweb et Kotplaats pour le logement étudiant",
+        "STIB pour les transports en commun",
+        "Belfius ou ING Belgique pour compte sans frais",
+        "Inscrire à la commune obligatoire sous 8 jours"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "INAMI / RIZIV — s'affilier à une mutualité dès l'arrivée"
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-5 MOIS",
+          "description": "Chercher dans les communes d'Ixelles ou Saint-Gilles, très appréciées des étudiants. Kotplaats.be est spécialisé."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à l'ULB, VUB ou autre. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir un compte belge (Belfius, ING) ou utiliser Wise/Revolut. Prix légèrement supérieurs à la France."
+        },
+        {
+          "title": "Inscription commune",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à la commune (maison communale) dans les 8 jours. Obligatoire légalement en Belgique."
+        }
+      ],
+      "climate": "Océanique (doux mais très pluvieux toute l'année)",
+      "housing": "Marché abordable pour une capitale. Sites : Immoweb, Immovlan, Kotplaats (spécialisé étudiants). Communes estudiantine : Ixelles, Saint-Gilles.",
+      "currency": "Euro (€)",
+      "language": "Français / Néerlandais (+ anglais)",
+      "overview": "Bruxelles est la capitale de facto de l'Union Européenne, une ville cosmopolite et multilingue. Idéale pour des stages dans les institutions européennes ou le secteur tech.",
+      "transport": "STIB/MIVB : métro, tram et bus. Abonnement mensuel étudiant ~50 €. TEC et De Lijn pour la périphérie.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "25 000+"
+    },
+    "cost_of_living": {
+      "food": 270,
+      "misc": 95,
+      "rent": {
+        "shared": 500,
+        "studio": 680
+      },
+      "leisure": 120,
+      "currency": "EUR",
+      "transport": 65,
+      "monthly_budget": {
+        "max": 1250,
+        "min": 900
       }
     }
   },
   {
-    "id": "11111111-0001-0001-0001-000000000018",
-    "city": "Athènes",
-    "country": "Grèce",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 750, "max": 1100 },
-      "rent": { "shared": 380, "studio": 620 },
-      "food": 230,
-      "transport": 30,
-      "misc": 140
-    },
+    "id": "aaaaaaaa-0001-0001-0001-000000000001",
+    "city": "Daegu",
+    "country": "Corée du Sud",
+    "image_url": "https://picsum.photos/seed/daegu/800/600",
     "guide_content": {
-      "overview": "Athènes est le berceau de la civilisation occidentale. Coût de la vie abordable, soleil quasi permanent et richesse archéologique incomparable. EKPA est la principale université.",
-      "housing": "Marché locatif accessible. Spiti.gr et XE.gr pour chercher. Quartiers Exarchia, Pangrati et Koukaki populaires chez les étudiants.",
-      "transport": "OASA : abonnement mensuel étudiant ~30€. Métro, tram et bus couvrent la ville.",
       "tips": [
-        "L'Acropole est gratuite le premier dimanche du mois (hors juillet-août)",
-        "Les tavernes de quartier (loin du centre) proposent des menus à 8-10€",
-        "Le café frappé grec est incontournable — servi froid même en hiver",
-        "Respecter la sieste locale (14h-17h) — beaucoup de commerces ferment"
+        "Kakao Talk = messagerie universelle en Corée",
+        "Naver Maps est plus précis que Google Maps en Corée",
+        "T-Money Card achetable en convenience store (GS25, CU)",
+        "Ouvrir un compte Kakao Bank ou K-Bank avec seulement le passeport"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "EOPYY (assurance maladie grecque) — carte EHIC acceptée"
+      "steps": [
+        {
+          "title": "Visa D-2",
+          "timing": "-6 MOIS",
+          "description": "Obtenir la lettre d'admission pour déposer le dossier visa D-2 à l'ambassade de Corée du Sud à Paris. Délai : 4-6 semaines."
+        },
+        {
+          "title": "Logement",
+          "timing": "-4 MOIS",
+          "description": "Réserver le dortoir international de Keimyung University (Global House) dès l'acceptation."
+        },
+        {
+          "title": "Préparation",
+          "timing": "-2 MOIS",
+          "description": "Souscrire une assurance internationale, apprendre le Hangeul (2 semaines suffisent), ouvrir Wise pour les conversions."
+        },
+        {
+          "title": "Enregistrement ARC",
+          "timing": "À L'ARRIVÉE",
+          "description": "Déclarer son arrivée à l'Immigration Service dans les 90 jours et obtenir l'Alien Registration Card (ARC)."
+        }
+      ],
+      "climate": "Continental / Mousson (étés très chauds et humides, hivers froids)",
+      "housing": "Les campus proposent des dortoirs internationaux (Global House). Sinon, goshiwon (petites chambres meublées) ou officetel disponibles. Bien moins cher que Séoul.",
+      "currency": "Won coréen (KRW)",
+      "language": "Coréen (anglais disponible dans les universités internationales)",
+      "overview": "Daegu est la 4e ville de Corée du Sud, surnommée la ville du textile et des pommes. Campus modernes, vie étudiante active et coût de la vie bien inférieur à Séoul.",
+      "transport": "Métro 2 lignes (très efficace), bus urbains. T-Money Card rechargeable (achetable dans tout convenience store : GS25, CU). Trajet Daegu ↔ Séoul en KTX : 1h45.",
+      "visa_note": "Visa D-2 (étudiant) obligatoire",
+      "visa_required": true,
+      "international_students": "8 000+"
+    },
+    "cost_of_living": {
+      "food": 210,
+      "misc": 70,
+      "rent": {
+        "shared": 200,
+        "studio": 350
+      },
+      "leisure": 90,
+      "currency": "KRW",
+      "transport": 35,
+      "monthly_budget": {
+        "max": 800,
+        "min": 550
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000013",
+    "city": "Copenhague",
+    "country": "Danemark",
+    "image_url": "https://picsum.photos/seed/copenhagen/800/600",
+    "guide_content": {
+      "tips": [
+        "Boligportal.dk pour le logement",
+        "Rejsekort pour les transports en commun",
+        "Lunar ou MobilePay très utilisés",
+        "La couronne danoise (DKK) — utiliser Wise pour les conversions"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-8 MOIS",
+          "description": "Candidater très tôt aux résidences étudiantes. Le marché copenhagois est parmi les plus tendus d'Europe."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à DTU, KU ou CBS. Valider le contrat pédagogique avec Epitech."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir Wise pour les conversions EUR → DKK. Prévoir un budget élevé : Copenhague est chère."
+        },
+        {
+          "title": "CPR Number",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir le CPR Number (numéro d'identification) à la Borgerservice. Indispensable pour tout service public."
+        }
+      ],
+      "climate": "Océanique (doux, venteux et souvent gris)",
+      "housing": "Marché très tendu et coûteux. Candidater aux résidences étudiantes tôt (KKIK, Studiebolig). HousingAnywhere pour les colocations.",
+      "currency": "Couronne danoise (DKK)",
+      "language": "Danois (anglais universel)",
+      "overview": "Copenhague est régulièrement classée meilleure ville au monde pour la qualité de vie. Innovante, écologique et design, elle est idéale pour des études en technologie, architecture et durabilité.",
+      "transport": "DSB pour les trains, Movia pour les bus, Metro. Rejsekort rechargeable. Vélo = transport principal (400 km de pistes cyclables).",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "20 000+"
+    },
+    "cost_of_living": {
+      "food": 360,
+      "misc": 140,
+      "rent": {
+        "shared": 750,
+        "studio": 1050
+      },
+      "leisure": 160,
+      "currency": "DKK",
+      "transport": 90,
+      "monthly_budget": {
+        "max": 1850,
+        "min": 1350
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000001",
+    "city": "Barcelone",
+    "country": "Espagne",
+    "image_url": "https://picsum.photos/seed/barcelona/800/600",
+    "guide_content": {
+      "tips": [
+        "Habitaclia et Idealista pour le logement",
+        "T-Jove pour les transports en commun",
+        "CaixaBank ou Banco Santander pour compte étudiant",
+        "La carte NIE est obligatoire pour tout séjour de plus de 3 mois"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-6 MOIS",
+          "description": "Le marché barcelonais est très compétitif. Commencer les recherches sur Idealista et contacter les résidences universitaires."
+        },
+        {
+          "title": "NIE & Formalités",
+          "timing": "-3 MOIS",
+          "description": "Prendre RDV au Consulat d'Espagne pour le NIE si séjour > 3 mois. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir un compte Wise ou Revolut. Prévoir le premier mois plus élevé (caution + premier loyer)."
+        },
+        {
+          "title": "Empadronamiento",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'enregistrer à la mairie (empadronamiento) pour accéder aux services publics."
+        }
+      ],
+      "climate": "Méditerranéen (chaud et sec l'été, doux l'hiver)",
+      "housing": "Marché très tendu. Idéal : résidence universitaire ou piso compartido (colocation). Sites : Habitaclia, Idealista. Budget : 500-800 €/mois pour une chambre.",
+      "currency": "Euro (€)",
+      "language": "Espagnol / Catalan",
+      "overview": "Barcelone allie plages méditerranéennes, architecture moderniste et scène startup dynamique. L'une des destinations Erasmus les plus prisées, avec une vie étudiante intense.",
+      "transport": "TMB (métro + bus) + FGC. T-Casual (10 voyages) ou T-Jove (abonnement jeune). Très cyclable avec Bicing. Aéroport bien connecté au centre.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "35 000+"
+    },
+    "cost_of_living": {
+      "food": 270,
+      "misc": 100,
+      "rent": {
+        "shared": 570,
+        "studio": 820
+      },
+      "leisure": 140,
+      "currency": "EUR",
+      "transport": 55,
+      "monthly_budget": {
+        "max": 1400,
+        "min": 980
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000002",
+    "city": "Madrid",
+    "country": "Espagne",
+    "image_url": "https://picsum.photos/seed/madrid/800/600",
+    "guide_content": {
+      "tips": [
+        "Idealista pour le logement",
+        "Abono Transportes mensuel pour les transports",
+        "Banco Santander et CaixaBank pour comptes étudiants",
+        "NIE obligatoire pour séjour > 3 mois"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-6 MOIS",
+          "description": "Chercher une colocation sur Idealista. Les quartiers étudiants (Moncloa, Malasaña) sont les plus demandés."
+        },
+        {
+          "title": "NIE & Formalités",
+          "timing": "-3 MOIS",
+          "description": "Préparer le dossier NIE. Valider les cours avec Epitech et finaliser l'inscription à l'université d'accueil."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise ou Revolut. Madrid est plus abordable que Barcelone mais prévoir la caution logement."
+        },
+        {
+          "title": "Empadronamiento",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'enregistrer à la mairie de Madrid dans les jours suivant l'arrivée."
+        }
+      ],
+      "climate": "Continental méditerranéen (étés très chauds, hivers froids)",
+      "housing": "Pisos compartidos (colocations) très répandus. Sites : Idealista, Fotocasa, Uniplaces. Quartiers étudiants : Malasaña, Lavapiés, Moncloa.",
+      "currency": "Euro (€)",
+      "language": "Espagnol",
+      "overview": "Madrid est le coeur vibrant de l'Espagne : culture, gastronomie, parcs et une nuit qui ne s'arrête jamais. Capitale politique et économique, elle offre de nombreuses opportunités de stage.",
+      "transport": "Metro de Madrid (très étendu), EMT pour les bus. Abono Transportes (abonnement mensuel ~55 €) couvre toute la ville.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "45 000+"
+    },
+    "cost_of_living": {
+      "food": 260,
+      "misc": 100,
+      "rent": {
+        "shared": 540,
+        "studio": 760
+      },
+      "leisure": 130,
+      "currency": "EUR",
+      "transport": 60,
+      "monthly_budget": {
+        "max": 1380,
+        "min": 980
       }
     }
   },
@@ -508,27 +483,599 @@
     "id": "11111111-0001-0001-0001-000000000019",
     "city": "Valence",
     "country": "Espagne",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 800, "max": 1150 },
-      "rent": { "shared": 420, "studio": 700 },
-      "food": 260,
-      "transport": 40,
-      "misc": 145
-    },
+    "image_url": "https://picsum.photos/seed/valencia/800/600",
     "guide_content": {
-      "overview": "Valence est la troisième ville d'Espagne — plages méditerranéennes, gastronomie (paella originale), vie étudiante animée et coût de la vie plus doux que Barcelone ou Madrid.",
-      "housing": "Idéalista et Fotocasa pour trouver. Quartiers Benimaclet (étudiant) et Ruzafa (bohème) très prisés. Logements moins chers qu'à Barcelone.",
-      "transport": "EMT Valencia : abonnement mensuel ~40€. Le vélo public Valenbisi très utilisé.",
       "tips": [
-        "La paella doit être mangée à Valence — le dimanche midi, en famille",
-        "Les plages sont accessibles en bus ou vélo depuis le centre",
-        "Las Fallas en mars est la fête la plus spectaculaire d'Espagne",
-        "Le Mercado Central est l'un des plus beaux marchés couverts d'Europe"
+        "Benimaclet = quartier étudiant par excellence",
+        "Valenbisi pour les vélos en libre-service",
+        "Marché Central pour faire ses courses pas cher",
+        "Beaucoup d'universités proposent des cours entièrement en anglais"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "Centre de Salut — carte EHIC valide"
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-5 MOIS",
+          "description": "Chercher dans le quartier Benimaclet, très étudiant. Marché bien moins tendu qu'à Madrid ou Barcelone."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Valider le contrat pédagogique et finaliser l'inscription à l'université valencienne (UV, UPV)."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise ou Revolut. Valence est l'une des villes espagnoles les plus abordables."
+        },
+        {
+          "title": "Empadronamiento",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à l'Ajuntament de Valencia pour l'empadronamiento."
+        }
+      ],
+      "climate": "Méditerranéen (l'un des plus ensoleillés d'Europe)",
+      "housing": "Logement parmi les moins chers des grandes villes espagnoles. Colocations abordables dans les quartiers Ruzafa et Benimaclet (quartier étudiant).",
+      "currency": "Euro (€)",
+      "language": "Espagnol / Valencien",
+      "overview": "Valence est la ville de la paella et de la Ciudad de las Artes y las Ciencias. Troisième ville d'Espagne, plus calme et abordable que Madrid ou Barcelone, avec un soleil quasi permanent.",
+      "transport": "EMT Valencia (bus) + Metrovalencia (métro/tram). Bonne couverture. La ville est idéale pour le vélo grâce au réseau Valenbisi.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "20 000+"
+    },
+    "cost_of_living": {
+      "food": 210,
+      "misc": 75,
+      "rent": {
+        "shared": 360,
+        "studio": 560
+      },
+      "leisure": 90,
+      "currency": "EUR",
+      "transport": 40,
+      "monthly_budget": {
+        "max": 1020,
+        "min": 720
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000014",
+    "city": "Helsinki",
+    "country": "Finlande",
+    "image_url": "https://picsum.photos/seed/helsinki/800/600",
+    "guide_content": {
+      "tips": [
+        "Hoas.fi pour les résidences étudiantes",
+        "HSL app pour les transports",
+        "OP Bank pour compte étudiant",
+        "La sécurité sociale finlandaise (Kela) peut couvrir certains soins"
+      ],
+      "steps": [
+        {
+          "title": "Logement Hoas",
+          "timing": "-6 MOIS",
+          "description": "Candidater dès que possible à Hoas (logements étudiants). Beaucoup moins cher que le marché privé."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à Aalto University, Uni Helsinki ou autre. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Préparation hiver",
+          "timing": "-2 MOIS",
+          "description": "Prévoir des vêtements chauds (jusqu'à -20°C). Ouvrir Wise ou Revolut pour les paiements."
+        },
+        {
+          "title": "Maistraatti",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'enregistrer au registre de la population (Maistraatti) pour obtenir un numéro d'identité finlandais."
+        }
+      ],
+      "climate": "Continental/Subarctique (étés agréables, hivers très froids et sombres)",
+      "housing": "Hoas (Foundation for Student Housing) gère les logements étudiants — candidater tôt. Vuokraovi.com pour les colocations. Marché moins tendu que dans les autres capitales nordiques.",
+      "currency": "Euro (€)",
+      "language": "Finnois / Suédois (anglais universel)",
+      "overview": "Helsinki est une capitale nordique propre, sûre et innovante. Connue pour son système éducatif d'excellence, son design et ses startups, elle offre une qualité de vie parmi les meilleures au monde.",
+      "transport": "HSL : métro, tram, bus et ferry. Regional ticket couvre tout Helsinki. Très cyclable l'été, enneigé l'hiver.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "15 000+"
+    },
+    "cost_of_living": {
+      "food": 290,
+      "misc": 110,
+      "rent": {
+        "shared": 530,
+        "studio": 750
+      },
+      "leisure": 130,
+      "currency": "EUR",
+      "transport": 70,
+      "monthly_budget": {
+        "max": 1380,
+        "min": 980
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000018",
+    "city": "Athènes",
+    "country": "Grèce",
+    "image_url": "https://picsum.photos/seed/athens/800/600",
+    "guide_content": {
+      "tips": [
+        "Spitogatos.gr pour le logement",
+        "OASA pour les transports",
+        "Piraeus Bank ou Alpha Bank pour compte étudiant",
+        "AMKA (numéro de sécurité sociale) à demander à l'arrivée"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-4 MOIS",
+          "description": "Marché abordable. Chercher sur Spitogatos.gr ou xe.gr. Les quartiers centraux sont accessibles."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à l'Université d'Athènes, NTUA ou Athens University of Economics."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Athènes est très abordable. Prévoir Wise pour les paiements, la Grèce est encore très cash-oriented."
+        },
+        {
+          "title": "AFM & AMKA",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir l'AFM (numéro fiscal) et l'AMKA (numéro de sécurité sociale) — nécessaires pour tout service public."
+        }
+      ],
+      "climate": "Méditerranéen (étés très chauds et secs, hivers doux)",
+      "housing": "Le logement est très abordable comparé à l'Europe occidentale. Xe.gr et Spitogatos.gr pour les annonces. Quartiers appréciés : Exarcheia, Koukaki, Monastiraki.",
+      "currency": "Euro (€)",
+      "language": "Grec (anglais bien parlé dans les universités)",
+      "overview": "Athènes est le berceau de la civilisation occidentale, une ville contrastée où l'antiquité côtoie une scène artistique et gastronomique bouillonnante. L'une des destinations Erasmus les plus abordables.",
+      "transport": "OASA : metro (3 lignes), tram et bus. Abonnement mensuel étudiant ~15 €. Attention à la circulation dense en surface.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "15 000+"
+    },
+    "cost_of_living": {
+      "food": 220,
+      "misc": 70,
+      "rent": {
+        "shared": 230,
+        "studio": 420
+      },
+      "leisure": 85,
+      "currency": "EUR",
+      "transport": 35,
+      "monthly_budget": {
+        "max": 850,
+        "min": 580
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000016",
+    "city": "Budapest",
+    "country": "Hongrie",
+    "image_url": "https://picsum.photos/seed/budapest/800/600",
+    "guide_content": {
+      "tips": [
+        "Ingatlan.com pour le logement",
+        "BKK pour les transports",
+        "OTP Bank pour compte bancaire local",
+        "Le forint hongrois fluctue — utiliser Wise pour les conversions"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-4 MOIS",
+          "description": "Le marché budapestois est bien moins tendu qu'en Europe de l'Ouest. Chercher sur Ingatlan.com."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à la ELTE, BME ou Corvinus. Valider le contrat pédagogique avec Epitech."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise pour les conversions EUR → HUF sans frais excessifs. Budapest est très abordable."
+        },
+        {
+          "title": "Lakcímkártya",
+          "timing": "À L'ARRIVÉE",
+          "description": "Déclarer son adresse à la Kormányablak (guichet administratif) pour obtenir la carte d'adresse."
+        }
+      ],
+      "climate": "Continental (étés chauds, hivers froids)",
+      "housing": "Le logement est très abordable. Albérleti (locations privées) nombreuses. Sites : Ingatlan.com, Albérlet.hu. Budget très raisonnable pour une capitale.",
+      "currency": "Forint hongrois (HUF)",
+      "language": "Hongrois (anglais bien parlé à l'université)",
+      "overview": "Budapest est l'une des plus belles capitales européennes, avec un patrimoine architectural exceptionnel (bains thermaux, Parlement sur le Danube) et un coût de la vie très bas.",
+      "transport": "BKK : métro (4 lignes), tram, trolleybus et bus. Abonnement mensuel étudiant ~15 €. L'un des réseaux les plus denses d'Europe par habitant.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "20 000+"
+    },
+    "cost_of_living": {
+      "food": 190,
+      "misc": 65,
+      "rent": {
+        "shared": 260,
+        "studio": 440
+      },
+      "leisure": 80,
+      "currency": "HUF",
+      "transport": 25,
+      "monthly_budget": {
+        "max": 800,
+        "min": 550
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000011",
+    "city": "Dublin",
+    "country": "Irlande",
+    "image_url": "https://picsum.photos/seed/dublin/800/600",
+    "guide_content": {
+      "tips": [
+        "Daft.ie pour le logement (le plus fiable)",
+        "Leap Card pour les transports",
+        "Bank of Ireland ou AIB pour compte étudiant",
+        "PPS Number obligatoire pour travailler ou recevoir des bourses"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-10 MOIS",
+          "description": "Crise du logement critique à Dublin. Commencer les recherches sur Daft.ie le plus tôt possible. Les résidences universitaires sont limitées."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à UCD, TCD ou DCU. Valider le contrat pédagogique avec Epitech."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir un compte N26 ou Revolut. Dublin est chère — prévoir un budget logement élevé (caution = 2 mois de loyer)."
+        },
+        {
+          "title": "PPS Number",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir le PPS Number au Social Welfare Office : obligatoire pour travailler, ouvrir un compte et accéder aux services publics."
+        }
+      ],
+      "climate": "Océanique (doux, très pluvieux, vert)",
+      "housing": "Crise du logement sévère : le marché est le plus tendu d'Europe. Commencer les recherches 8-10 mois à l'avance. Budget logement très élevé.",
+      "currency": "Euro (€)",
+      "language": "Anglais",
+      "overview": "Dublin est la capitale anglophone la plus accessible d'Europe. Hub tech mondial (Google, Facebook, Apple y ont leur siège européen), elle offre de nombreuses opportunités de stage dans l'IT.",
+      "transport": "Dublin Bus, Luas (tram) et DART (train côtier). Leap Card rechargeable pour tous les transports. Cyclable mais dangereux en ville.",
+      "visa_note": "Hors Espace Schengen (UE)",
+      "visa_required": false,
+      "international_students": "25 000+"
+    },
+    "cost_of_living": {
+      "food": 340,
+      "misc": 140,
+      "rent": {
+        "shared": 900,
+        "studio": 1200
+      },
+      "leisure": 160,
+      "currency": "EUR",
+      "transport": 120,
+      "monthly_budget": {
+        "max": 2100,
+        "min": 1600
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000005",
+    "city": "Milan",
+    "country": "Italie",
+    "image_url": "https://picsum.photos/seed/milan/800/600",
+    "guide_content": {
+      "tips": [
+        "Immobiliare.it pour le logement",
+        "ATM mi pour les transports",
+        "Codice Fiscale obtenu gratuitement à l'Agenzia delle Entrate",
+        "La Fashion Week (septembre/février) fait exploser les prix de l'hébergement"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-8 MOIS",
+          "description": "Milan est la ville italienne la plus chère pour le logement. Candidater très tôt aux résidences universitaires."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à PoliMi, Bocconi ou autre et valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Prévoir un budget logement plus élevé qu'ailleurs en Italie. Ouvrir Wise ou N26 avant le départ."
+        },
+        {
+          "title": "Codice Fiscale",
+          "timing": "À L'ARRIVÉE",
+          "description": "Première démarche : obtenir le Codice Fiscale (gratuit à l'Agenzia delle Entrate). Nécessaire pour tout."
+        }
+      ],
+      "climate": "Continental (étés chauds et humides, hivers froids et brumeux)",
+      "housing": "Le logement est cher et rare à Milan. PoliMi et Bocconi ont des résidences mais très limitées. Colocations : Idealista.it, Subito.it. Budget logement élevé.",
+      "currency": "Euro (€)",
+      "language": "Italien",
+      "overview": "Milan est la capitale économique et de la mode italienne. Centre de l'innovation, du design et du business en Europe, elle attire de nombreux étudiants en management, design et informatique.",
+      "transport": "ATM : metro (4 lignes), tram et bus. Abonnement mensuel étudiant ~35 €. Excellente couverture. Vélo avec BikeMi.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "40 000+"
+    },
+    "cost_of_living": {
+      "food": 290,
+      "misc": 110,
+      "rent": {
+        "shared": 640,
+        "studio": 900
+      },
+      "leisure": 140,
+      "currency": "EUR",
+      "transport": 55,
+      "monthly_budget": {
+        "max": 1600,
+        "min": 1150
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000004",
+    "city": "Rome",
+    "country": "Italie",
+    "image_url": "https://picsum.photos/seed/rome/800/600",
+    "guide_content": {
+      "tips": [
+        "Idealista.it et Subito.it pour le logement",
+        "ATAC pour les transports",
+        "Codice fiscale obligatoire dès l'arrivée (gratuit à l'Agenzia delle Entrate)",
+        "Iscrizione anagrafica pour séjour > 3 mois"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-6 MOIS",
+          "description": "Commencer les recherches tôt. Le marché romain est tendu et les prix ont augmenté ces dernières années."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Valider le contrat pédagogique, obtenir la Lettera di Accettazione et finaliser l'inscription."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Prévoir le Codice Fiscale (équivalent NIF) — gratuit, à demander à l'Agenzia delle Entrate à l'arrivée."
+        },
+        {
+          "title": "Codice Fiscale",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir le Codice Fiscale : indispensable pour ouvrir un compte, signer un bail ou s'inscrire à l'université."
+        }
+      ],
+      "climate": "Méditerranéen (étés chauds et secs, hivers doux)",
+      "housing": "Marché logement tendu et prix en hausse. Sites : Idealista.it, Subito.it, Uniplaces. Quartiers étudiants : Pigneto, Prati, San Lorenzo.",
+      "currency": "Euro (€)",
+      "language": "Italien",
+      "overview": "Rome, ville éternelle et capitale de l'Italie, offre un cadre de vie incomparable entre patrimoine antique, cuisine exquise et dolce vita. Une expérience unique pour un semestre d'études.",
+      "transport": "Metro (2 lignes + 1 en construction), bus ATAC. Abonnement mensuel ~35 €. Très piéton dans le centre historique.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "30 000+"
+    },
+    "cost_of_living": {
+      "food": 260,
+      "misc": 95,
+      "rent": {
+        "shared": 530,
+        "studio": 780
+      },
+      "leisure": 120,
+      "currency": "EUR",
+      "transport": 45,
+      "monthly_budget": {
+        "max": 1350,
+        "min": 950
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000008",
+    "city": "Amsterdam",
+    "country": "Pays-Bas",
+    "image_url": "https://picsum.photos/seed/amsterdam/800/600",
+    "guide_content": {
+      "tips": [
+        "Kamernet et HousingAnywhere pour le logement",
+        "OV-chipkaart pour les transports en commun",
+        "ING ou ABN AMRO pour compte bancaire",
+        "Inscription à la commune (BRP) obligatoire si séjour > 4 mois"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-8 MOIS",
+          "description": "Le marché immobilier d'Amsterdam est l'un des plus tendus d'Europe. Commencer les recherches le plus tôt possible."
+        },
+        {
+          "title": "Inscription universitaire",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à l'UvA, VU Amsterdam ou autre. Valider le contrat pédagogique avec Epitech."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir Wise ou Revolut. Prévoir un budget logement élevé et 2 mois de caution."
+        },
+        {
+          "title": "BRP Registration",
+          "timing": "À L'ARRIVÉE",
+          "description": "S'inscrire à la commune (BRP) dans les 5 jours si séjour > 4 mois. Obligatoire pour tout service public."
+        }
+      ],
+      "climate": "Océanique (doux toute l'année, souvent pluvieux)",
+      "housing": "Marché extrêmement tendu. Commencer les recherches 6-8 mois à l'avance. Sites : Kamernet, HousingAnywhere, Funda. Budget logement parmi les plus élevés d'Europe.",
+      "currency": "Euro (€)",
+      "language": "Néerlandais / Anglais (quasi universel)",
+      "overview": "Amsterdam est une ville ouverte, internationale et cycliste par excellence. Capital de la tech et de la créativité néerlandaise, elle accueille de nombreux sièges de multinationales et de startups.",
+      "transport": "GVB : tram, bus et métro. OV-chipkaart rechargeable (disponible à Schiphol et dans les gares). Le vélo est le mode de transport principal — acheter d'occasion (~50-100 €).",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "30 000+"
+    },
+    "cost_of_living": {
+      "food": 310,
+      "misc": 120,
+      "rent": {
+        "shared": 720,
+        "studio": 980
+      },
+      "leisure": 160,
+      "currency": "EUR",
+      "transport": 90,
+      "monthly_budget": {
+        "max": 1700,
+        "min": 1200
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000015",
+    "city": "Varsovie",
+    "country": "Pologne",
+    "image_url": "https://picsum.photos/seed/warsaw/800/600",
+    "guide_content": {
+      "tips": [
+        "Otodom.pl pour le logement",
+        "ZTM app pour les transports",
+        "PKO Bank Polski ou mBank pour compte étudiant",
+        "PESEL number à demander si séjour > 30 jours"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-3 MOIS",
+          "description": "Varsovie est très abordable. Candidater aux résidences universitaires ou chercher sur Otodom.pl."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à l'Université de Varsovie, AGH ou WUT. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise pour les conversions EUR → PLN sans frais. Varsovie est l'une des capitales UE les moins chères."
+        },
+        {
+          "title": "PESEL",
+          "timing": "À L'ARRIVÉE",
+          "description": "Demander le PESEL (numéro d'identification) au bureau du quartier. Nécessaire pour tout service administratif polonais."
+        }
+      ],
+      "climate": "Continental (étés chauds, hivers froids avec neige)",
+      "housing": "Très abordable. Sites : Otodom.pl, OLX.pl. Résidences universitaires souvent disponibles. Quartiers étudiants : Praga, Mokotów, Żoliborz.",
+      "currency": "Zloty polonais (PLN)",
+      "language": "Polonais (anglais bien parlé dans les universités)",
+      "overview": "Varsovie est la capitale économique en plein essor de l'Europe centrale. Moderne et dynamique, elle offre des formations de qualité à des prix très bas, et une scène tech/startup en forte croissance.",
+      "transport": "ZTM : metro (2 lignes), tram et bus. Abonnement mensuel étudiant ~15 €. Très bien desservi.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "25 000+"
+    },
+    "cost_of_living": {
+      "food": 180,
+      "misc": 60,
+      "rent": {
+        "shared": 300,
+        "studio": 480
+      },
+      "leisure": 70,
+      "currency": "PLN",
+      "transport": 25,
+      "monthly_budget": {
+        "max": 800,
+        "min": 560
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000003",
+    "city": "Lisbonne",
+    "country": "Portugal",
+    "image_url": "https://picsum.photos/seed/lisbon/800/600",
+    "guide_content": {
+      "tips": [
+        "Idealista.pt pour le logement",
+        "Metro de Lisboa pour se déplacer",
+        "Caixa Geral de Depósitos pour compte étudiant",
+        "NIF (numéro fiscal) indispensable dès l'arrivée — obtenu gratuitement aux Finanças"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-5 MOIS",
+          "description": "Le marché lisboète s'est tendu. Chercher tôt sur Idealista.pt ou Uniplaces. Éviter les offres trop belles pour être vraies."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à l'Universidade de Lisboa, NOVA ou ISCTE. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise ou Revolut. Le NIF (numéro fiscal portugais) est gratuit et à obtenir dès l'arrivée aux Finanças."
+        },
+        {
+          "title": "NIF",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir le NIF (Número de Identificação Fiscal) aux Finanças ou consulat. Nécessaire pour ouvrir un compte, signer un bail."
+        }
+      ],
+      "climate": "Méditerranéen (le plus ensoleillé des capitales européennes)",
+      "housing": "Marché en tension ces dernières années. Sites : Idealista.pt, Imovirtual. Quartiers étudiants : Mouraria, Arroios, Intendente. Budget en hausse.",
+      "currency": "Euro (€)",
+      "language": "Portugais",
+      "overview": "Lisbonne est la capitale la plus à l'ouest d'Europe continentale, ville aux tramways iconiques, à la gastronomie savoureuse et à l'atmosphère unique. Coût de la vie en hausse mais encore raisonnable.",
+      "transport": "Carris (bus/tram), Metro de Lisboa (4 lignes), Fertagus. Viva Viagem rechargeable ou abonnement mensuel ~40 €.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "25 000+"
+    },
+    "cost_of_living": {
+      "food": 260,
+      "misc": 90,
+      "rent": {
+        "shared": 580,
+        "studio": 820
+      },
+      "leisure": 110,
+      "currency": "EUR",
+      "transport": 50,
+      "monthly_budget": {
+        "max": 1400,
+        "min": 980
       }
     }
   },
@@ -536,27 +1083,179 @@
     "id": "11111111-0001-0001-0001-000000000020",
     "city": "Porto",
     "country": "Portugal",
-    "cost_of_living": {
-      "currency": "EUR",
-      "monthly_budget": { "min": 750, "max": 1100 },
-      "rent": { "shared": 400, "studio": 680 },
-      "food": 240,
-      "transport": 40,
-      "misc": 135
-    },
+    "image_url": "https://picsum.photos/seed/porto/800/600",
     "guide_content": {
-      "overview": "Porto est une ville magique en bord de Douro — azulejos, vin de Porto, librairie Lello et Universidade do Porto reconnue. Plus abordable que Lisbonne.",
-      "housing": "OLX.pt et Uniplaces pour chercher. Quartiers Cedofeita, Bonfim et Campanhã accessibles et dynamiques.",
-      "transport": "Andante (carte rechargeable) pour metro, bus et tram. Abonnement mensuel étudiant ~30-40€.",
       "tips": [
-        "Le francesinha est le sandwich local emblématique — à tester absolument",
-        "Le vin de Porto en dégustation directement à Vila Nova de Gaia (rive sud)",
-        "La Livraria Lello (inspiration Harry Potter) est payante mais remboursée sur achat",
-        "Porto est très vallonnée — prévoir des bonnes chaussures de marche"
+        "Idealista.pt et Uniplaces pour le logement",
+        "Andante Card pour les transports",
+        "Banco BPI ou Caixa pour compte étudiant",
+        "NIF à obtenir dès l'arrivée aux Finanças — gratuit"
       ],
-      "useful_contacts": {
-        "urgences": "112",
-        "santé": "SNS 24 : 808 24 24 24"
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-4 MOIS",
+          "description": "Chercher dans les quartiers Bonfim ou Cedofeita. Porto est moins chère que Lisbonne et le marché moins tendu."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à l'Universidade do Porto ou l'Universidade Católica. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Porto est très abordable. Ouvrir Wise ou Revolut. Le premier mois (caution + premier loyer) nécessite des réserves."
+        },
+        {
+          "title": "NIF",
+          "timing": "À L'ARRIVÉE",
+          "description": "Obtenir le NIF (Número de Identificação Fiscal) aux Serviços de Finanças. Nécessaire pour tout service public."
+        }
+      ],
+      "climate": "Méditerranéen océanique (doux et humide, moins chaud que Lisbonne)",
+      "housing": "Plus abordable que Lisbonne. Sites : Idealista.pt, Imovirtual. Quartiers étudiants : Bonfim, Cedofeita, Paranhos (près des universités).",
+      "currency": "Euro (€)",
+      "language": "Portugais",
+      "overview": "Porto est la deuxième ville du Portugal, plus authentique et moins touristifiée que Lisbonne. La ville du porto et des azulejos est aussi devenue un hub tech et startup très attractif.",
+      "transport": "STCP (bus), Metro do Porto (6 lignes), Andante Card. Couverture correcte, vélo possible.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "15 000+"
+    },
+    "cost_of_living": {
+      "food": 230,
+      "misc": 75,
+      "rent": {
+        "shared": 420,
+        "studio": 640
+      },
+      "leisure": 90,
+      "currency": "EUR",
+      "transport": 40,
+      "monthly_budget": {
+        "max": 1080,
+        "min": 780
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000009",
+    "city": "Prague",
+    "country": "République Tchèque",
+    "image_url": "https://picsum.photos/seed/prague/800/600",
+    "guide_content": {
+      "tips": [
+        "Bezrealitky pour le logement sans intermédiaire",
+        "Lítačka app pour les transports",
+        "Moneta Money Bank ou Česká spořitelna pour compte étudiant",
+        "La couronne tchèque (CZK) varie — prévoir Wise pour les conversions"
+      ],
+      "steps": [
+        {
+          "title": "Logement",
+          "timing": "-5 MOIS",
+          "description": "Chercher sur Bezrealitky ou Flat4You. Prague est bien plus abordable que Paris ou Amsterdam."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-3 MOIS",
+          "description": "Confirmer l'inscription à Charles University, CTU Prague ou autre. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-1 MOIS",
+          "description": "Ouvrir Wise pour les conversions EUR → CZK sans frais. Prévoir un peu de cash en couronne à l'arrivée."
+        },
+        {
+          "title": "Ohlašovna",
+          "timing": "À L'ARRIVÉE",
+          "description": "Se déclarer à l'Ohlašovna (bureau d'enregistrement) du quartier si séjour > 30 jours."
+        }
+      ],
+      "climate": "Continental (étés chauds, hivers froids et enneigés)",
+      "housing": "Marché abordable comparé à l'Europe occidentale. Sites : Bezrealitky, Flat4You, Studenthome. Quartiers étudiants : Žižkov, Vinohrady, Smíchov.",
+      "currency": "Couronne tchèque (CZK)",
+      "language": "Tchèque (anglais bien parlé dans les universités)",
+      "overview": "Prague est l'une des villes les plus belles et les plus abordables d'Europe centrale. Architecture gothique et baroque préservée, vie nocturne animée, et coût de la vie parmi les plus bas de l'UE.",
+      "transport": "DPP : métro (3 lignes), tram et bus couvrent toute la ville. Abonnement mensuel étudiant ~20 €. Très bien desservi.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "25 000+"
+    },
+    "cost_of_living": {
+      "food": 220,
+      "misc": 70,
+      "rent": {
+        "shared": 360,
+        "studio": 560
+      },
+      "leisure": 90,
+      "currency": "CZK",
+      "transport": 30,
+      "monthly_budget": {
+        "max": 980,
+        "min": 700
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000012",
+    "city": "Stockholm",
+    "country": "Suède",
+    "image_url": "https://picsum.photos/seed/stockholm/800/600",
+    "guide_content": {
+      "tips": [
+        "SSSB.se pour les résidences étudiantes",
+        "Blocket.se pour les colocations",
+        "Swedbank ou SEB pour compte étudiant",
+        "La couronne suédoise (SEK) — utiliser Wise"
+      ],
+      "steps": [
+        {
+          "title": "Logement SSSB",
+          "timing": "-8 MOIS",
+          "description": "S'inscrire dès que possible sur SSSB. Les listes d'attente peuvent être longues à Stockholm."
+        },
+        {
+          "title": "Inscription",
+          "timing": "-4 MOIS",
+          "description": "Confirmer l'inscription à KTH, Stockholm University ou Karolinska. Valider le contrat pédagogique."
+        },
+        {
+          "title": "Finances",
+          "timing": "-2 MOIS",
+          "description": "Ouvrir Wise pour les conversions EUR → SEK. Stockholm est chère : prévoir un budget réaliste."
+        },
+        {
+          "title": "Personnummer",
+          "timing": "À L'ARRIVÉE",
+          "description": "Demander le personnummer à Skatteverket : numéro d'identification suédois indispensable pour ouvrir un compte bancaire."
+        }
+      ],
+      "climate": "Continental/Subarctique (étés agréables, hivers longs et froids)",
+      "housing": "Marché très tendu. SSSB (Stockholm Student Housing) gère les résidences — files d'attente très longues. Blocket.se pour les colocations. Commencer tôt.",
+      "currency": "Couronne suédoise (SEK)",
+      "language": "Suédois (anglais quasi universel)",
+      "overview": "Stockholm est la capitale innovante de la Suède, berceau de Spotify, Klarna et IKEA. Ville archipel entre eau et forêts, elle allie modernité et nature, avec des universités de renommée mondiale.",
+      "transport": "SL : metro (T-bana), tram, bus et ferries. SL-kortet mensuel étudiant ~50 €. Très cyclable de mai à octobre.",
+      "visa_note": "Espace Schengen",
+      "visa_required": false,
+      "international_students": "20 000+"
+    },
+    "cost_of_living": {
+      "food": 320,
+      "misc": 120,
+      "rent": {
+        "shared": 620,
+        "studio": 900
+      },
+      "leisure": 150,
+      "currency": "SEK",
+      "transport": 80,
+      "monthly_budget": {
+        "max": 1700,
+        "min": 1200
       }
     }
   }

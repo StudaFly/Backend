@@ -7,7 +7,7 @@ from src.app.core.dependencies import require_admin
 from src.app.db.session import get_db
 from src.app.models.user import User
 from src.app.schemas.common import ResponseBase
-from src.app.schemas.destination import DestinationCreate, DestinationRead
+from src.app.schemas.destination import DestinationCreate, DestinationRead, DestinationUpdate
 from src.app.services import destination_service
 
 router = APIRouter()
@@ -41,3 +41,23 @@ async def get_destination(
 ) -> ResponseBase[DestinationRead]:
     destination = await destination_service.get_by_id(db, destination_id=destination_id)
     return ResponseBase(data=destination, message="OK")
+
+
+@router.put("/{destination_id}", response_model=ResponseBase[DestinationRead])
+async def update_destination(
+    destination_id: UUID,
+    payload: DestinationUpdate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(require_admin),
+) -> ResponseBase[DestinationRead]:
+    destination = await destination_service.update(db, destination_id=destination_id, payload=payload)
+    return ResponseBase(data=destination, message="Destination updated successfully")
+
+
+@router.delete("/{destination_id}", status_code=204)
+async def delete_destination(
+    destination_id: UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(require_admin),
+) -> None:
+    await destination_service.delete(db, destination_id=destination_id)

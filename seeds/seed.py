@@ -54,6 +54,7 @@ async def seed_destinations(
                         id=dest_id,
                         country=item["country"],
                         city=item["city"],
+                        image_url=item.get("image_url"),
                         cost_of_living=item.get("cost_of_living"),
                         guide_content=item.get("guide_content"),
                     )
@@ -64,6 +65,7 @@ async def seed_destinations(
             if not dry_run:
                 existing.country = item["country"]
                 existing.city = item["city"]
+                existing.image_url = item.get("image_url")
                 existing.cost_of_living = item.get("cost_of_living")
                 existing.guide_content = item.get("guide_content")
             updated += 1
