@@ -1,5 +1,3 @@
-import json
-from datetime import timedelta
 from uuid import UUID
 
 from sqlalchemy import select
@@ -10,13 +8,7 @@ from src.app.core.exceptions import ForbiddenError, NotFoundError
 from src.app.models.mobility import Mobility
 from src.app.models.task import Task
 from src.app.schemas.task import TaskCreate, TaskRead, TaskUpdate
-from src.app.services.ai import ai_service
-
-VALID_CATEGORIES = {"admin", "finance", "housing", "health", "practical"}
-
-
-def _validate_category(category: str) -> str:
-    return category if category in VALID_CATEGORIES else "admin"
+from src.app.services import task_generation_service
 
 
 async def _get_mobility_for_user(db: AsyncSession, user_id: UUID, mobility_id: UUID) -> Mobility:
@@ -47,6 +39,7 @@ async def _get_task_for_user(db: AsyncSession, user_id: UUID, task_id: UUID) -> 
 
 async def list_tasks(db: AsyncSession, user_id: UUID, mobility_id: UUID) -> list[TaskRead]:
     mobility = await _get_mobility_for_user(db, user_id, mobility_id)
+    await task_generation_service.ensure_tasks(db, mobility)
 
     result = await db.execute(
         select(Task)
@@ -54,45 +47,6 @@ async def list_tasks(db: AsyncSession, user_id: UUID, mobility_id: UUID) -> list
         .order_by(Task.priority.asc(), Task.deadline.asc().nulls_last())
     )
     tasks = result.scalars().all()
-
-    if not tasks:
-        destination = mobility.destination
-        ai_tasks = []
-        try:
-            raw = await ai_service.generate_checklist(
-                destination=f"{destination.city}, {destination.country}",
-                mobility_type=mobility.type,
-                departure_date=str(mobility.departure_date),
-            )
-            data = json.loads(raw)
-            ai_tasks = data.get("tasks", [])
-        except Exception:
-            pass
-
-        for item in ai_tasks:
-            weeks_before = item.get("deadline_weeks_before") or 0
-            deadline = None
-            if weeks_before and mobility.departure_date:
-                deadline = mobility.departure_date - timedelta(weeks=int(weeks_before))
-            task = Task(
-                mobility_id=mobility_id,
-                title=item.get("title", ""),
-                description=item.get("description"),
-                category=_validate_category(item.get("category", "admin")),
-                deadline=deadline,
-                is_completed=False,
-                priority=item.get("priority", 3),
-            )
-            db.add(task)
-        await db.commit()
-
-        result = await db.execute(
-            select(Task)
-            .where(Task.mobility_id == mobility_id)
-            .order_by(Task.priority.asc(), Task.deadline.asc().nulls_last())
-        )
-        tasks = result.scalars().all()
-
     return [TaskRead.model_validate(t) for t in tasks]
 
 
