@@ -39,4 +39,6 @@ class User(Base):
     )
 
     institution: Mapped["Institution | None"] = relationship("Institution", back_populates="users")
-    mobilities: Mapped[list["Mobility"]] = relationship("Mobility", back_populates="user")
+    mobilities: Mapped[list["Mobility"]] = relationship(
+        "Mobility", back_populates="user", cascade="all, delete-orphan", passive_deletes=True
+    )

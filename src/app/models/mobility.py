@@ -22,7 +22,7 @@ class Mobility(Base):
         PGUUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     user_id: Mapped[uuid.UUID] = mapped_column(
-        PGUUID(as_uuid=True), ForeignKey("users.id"), nullable=False
+        PGUUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
     destination_id: Mapped[uuid.UUID] = mapped_column(
         PGUUID(as_uuid=True), ForeignKey("destinations.id"), nullable=False
@@ -38,5 +38,9 @@ class Mobility(Base):
 
     user: Mapped["User"] = relationship("User", back_populates="mobilities")
     destination: Mapped["Destination"] = relationship("Destination", back_populates="mobilities")
-    tasks: Mapped[list["Task"]] = relationship("Task", back_populates="mobility")
-    documents: Mapped[list["Document"]] = relationship("Document", back_populates="mobility")
+    tasks: Mapped[list["Task"]] = relationship(
+        "Task", back_populates="mobility", cascade="all, delete-orphan", passive_deletes=True
+    )
+    documents: Mapped[list["Document"]] = relationship(
+        "Document", back_populates="mobility", cascade="all, delete-orphan", passive_deletes=True
+    )

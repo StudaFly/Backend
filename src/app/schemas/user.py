@@ -29,6 +29,7 @@ class UserRead(StudaFlyBaseModel):
     email: str
     name: str
     role: str
+    institution_id: uuid.UUID | None = None
     is_premium: bool
     email_verified: bool
     oauth_provider: str | None

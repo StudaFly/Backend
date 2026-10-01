@@ -1,7 +1,10 @@
+import uuid
+
 from src.app.schemas.common import StudaFlyBaseModel
 
 
 class BudgetCategory(StudaFlyBaseModel):
+    key: str
     label: str
     amount_min: float
     amount_max: float
@@ -9,7 +12,7 @@ class BudgetCategory(StudaFlyBaseModel):
 
 
 class BudgetEstimate(StudaFlyBaseModel):
-    destination_id: str
+    destination_id: uuid.UUID
     city: str
     country: str
     monthly_total_min: float
