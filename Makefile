@@ -1,5 +1,5 @@
 run:
-	uvicorn src.main:app --reload
+	uvicorn src.main:app --reload --host 0.0.0.0 --port 8080
 
 test:
 	pytest --cov=src -v
@@ -42,10 +42,21 @@ shell:
 
 COMPOSE = docker compose -f docker/docker-compose.yml
 
+services:
+	$(COMPOSE) up -d --wait db redis
+
+services-stop:
+	$(COMPOSE) stop db redis
+
+dev: services db-setup run
+
 docker-up:
 	$(COMPOSE) up --build -d
 
 docker-down:
+	$(COMPOSE) down
+
+docker-reset:
 	$(COMPOSE) down -v
 
 docker-logs:
@@ -54,4 +65,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-inst shell docker-up docker-down docker-logs docker-ps
+.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-inst shell docker-up docker-down docker-logs docker-ps

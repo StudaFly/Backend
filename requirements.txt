@@ -25,6 +25,9 @@ python-multipart==0.0.9
 # HTTP client
 httpx==0.26.0
 
+# AI (Anthropic Claude)
+anthropic>=1.9.0
+
 # Dev & Test
 pytest==7.4.4
 pytest-asyncio==0.23.4
