@@ -75,3 +75,41 @@ def test_generic_exception_handler():
     assert resp.status_code == 500
     data = resp.json()
     assert data["error"]["code"] == "INTERNAL_ERROR"
+
+
+def test_not_implemented_handler_returns_501():
+    app = FastAPI()
+    add_exception_handlers(app)
+
+    @app.get("/test-stub")
+    async def stub():
+        raise NotImplementedError
+
+    client = TestClient(app, raise_server_exceptions=False)
+    resp = client.get("/test-stub")
+    assert resp.status_code == 501
+    assert resp.json()["error"]["code"] == "NOT_IMPLEMENTED"
+
+
+def test_unauthorized_error_sets_bearer_challenge():
+    app = FastAPI()
+    add_exception_handlers(app)
+
+    @app.get("/test-auth")
+    async def auth():
+        raise UnauthorizedError()
+
+    client = TestClient(app, raise_server_exceptions=False)
+    resp = client.get("/test-auth")
+    assert resp.status_code == 401
+    assert resp.headers["www-authenticate"] == "Bearer"
+
+
+async def test_require_admin_rejects_students():
+    from types import SimpleNamespace
+
+    import pytest
+    from src.app.core.dependencies import require_admin
+
+    with pytest.raises(ForbiddenError):
+        await require_admin(SimpleNamespace(role="student"))

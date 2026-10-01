@@ -2,7 +2,7 @@
 Integration tests for Timeline and Checklist HTTP endpoints.
 
 These tests verify:
-- Auth protection (no token → 403 from HTTPBearer)
+- Auth protection (no token → 401)
 - Invalid token → 401
 - Invalid UUID path params → 422
 - Valid auth with mocked service → 200/201/204
@@ -23,9 +23,9 @@ TASK_ID = "00000000-0000-0000-0000-000000000002"
 
 
 class TestTimelineAuthGuard:
-    def test_no_token_returns_403(self):
+    def test_no_token_returns_401(self):
         r = client.get(f"{PREFIX}/mobilities/{FAKE_ID}/timeline")
-        assert r.status_code == 403
+        assert r.status_code == 401
 
     def test_invalid_token_returns_401(self):
         r = client.get(
@@ -43,28 +43,28 @@ class TestTimelineAuthGuard:
 
 
 class TestChecklistAuthGuard:
-    def test_list_tasks_no_token_returns_403(self):
+    def test_list_tasks_no_token_returns_401(self):
         r = client.get(f"{PREFIX}/mobilities/{FAKE_ID}/tasks")
-        assert r.status_code == 403
+        assert r.status_code == 401
 
-    def test_create_task_no_token_returns_403(self):
+    def test_create_task_no_token_returns_401(self):
         r = client.post(
             f"{PREFIX}/mobilities/{FAKE_ID}/tasks",
             json={"title": "Test task", "category": "admin"},
         )
-        assert r.status_code == 403
+        assert r.status_code == 401
 
-    def test_update_task_no_token_returns_403(self):
+    def test_update_task_no_token_returns_401(self):
         r = client.patch(f"{PREFIX}/tasks/{TASK_ID}")
-        assert r.status_code == 403
+        assert r.status_code == 401
 
-    def test_complete_task_no_token_returns_403(self):
+    def test_complete_task_no_token_returns_401(self):
         r = client.patch(f"{PREFIX}/tasks/{TASK_ID}/complete")
-        assert r.status_code == 403
+        assert r.status_code == 401
 
-    def test_delete_task_no_token_returns_403(self):
+    def test_delete_task_no_token_returns_401(self):
         r = client.delete(f"{PREFIX}/tasks/{TASK_ID}")
-        assert r.status_code == 403
+        assert r.status_code == 401
 
     def test_invalid_token_returns_401(self):
         r = client.get(
