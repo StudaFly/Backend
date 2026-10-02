@@ -4,8 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.core.exceptions import ForbiddenError, NotFoundError
+from src.app.models.destination import Destination
 from src.app.models.mobility import Mobility
 from src.app.schemas.mobility import MobilityCreate, MobilityRead, MobilityUpdate
+from src.app.services import task_generation_service
 
 
 async def list_by_user(db: AsyncSession, user_id: UUID) -> list[MobilityRead]:
@@ -17,6 +19,10 @@ async def list_by_user(db: AsyncSession, user_id: UUID) -> list[MobilityRead]:
 
 
 async def create(db: AsyncSession, user_id: UUID, payload: MobilityCreate) -> MobilityRead:
+    destination = await db.get(Destination, payload.destination_id)
+    if not destination:
+        raise NotFoundError("Destination not found")
+
     mobility = Mobility(
         user_id=user_id,
         destination_id=payload.destination_id,
@@ -27,6 +33,8 @@ async def create(db: AsyncSession, user_id: UUID, payload: MobilityCreate) -> Mo
         status="preparing",
     )
     db.add(mobility)
+    await db.flush()
+    db.add_all(await task_generation_service.build_tasks(mobility, destination))
     await db.commit()
     await db.refresh(mobility)
     return MobilityRead.model_validate(mobility)

@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING
 
-from sqlalchemy import String
+from sqlalchemy import String, Text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -20,6 +20,9 @@ class Destination(Base):
     )
     country: Mapped[str] = mapped_column(String(100), nullable=False)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
+    image_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+    facts: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     cost_of_living: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     guide_content: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
 

@@ -7,7 +7,7 @@ from src.app.core.dependencies import require_admin
 from src.app.db.session import get_db
 from src.app.models.user import User
 from src.app.schemas.common import ResponseBase
-from src.app.schemas.destination import DestinationCreate, DestinationRead
+from src.app.schemas.destination import DestinationCreate, DestinationDetail, DestinationRead
 from src.app.services import destination_service
 
 router = APIRouter()
@@ -34,10 +34,10 @@ async def create_destination(
     return ResponseBase(data=destination, message="Destination created successfully")
 
 
-@router.get("/{destination_id}", response_model=ResponseBase[DestinationRead])
+@router.get("/{destination_id}", response_model=ResponseBase[DestinationDetail])
 async def get_destination(
     destination_id: UUID,
     db: AsyncSession = Depends(get_db),
-) -> ResponseBase[DestinationRead]:
+) -> ResponseBase[DestinationDetail]:
     destination = await destination_service.get_by_id(db, destination_id=destination_id)
     return ResponseBase(data=destination, message="OK")

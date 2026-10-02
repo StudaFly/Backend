@@ -8,7 +8,8 @@ from src.app.db.session import get_db
 from src.app.models.user import User
 from src.app.schemas.common import ResponseBase
 from src.app.schemas.mobility import MobilityCreate, MobilityRead, MobilityUpdate
-from src.app.services import mobility_service
+from src.app.schemas.progress import MobilityProgress
+from src.app.services import mobility_service, progress_service
 
 router = APIRouter()
 
@@ -42,6 +43,18 @@ async def get_mobility(
         db, user_id=current_user.id, mobility_id=mobility_id
     )
     return ResponseBase(data=mobility, message="OK")
+
+
+@router.get("/{mobility_id}/progress", response_model=ResponseBase[MobilityProgress])
+async def get_progress(
+    mobility_id: UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+) -> ResponseBase[MobilityProgress]:
+    progress = await progress_service.get_progress(
+        db, user_id=current_user.id, mobility_id=mobility_id
+    )
+    return ResponseBase(data=progress, message="OK")
 
 
 @router.patch("/{mobility_id}", response_model=ResponseBase[MobilityRead])

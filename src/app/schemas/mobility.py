@@ -2,7 +2,7 @@ import uuid
 from datetime import date, datetime
 from typing import Literal
 
-from pydantic import field_validator
+from pydantic import computed_field, field_validator
 
 from src.app.schemas.common import StudaFlyBaseModel
 
@@ -41,6 +41,19 @@ class MobilityRead(StudaFlyBaseModel):
     status: str
     school: str | None = None
     created_at: datetime
+
+    @computed_field(alias="daysUntilDeparture")
+    @property
+    def days_until_departure(self) -> int:
+        return (self.departure_date - date.today()).days
+
+    @computed_field(alias="stayMonths")
+    @property
+    def stay_months(self) -> int | None:
+        if not self.return_date:
+            return None
+        months = round((self.return_date - self.departure_date).days / 30.44)
+        return months if months > 0 else None
 
 
 class MobilityUpdate(StudaFlyBaseModel):

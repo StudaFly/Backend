@@ -3,7 +3,6 @@ Unit tests for checklist_service.py.
 DB session and ai_service are fully mocked — no real DB or Claude API calls.
 """
 
-import json
 import uuid
 from datetime import date
 from types import SimpleNamespace
@@ -15,27 +14,6 @@ MOBILITY_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
 USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000002")
 OTHER_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000003")
 TASK_ID = uuid.UUID("00000000-0000-0000-0000-000000000004")
-
-CHECKLIST_JSON = json.dumps(
-    {
-        "tasks": [
-            {
-                "title": "Get passport",
-                "category": "admin",
-                "priority": 2,
-                "deadline_weeks_before": 12,
-                "description": "Renew if needed",
-            },
-            {
-                "title": "Arrange housing",
-                "category": "housing",
-                "priority": 1,
-                "deadline_weeks_before": 8,
-                "description": "Find accommodation",
-            },
-        ]
-    }
-)
 
 
 def _make_destination():
@@ -67,7 +45,7 @@ def _make_task_orm(user_id=USER_ID):
 
 
 @pytest.mark.asyncio
-async def test_list_tasks_returns_existing():
+async def test_list_tasks_ensures_parcours_then_returns_tasks():
     from src.app.services import checklist_service
 
     mobility = _make_mobility()
@@ -75,66 +53,21 @@ async def test_list_tasks_returns_existing():
 
     mobility_result = MagicMock()
     mobility_result.scalar_one_or_none.return_value = mobility
-
     tasks_result = MagicMock()
     tasks_result.scalars.return_value.all.return_value = [existing_task]
 
-    call_count = {"n": 0}
-
-    async def side_effect(*args, **kwargs):
-        call_count["n"] += 1
-        return mobility_result if call_count["n"] == 1 else tasks_result
-
     mock_db = AsyncMock()
-    mock_db.execute.side_effect = side_effect
+    mock_db.execute.side_effect = [mobility_result, tasks_result]
 
     with patch(
-        "src.app.services.checklist_service.ai_service.generate_checklist",
+        "src.app.services.checklist_service.task_generation_service.ensure_tasks",
         new_callable=AsyncMock,
-    ) as mock_ai:
+    ) as mock_ensure:
         result = await checklist_service.list_tasks(mock_db, USER_ID, MOBILITY_ID)
 
-    mock_ai.assert_not_called()
+    mock_ensure.assert_awaited_once_with(mock_db, mobility)
     assert len(result) == 1
     assert result[0].title == "Get passport"
-
-
-@pytest.mark.asyncio
-async def test_list_tasks_auto_generates_when_empty():
-    from src.app.services import checklist_service
-
-    mobility = _make_mobility()
-    generated_task = _make_task_orm()
-
-    call_count = {"n": 0}
-
-    async def side_effect(*args, **kwargs):
-        call_count["n"] += 1
-        if call_count["n"] == 1:
-            r = MagicMock()
-            r.scalar_one_or_none.return_value = mobility
-            return r
-        if call_count["n"] == 2:
-            r = MagicMock()
-            r.scalars.return_value.all.return_value = []
-            return r
-        r = MagicMock()
-        r.scalars.return_value.all.return_value = [generated_task]
-        return r
-
-    mock_db = AsyncMock()
-    mock_db.execute.side_effect = side_effect
-
-    with patch(
-        "src.app.services.checklist_service.ai_service.generate_checklist",
-        new_callable=AsyncMock,
-        return_value=CHECKLIST_JSON,
-    ):
-        result = await checklist_service.list_tasks(mock_db, USER_ID, MOBILITY_ID)
-
-    mock_db.add.assert_called()
-    mock_db.commit.assert_called()
-    assert len(result) == 1
 
 
 @pytest.mark.asyncio
@@ -175,7 +108,7 @@ async def test_create_task_success():
     new_task.title = "Custom task"
     new_task.description = None
     new_task.deadline = None
-    new_task.priority = 0
+    new_task.priority = 1
 
     mobility_result = MagicMock()
     mobility_result.scalar_one_or_none.return_value = mobility
@@ -185,7 +118,7 @@ async def test_create_task_success():
     mock_db.refresh.side_effect = lambda obj: None
 
     with patch("src.app.services.checklist_service.Task", return_value=new_task):
-        payload = TaskCreate(title="Custom task", category="admin", priority=0)
+        payload = TaskCreate(title="Custom task", category="admin", priority=1)
         await checklist_service.create_task(mock_db, USER_ID, MOBILITY_ID, payload)
 
     mock_db.add.assert_called_once_with(new_task)

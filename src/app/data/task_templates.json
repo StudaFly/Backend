@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "description": "Parcours de base (mode dégradé, sans IA). days_before_departure > 0 : avant le départ ; < 0 : après l'arrivée. mobility_types absent = tous les types. zone absent = toutes les destinations. priority : 1 = haute, 2 = moyenne, 3 = basse.",
+  "zones": {
+    "eu": [
+      "Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark",
+      "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Islande",
+      "Italie", "Lettonie", "Liechtenstein", "Lituanie", "Luxembourg", "Malte", "Norvège",
+      "Pays-Bas", "Pologne", "Portugal", "République Tchèque", "Roumanie", "Slovaquie",
+      "Slovénie", "Suède", "Suisse"
+    ]
+  },
+  "tasks": [
+    {
+      "title": "Vérifier la validité du passeport ou de la carte d'identité",
+      "description": "Le document doit rester valide pendant toute la durée du séjour. Un renouvellement peut prendre plusieurs semaines.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 150
+    },
+    {
+      "title": "Vérifier si un visa ou un titre de séjour est nécessaire",
+      "description": "Consulter le site de l'ambassade ou du consulat du pays de destination pour connaître les conditions d'entrée et de séjour.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 180,
+      "zone": "non_eu"
+    },
+    {
+      "title": "Déposer la demande de visa",
+      "description": "Rassembler les justificatifs (lettre d'admission ou convention, ressources, assurance) et prendre rendez-vous au consulat.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 120,
+      "zone": "non_eu"
+    },
+    {
+      "title": "Se renseigner sur les aides financières à la mobilité",
+      "description": "Bourses de l'établissement, aides régionales, aide à la mobilité internationale : les dossiers se déposent souvent plusieurs mois avant le départ.",
+      "category": "finance",
+      "priority": 1,
+      "days_before_departure": 120
+    },
+    {
+      "title": "Établir un budget prévisionnel",
+      "description": "Estimer le logement, la nourriture, les transports et les loisirs à partir du coût de la vie de la ville de destination.",
+      "category": "finance",
+      "priority": 2,
+      "days_before_departure": 90
+    },
+    {
+      "title": "Trouver un logement",
+      "description": "Résidence universitaire, colocation ou studio : le marché est souvent tendu, s'y prendre tôt et se méfier des arnaques (ne jamais payer avant d'avoir un contrat).",
+      "category": "housing",
+      "priority": 1,
+      "days_before_departure": 90
+    },
+    {
+      "title": "Faire un bilan de santé et vérifier ses vaccins",
+      "description": "Consulter son médecin traitant et son dentiste, vérifier les vaccins recommandés pour la destination.",
+      "category": "health",
+      "priority": 2,
+      "days_before_departure": 60
+    },
+    {
+      "title": "Réserver le transport aller",
+      "description": "Comparer train, avion et bus ; réserver tôt permet de payer moins cher.",
+      "category": "practical",
+      "priority": 2,
+      "days_before_departure": 60
+    },
+    {
+      "title": "Souscrire une assurance santé et rapatriement",
+      "description": "Vérifier ce que couvrent la sécurité sociale et la mutuelle à l'étranger, et compléter si nécessaire (rapatriement, responsabilité civile).",
+      "category": "health",
+      "priority": 1,
+      "days_before_departure": 45
+    },
+    {
+      "title": "Demander la carte européenne d'assurance maladie (CEAM)",
+      "description": "Gratuite et à demander sur son compte Ameli ; elle permet la prise en charge des soins dans l'Union européenne.",
+      "category": "health",
+      "priority": 1,
+      "days_before_departure": 30,
+      "zone": "eu"
+    },
+    {
+      "title": "Réserver un hébergement pour les premiers jours",
+      "description": "Si le logement définitif n'est pas encore trouvé, prévoir une auberge ou une location courte à l'arrivée.",
+      "category": "housing",
+      "priority": 2,
+      "days_before_departure": 30
+    },
+    {
+      "title": "Prévenir sa banque et vérifier ses moyens de paiement",
+      "description": "Informer la banque du séjour, vérifier les frais à l'étranger et envisager une carte sans frais de change.",
+      "category": "finance",
+      "priority": 2,
+      "days_before_departure": 30
+    },
+    {
+      "title": "Mettre à jour ses démarches administratives en France",
+      "description": "Changement d'adresse, CAF, impôts, résiliation ou transfert des abonnements.",
+      "category": "admin",
+      "priority": 3,
+      "days_before_departure": 21
+    },
+    {
+      "title": "Prévoir ses traitements et ordonnances",
+      "description": "Emporter une quantité suffisante de médicaments et les ordonnances, idéalement avec la dénomination commune internationale.",
+      "category": "health",
+      "priority": 3,
+      "days_before_departure": 21
+    },
+    {
+      "title": "Numériser ses documents importants",
+      "description": "Passeport, visa, assurance, contrats : garder une copie accessible hors-ligne dans l'espace documents.",
+      "category": "practical",
+      "priority": 2,
+      "days_before_departure": 14
+    },
+    {
+      "title": "Choisir un forfait téléphone adapté",
+      "description": "Vérifier l'itinérance incluse dans le forfait actuel ou prévoir une carte SIM locale.",
+      "category": "practical",
+      "priority": 3,
+      "days_before_departure": 14
+    },
+    {
+      "title": "Préparer ses bagages",
+      "description": "Vérifier les franchises bagages et garder les documents essentiels dans le bagage à main.",
+      "category": "practical",
+      "priority": 3,
+      "days_before_departure": 3
+    },
+    {
+      "title": "Accomplir les formalités d'arrivée",
+      "description": "Selon le pays : enregistrement à la mairie ou auprès des autorités locales, activation du titre de séjour.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": -7
+    },
+    {
+      "title": "Ouvrir un compte bancaire local si nécessaire",
+      "description": "Souvent utile pour le loyer, la gratification ou un abonnement de transport.",
+      "category": "finance",
+      "priority": 3,
+      "days_before_departure": -14
+    },
+    {
+      "title": "Signer le contrat pédagogique (Learning Agreement)",
+      "description": "Faire valider le choix de cours par l'établissement d'origine et l'établissement d'accueil.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 120,
+      "mobility_types": ["erasmus"]
+    },
+    {
+      "title": "Signer le contrat de mobilité Erasmus+",
+      "description": "Il conditionne le versement de la bourse Erasmus+ : le signer avant le départ.",
+      "category": "finance",
+      "priority": 1,
+      "days_before_departure": 60,
+      "mobility_types": ["erasmus"]
+    },
+    {
+      "title": "Faire signer l'attestation d'arrivée",
+      "description": "À faire compléter par l'établissement d'accueil puis à renvoyer à son établissement d'origine.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": -7,
+      "mobility_types": ["erasmus", "semestre"]
+    },
+    {
+      "title": "Valider le choix de cours avec l'université d'accueil",
+      "description": "Vérifier que les cours choisis sont reconnus par l'établissement d'origine.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 120,
+      "mobility_types": ["semestre"]
+    },
+    {
+      "title": "S'inscrire administrativement à l'université d'accueil",
+      "description": "Compléter le dossier d'inscription et récupérer la lettre d'admission.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 90,
+      "mobility_types": ["semestre", "double_diplome"]
+    },
+    {
+      "title": "Valider le programme de double diplôme avec les deux établissements",
+      "description": "Confirmer le parcours, la durée et les conditions d'obtention des deux diplômes.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 150,
+      "mobility_types": ["double_diplome"]
+    },
+    {
+      "title": "Faire valider la reconnaissance des crédits",
+      "description": "Obtenir par écrit la table d'équivalence des crédits entre les deux établissements.",
+      "category": "admin",
+      "priority": 2,
+      "days_before_departure": 60,
+      "mobility_types": ["double_diplome"]
+    },
+    {
+      "title": "Signer la convention de stage",
+      "description": "Convention tripartite entre l'étudiant, l'établissement et l'entreprise d'accueil.",
+      "category": "admin",
+      "priority": 1,
+      "days_before_departure": 90,
+      "mobility_types": ["stage"]
+    },
+    {
+      "title": "Clarifier la gratification et les conditions du stage",
+      "description": "Montant, horaires, congés et avantages (logement, transport) avec l'entreprise d'accueil.",
+      "category": "finance",
+      "priority": 2,
+      "days_before_departure": 60,
+      "mobility_types": ["stage"]
+    },
+    {
+      "title": "Vérifier la couverture accident du travail pendant le stage",
+      "description": "Selon le pays et la convention, la couverture peut relever de l'établissement, de l'entreprise ou d'une assurance à souscrire.",
+      "category": "health",
+      "priority": 1,
+      "days_before_departure": 45,
+      "mobility_types": ["stage"]
+    },
+    {
+      "title": "Préparer son premier jour en entreprise",
+      "description": "Adresse, horaires, contact du tuteur et documents à apporter.",
+      "category": "practical",
+      "priority": 3,
+      "days_before_departure": 3,
+      "mobility_types": ["stage"]
+    }
+  ]
+}

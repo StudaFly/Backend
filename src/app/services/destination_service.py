@@ -5,7 +5,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.core.exceptions import ConflictError, NotFoundError
 from src.app.models.destination import Destination
-from src.app.schemas.destination import DestinationCreate, DestinationRead
+from src.app.schemas.destination import (
+    DestinationCreate,
+    DestinationDetail,
+    DestinationFacts,
+    DestinationRead,
+)
 
 
 async def list_all(db: AsyncSession, query: str | None = None) -> list[DestinationRead]:
@@ -37,6 +42,9 @@ async def create(db: AsyncSession, payload: DestinationCreate) -> DestinationRea
     destination = Destination(
         country=payload.country,
         city=payload.city,
+        image_url=payload.image_url,
+        summary=payload.summary,
+        facts=payload.facts.model_dump(exclude_none=True) if payload.facts else None,
     )
     db.add(destination)
     await db.commit()
@@ -44,8 +52,21 @@ async def create(db: AsyncSession, payload: DestinationCreate) -> DestinationRea
     return DestinationRead.model_validate(destination)
 
 
-async def get_by_id(db: AsyncSession, destination_id: UUID) -> DestinationRead:
+def to_detail(destination: Destination) -> DestinationDetail:
+    return DestinationDetail(
+        id=destination.id,
+        country=destination.country,
+        city=destination.city,
+        image_url=destination.image_url,
+        summary=destination.summary,
+        facts=DestinationFacts.model_validate(destination.facts) if destination.facts else None,
+        has_budget=bool(destination.cost_of_living),
+        has_guide=bool(destination.guide_content),
+    )
+
+
+async def get_by_id(db: AsyncSession, destination_id: UUID) -> DestinationDetail:
     destination = await db.get(Destination, destination_id)
     if not destination:
         raise NotFoundError("Destination not found")
-    return DestinationRead.model_validate(destination)
+    return to_detail(destination)
