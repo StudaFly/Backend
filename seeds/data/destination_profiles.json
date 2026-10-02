@@ -1,0 +1,742 @@
+[
+  {
+    "slug": "espagne",
+    "country": "Espagne",
+    "cities": [
+      "Barcelone",
+      "Madrid"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "summary": "L'Espagne est la destination érasmus la plus populaire d'Europe, célèbre pour son climat ensoleillé, sa riche culture et sa vie étudiante animée.",
+    "facts": {
+      "language": "Espagnol",
+      "currency": "Euro (€)",
+      "climate": "Méditerranéen",
+      "visa_required": false,
+      "international_students": 45000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 740,
+        "max": 1210
+      },
+      "rent": {
+        "min": 350,
+        "max": 600
+      },
+      "food": {
+        "min": 200,
+        "max": 300
+      },
+      "transport": {
+        "min": 40,
+        "max": 60
+      },
+      "misc": {
+        "min": 150,
+        "max": 250
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Logement",
+        "description": "Chercher une colocation ou une résidence universitaire plusieurs mois à l'avance.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Assurance Maladie",
+        "description": "Demander la Carte Européenne d'Assurance Maladie (CEAM).",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Inscription Univ.",
+        "description": "Finaliser votre contrat d'études avec votre université d'accueil.",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "allemagne",
+    "country": "Allemagne",
+    "cities": [
+      "Berlin",
+      "Munich"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "summary": "L'Allemagne offre un système éducatif d'excellence, une économie dynamique et de nombreuses opportunités de stages et emplois.",
+    "facts": {
+      "language": "Allemand",
+      "currency": "Euro (€)",
+      "climate": "Continental",
+      "visa_required": false,
+      "international_students": 38000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 830,
+        "max": 1430
+      },
+      "rent": {
+        "min": 400,
+        "max": 700
+      },
+      "food": {
+        "min": 250,
+        "max": 350
+      },
+      "transport": {
+        "min": 30,
+        "max": 80
+      },
+      "misc": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Bourse",
+        "description": "Postuler aux bourses DAAD ou Erasmus+.",
+        "timing": "-6 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Chercher une chambre dans une WG (colocation étudiante allemande).",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Inscription",
+        "description": "Payer les frais semestriels universitaires.",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "royaume-uni",
+    "country": "Royaume-Uni",
+    "cities": [
+      "Londres",
+      "Édimbourg"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "summary": "Avec ses universités prestigieuses et la pratique de la langue anglaise, le Royaume-Uni garantit une expérience académique reconnue mondialement.",
+    "facts": {
+      "language": "Anglais",
+      "currency": "Livre Sterling (£)",
+      "climate": "Océanique",
+      "visa_required": true,
+      "international_students": 32000
+    },
+    "cost_of_living": {
+      "currency": "GBP",
+      "monthly_budget": {
+        "min": 1130,
+        "max": 2050
+      },
+      "rent": {
+        "min": 600,
+        "max": 1100
+      },
+      "food": {
+        "min": 250,
+        "max": 400
+      },
+      "transport": {
+        "min": 80,
+        "max": 150
+      },
+      "misc": {
+        "min": 200,
+        "max": 400
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Visa",
+        "description": "Préparer le dossier pour le visa étudiant (Student Visa).",
+        "timing": "-4 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Réserver un logement étudiant (très demandé).",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Banque",
+        "description": "Se renseigner sur l'ouverture d'un compte bancaire au format britannique.",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "coree-du-sud",
+    "country": "Corée du Sud",
+    "cities": [
+      "Daegu",
+      "Séoul"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1080&auto=format&fit=crop",
+    "summary": "Une immersion au cœur de la culture asiatique, alliant traditions ancestrales, hyper-modernité et excellence académique.",
+    "facts": {
+      "language": "Coréen / Anglais",
+      "currency": "Won (KRW)",
+      "climate": "Tempéré",
+      "visa_required": true,
+      "international_students": 12000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 640,
+        "max": 1060
+      },
+      "rent": {
+        "min": 250,
+        "max": 450
+      },
+      "food": {
+        "min": 200,
+        "max": 300
+      },
+      "transport": {
+        "min": 40,
+        "max": 60
+      },
+      "misc": {
+        "min": 150,
+        "max": 250
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Visa d'études",
+        "description": "Demander le visa étudiant (D-2) auprès de l'ambassade.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Réserver une chambre en résidence universitaire ou un Goshiwon.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Carte de Résident",
+        "description": "Faire la demande de l'ARC (Alien Registration Card) dès votre arrivée.",
+        "timing": "À l'arrivée"
+      }
+    ]
+  },
+  {
+    "slug": "irlande",
+    "country": "Irlande",
+    "cities": [
+      "Dublin",
+      "Cork"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "summary": "Un pays chaleureux et anglophone, avec des paysages verdoyants et une qualité de vie étudiante très prisée et festive.",
+    "facts": {
+      "language": "Anglais",
+      "currency": "Euro (€)",
+      "climate": "Océanique",
+      "visa_required": false,
+      "international_students": 25000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 1230,
+        "max": 2070
+      },
+      "rent": {
+        "min": 700,
+        "max": 1200
+      },
+      "food": {
+        "min": 250,
+        "max": 400
+      },
+      "transport": {
+        "min": 80,
+        "max": 120
+      },
+      "misc": {
+        "min": 200,
+        "max": 350
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Logement",
+        "description": "Chercher un logement TRÈS en avance (le marché est saturé à Dublin).",
+        "timing": "-6 mois"
+      },
+      {
+        "title": "PPS Number",
+        "description": "Demander votre Personal Public Service Number si vous comptez travailler.",
+        "timing": "-1 mois"
+      },
+      {
+        "title": "Transport",
+        "description": "Se procurer la Leap Card étudiante pour des réductions sur les transports.",
+        "timing": "À l'arrivée"
+      }
+    ]
+  },
+  {
+    "slug": "portugal",
+    "country": "Portugal",
+    "cities": [
+      "Lisbonne",
+      "Porto"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "summary": "Climat clément, coût de la vie abordable, universités renommées... Le Portugal est une destination étudiante qui séduit par son bel équilibre.",
+    "facts": {
+      "language": "Portugais",
+      "currency": "Euro (€)",
+      "climate": "Méditerranéen",
+      "visa_required": false,
+      "international_students": 18000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 580,
+        "max": 1040
+      },
+      "rent": {
+        "min": 300,
+        "max": 550
+      },
+      "food": {
+        "min": 150,
+        "max": 250
+      },
+      "transport": {
+        "min": 30,
+        "max": 40
+      },
+      "misc": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Bourses",
+        "description": "Préparer votre dossier Erasmus+.",
+        "timing": "-5 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Trouver une chambre (quarto) en colocation étudiante.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "NIF",
+        "description": "Demander le Numéro d'Identification Fiscale.",
+        "timing": "À l'arrivée"
+      }
+    ]
+  },
+  {
+    "slug": "canada",
+    "country": "Canada",
+    "cities": [
+      "Montréal",
+      "Toronto"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1542668595-fa9394e5b686?q=80&w=1080&auto=format&fit=crop",
+    "summary": "Des paysages grandioses, un système éducatif de premier plan et une société multiculturelle très accueillante.",
+    "facts": {
+      "language": "Anglais / Français",
+      "currency": "Dollar Canadien (CAD)",
+      "climate": "Continental Humide",
+      "visa_required": true,
+      "international_students": 20000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 960,
+        "max": 1750
+      },
+      "rent": {
+        "min": 500,
+        "max": 900
+      },
+      "food": {
+        "min": 250,
+        "max": 450
+      },
+      "transport": {
+        "min": 60,
+        "max": 100
+      },
+      "misc": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Permis d'études",
+        "description": "Obligatoire pour les séjours de plus de 6 mois.",
+        "timing": "-4 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Rechercher une colocation ou vérifier les options de logement sur le campus.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Billet d'avion",
+        "description": "Acheter vos billets après confirmation du Permis.",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "japon",
+    "country": "Japon",
+    "cities": [
+      "Tokyo",
+      "Kyoto"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1080",
+    "summary": "Une destination de dépaysement total mêlant haute technologie, sécurité absolue et culture profondément enracinée.",
+    "facts": {
+      "language": "Japonais",
+      "currency": "Yen (JPY)",
+      "climate": "Tempéré",
+      "visa_required": true,
+      "international_students": 8000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 810,
+        "max": 1470
+      },
+      "rent": {
+        "min": 400,
+        "max": 700
+      },
+      "food": {
+        "min": 200,
+        "max": 350
+      },
+      "transport": {
+        "min": 60,
+        "max": 120
+      },
+      "misc": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "key_steps": [
+      {
+        "title": "COE",
+        "description": "Document essentiel demandé par l'université d'accueil pour le visa.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Visa Étudiant",
+        "description": "Rendez-vous à l'ambassade du Japon avec votre COE.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Residence Card",
+        "description": "À obtenir dès votre arrivée à l'aéroport (Zairyu Card).",
+        "timing": "À l'arrivée"
+      }
+    ]
+  },
+  {
+    "slug": "etats-unis",
+    "country": "États-Unis",
+    "cities": [
+      "New York",
+      "Los Angeles",
+      "San Francisco"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1080&auto=format&fit=crop",
+    "summary": "L'expérience des campus américains, une excellence sportive et associative inégalée.",
+    "facts": {
+      "language": "Anglais",
+      "currency": "Dollar US (USD)",
+      "climate": "Varié",
+      "visa_required": true,
+      "international_students": 35000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 1180,
+        "max": 2250
+      },
+      "rent": {
+        "min": 600,
+        "max": 1200
+      },
+      "food": {
+        "min": 300,
+        "max": 500
+      },
+      "transport": {
+        "min": 80,
+        "max": 150
+      },
+      "misc": {
+        "min": 200,
+        "max": 400
+      }
+    },
+    "key_steps": [
+      {
+        "title": "I-20",
+        "description": "Formulaire émis par l'université confirmant l'admission.",
+        "timing": "-4 mois"
+      },
+      {
+        "title": "Frais SEVIS & Visa",
+        "description": "Payer les frais et passer l'entretien à l'ambassade.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Chercher une chambre sur le campus (Dormitory).",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "australie",
+    "country": "Australie",
+    "cities": [
+      "Sydney",
+      "Melbourne"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=1080&auto=format&fit=crop",
+    "summary": "Terre de contrastes, offrant d'excellentes universités, des plages de rêve et une faune unique.",
+    "facts": {
+      "language": "Anglais",
+      "currency": "Dollar Australien (AUD)",
+      "climate": "Océanique / Aride",
+      "visa_required": true,
+      "international_students": 15000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 1080,
+        "max": 2020
+      },
+      "rent": {
+        "min": 500,
+        "max": 1000
+      },
+      "food": {
+        "min": 300,
+        "max": 500
+      },
+      "transport": {
+        "min": 80,
+        "max": 120
+      },
+      "misc": {
+        "min": 200,
+        "max": 400
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Visa Étudiant",
+        "description": "Demander le visa Subclass 500 en ligne.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "OSHC",
+        "description": "Souscrire à l'Assurance Maladie obligatoire pour Étudiants Étrangers.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Logement",
+        "description": "Trouver une colocation (très populaire en Australie).",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "chine",
+    "country": "Chine",
+    "cities": [
+      "Pékin",
+      "Shanghai"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1543097692-fa13c6cd8595?auto=format&fit=crop&q=80&w=1080",
+    "summary": "Une puissance historique et économique majeure, offrant un mélange fascinant de traditions anciennes et de campus ultramodernes.",
+    "facts": {
+      "language": "Mandarin",
+      "currency": "Yuan (CNY)",
+      "climate": "Varié",
+      "visa_required": true,
+      "international_students": 25000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 580,
+        "max": 1160
+      },
+      "rent": {
+        "min": 300,
+        "max": 600
+      },
+      "food": {
+        "min": 150,
+        "max": 300
+      },
+      "transport": {
+        "min": 30,
+        "max": 60
+      },
+      "misc": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "key_steps": [
+      {
+        "title": "JW201 / JW202",
+        "description": "Formulaire de visa étudiant émis par l'établissement d'accueil en Chine.",
+        "timing": "-3 mois"
+      },
+      {
+        "title": "Visa X1 / X2",
+        "description": "Demande de visa au centre de visas chinois.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Examen médical",
+        "description": "Obligatoire pour les visas longue durée (X1).",
+        "timing": "-1 mois"
+      }
+    ]
+  },
+  {
+    "slug": "singapour",
+    "country": "Singapour",
+    "cities": [
+      "Singapour"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1080&auto=format&fit=crop",
+    "summary": "Une cité-État dynamique, véritable hub technologique et éducatif en Asie du Sud-Est.",
+    "facts": {
+      "language": "Anglais, Mandarin",
+      "currency": "Dollar Singapourien (SGD)",
+      "climate": "Équatorial",
+      "visa_required": true,
+      "international_students": 9000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 1160,
+        "max": 2200
+      },
+      "rent": {
+        "min": 600,
+        "max": 1200
+      },
+      "food": {
+        "min": 300,
+        "max": 500
+      },
+      "transport": {
+        "min": 60,
+        "max": 100
+      },
+      "misc": {
+        "min": 200,
+        "max": 400
+      }
+    },
+    "key_steps": [
+      {
+        "title": "In-Principle Approval (IPA)",
+        "description": "Lettre d'approbation préalable envoyée par l'université après acceptation.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Student's Pass",
+        "description": "Le visa officiel, délivré à l'ICA après votre arrivée.",
+        "timing": "À l'arrivée"
+      },
+      {
+        "title": "Logement",
+        "description": "Candidater très tôt pour une place en HDB ou sur le campus.",
+        "timing": "-3 mois"
+      }
+    ]
+  },
+  {
+    "slug": "marseille",
+    "country": "France",
+    "cities": [
+      "Marseille"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1080&auto=format&fit=crop",
+    "summary": "Le soleil, les calanques, une ambiance unique au monde, et surtout : la rouille est à 3 euros chez mamie Ginette au marché du Prado. Que demander de plus ?",
+    "facts": {
+      "language": "Français",
+      "currency": "Euro (€)",
+      "climate": "Méditerranéen",
+      "visa_required": false,
+      "international_students": 70000
+    },
+    "cost_of_living": {
+      "currency": "EUR",
+      "monthly_budget": {
+        "min": 780,
+        "max": 1200
+      },
+      "rent": {
+        "min": 400,
+        "max": 600
+      },
+      "food": {
+        "min": 200,
+        "max": 300
+      },
+      "transport": {
+        "min": 30,
+        "max": 50
+      },
+      "misc": {
+        "min": 150,
+        "max": 250
+      }
+    },
+    "key_steps": [
+      {
+        "title": "Logement",
+        "description": "Chercher du côté de la Plaine ou du Vieux-Port.",
+        "timing": "-2 mois"
+      },
+      {
+        "title": "Soleil",
+        "description": "Acheter de l'écran total et des lunettes de soleil.",
+        "timing": "-1 mois"
+      },
+      {
+        "title": "Pétanque",
+        "description": "Acheter un jeu de boules pour l'intégration.",
+        "timing": "À l'arrivée"
+      }
+    ]
+  }
+]

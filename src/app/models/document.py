@@ -19,7 +19,7 @@ class Document(Base):
         PGUUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     mobility_id: Mapped[uuid.UUID] = mapped_column(
-        PGUUID(as_uuid=True), ForeignKey("mobilities.id"), nullable=False
+        PGUUID(as_uuid=True), ForeignKey("mobilities.id", ondelete="CASCADE"), nullable=False
     )
     file_url: Mapped[str] = mapped_column(String(1000), nullable=False)
     category: Mapped[str | None] = mapped_column(String(100), nullable=True)

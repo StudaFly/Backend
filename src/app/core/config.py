@@ -5,13 +5,19 @@ class Settings(BaseSettings):
     APP_ENV: str = "development"
     SECRET_KEY: str = "changeme-in-production-must-be-at-least-32-chars!!"
     API_V1_PREFIX: str = "/api/v1"
-    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:19006"]
+    CORS_ORIGINS: list[str] = [
+        "http://localhost:5173",
+        "http://localhost:8081",
+        "http://localhost:19006",
+    ]
 
     DATABASE_URL: str = "postgresql+asyncpg://user:password@localhost:5432/studafly"
     REDIS_URL: str = "redis://localhost:6379/0"
 
     ANTHROPIC_API_KEY: str = ""
+    ANTHROPIC_MODEL: str = "claude-sonnet-5-5"
     AI_CACHE_TTL: int = 86400
+    AI_TASK_GENERATION_ENABLED: bool = False
 
     AWS_ACCESS_KEY_ID: str = ""
     AWS_SECRET_ACCESS_KEY: str = ""

@@ -1,14 +1,12 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel
+from src.app.schemas.common import StudaFlyBaseModel
 
 
-class DocumentRead(BaseModel):
+class DocumentRead(StudaFlyBaseModel):
     id: uuid.UUID
     mobility_id: uuid.UUID
     file_url: str
     category: str | None
     uploaded_at: datetime
-
-    model_config = {"from_attributes": True}

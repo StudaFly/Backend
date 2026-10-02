@@ -22,7 +22,7 @@ class Mobility(Base):
         PGUUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     user_id: Mapped[uuid.UUID] = mapped_column(
-        PGUUID(as_uuid=True), ForeignKey("users.id"), nullable=False
+        PGUUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
     destination_id: Mapped[uuid.UUID] = mapped_column(
         PGUUID(as_uuid=True), ForeignKey("destinations.id"), nullable=False
@@ -31,11 +31,16 @@ class Mobility(Base):
     departure_date: Mapped[date] = mapped_column(Date, nullable=False)
     return_date: Mapped[date | None] = mapped_column(Date, nullable=True)
     status: Mapped[str] = mapped_column(String(50), default="preparing", nullable=False)
+    school: Mapped[str | None] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
     user: Mapped["User"] = relationship("User", back_populates="mobilities")
     destination: Mapped["Destination"] = relationship("Destination", back_populates="mobilities")
-    tasks: Mapped[list["Task"]] = relationship("Task", back_populates="mobility")
-    documents: Mapped[list["Document"]] = relationship("Document", back_populates="mobility")
+    tasks: Mapped[list["Task"]] = relationship(
+        "Task", back_populates="mobility", cascade="all, delete-orphan", passive_deletes=True
+    )
+    documents: Mapped[list["Document"]] = relationship(
+        "Document", back_populates="mobility", cascade="all, delete-orphan", passive_deletes=True
+    )

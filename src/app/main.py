@@ -7,11 +7,13 @@ from src.app.api.v1.router import api_router
 from src.app.core.config import settings
 from src.app.core.exceptions import add_exception_handlers
 from src.app.core.logging import configure_logging
+from src.app.core.services_status import log_services_status
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     configure_logging()
+    await log_services_status()
     yield
 
 
@@ -19,6 +21,7 @@ app = FastAPI(
     title="StudaFly API",
     description="Prepare your international mobility, serenely.",
     version="0.1.0",
+    redirect_slashes=False,
     lifespan=lifespan,
 )
 

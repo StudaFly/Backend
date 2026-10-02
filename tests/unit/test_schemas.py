@@ -30,8 +30,9 @@ def test_user_create_password_too_short():
 
 
 def test_user_update():
-    u = UserUpdate(name="Updated Name")
-    assert u.name == "Updated Name"
+    u = UserUpdate(first_name="Updated", last_name="Name")
+    assert u.first_name == "Updated"
+    assert u.last_name == "Name"
 
 
 def test_mobility_create():
@@ -65,6 +66,20 @@ def test_task_create():
     assert t.priority == 1
 
 
+def test_task_create_defaults_to_medium_priority():
+    assert TaskCreate(title="Get visa", category="admin").priority == 2
+
+
+def test_task_create_rejects_priority_out_of_range():
+    import pytest
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        TaskCreate(title="Get visa", category="admin", priority=0)
+    with pytest.raises(ValidationError):
+        TaskCreate(title="Get visa", category="admin", priority=4)
+
+
 def test_task_update():
     u = TaskUpdate(is_completed=True)
     assert u.is_completed is True
@@ -72,12 +87,12 @@ def test_task_update():
 
 def test_budget_estimate():
     b = BudgetEstimate(
-        destination_id="some-id",
+        destination_id="00000000-0000-0000-0000-000000000001",
         city="Berlin",
         country="Germany",
         monthly_total_min=800.0,
         monthly_total_max=1200.0,
-        breakdown=[BudgetCategory(label="Rent", amount_min=400.0, amount_max=600.0)],
+        breakdown=[BudgetCategory(key="housing", label="Rent", amount_min=400.0, amount_max=600.0)],
     )
     assert b.city == "Berlin"
     assert len(b.breakdown) == 1
@@ -85,10 +100,10 @@ def test_budget_estimate():
 
 def test_guide_content():
     g = GuideContent(
-        destination_id="some-id",
+        destination_id="00000000-0000-0000-0000-000000000001",
         city="Madrid",
         country="Spain",
-        sections=[GuideSection(title="Culture", content="Friendly people.")],
+        sections=[GuideSection(key="culture", title="Culture", content="Friendly people.")],
     )
     assert g.city == "Madrid"
     assert g.sections[0].title == "Culture"
@@ -109,3 +124,23 @@ def test_paginated_response():
 def test_error_response():
     e = ErrorResponse(error=ErrorDetail(code="NOT_FOUND", message="Resource not found"))
     assert e.error.code == "NOT_FOUND"
+
+
+def test_task_read_computes_days_until_deadline():
+    import uuid
+    from datetime import date, timedelta
+
+    from src.app.schemas.task import TaskRead
+
+    base = {
+        "id": uuid.uuid4(),
+        "mobility_id": uuid.uuid4(),
+        "title": "Visa",
+        "description": None,
+        "category": "admin",
+        "is_completed": False,
+        "priority": 1,
+    }
+    assert TaskRead(**base, deadline=date.today() + timedelta(days=5)).days_until_deadline == 5
+    assert TaskRead(**base, deadline=date.today() - timedelta(days=2)).days_until_deadline == -2
+    assert TaskRead(**base, deadline=None).model_dump(by_alias=True)["daysUntilDeadline"] is None

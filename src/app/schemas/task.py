@@ -1,21 +1,24 @@
 import uuid
 from datetime import date
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel
+from pydantic import Field, computed_field
+
+from src.app.schemas.common import StudaFlyBaseModel
 
 TaskCategory = Literal["admin", "finance", "housing", "health", "practical"]
+TaskPriority = Annotated[int, Field(ge=1, le=3)]
 
 
-class TaskCreate(BaseModel):
+class TaskCreate(StudaFlyBaseModel):
     title: str
     description: str | None = None
     category: TaskCategory
     deadline: date | None = None
-    priority: int = 0
+    priority: TaskPriority = 2
 
 
-class TaskRead(BaseModel):
+class TaskRead(StudaFlyBaseModel):
     id: uuid.UUID
     mobility_id: uuid.UUID
     title: str
@@ -25,13 +28,16 @@ class TaskRead(BaseModel):
     is_completed: bool
     priority: int
 
-    model_config = {"from_attributes": True}
+    @computed_field(alias="daysUntilDeadline")
+    @property
+    def days_until_deadline(self) -> int | None:
+        return (self.deadline - date.today()).days if self.deadline else None
 
 
-class TaskUpdate(BaseModel):
+class TaskUpdate(StudaFlyBaseModel):
     title: str | None = None
     description: str | None = None
     category: TaskCategory | None = None
     deadline: date | None = None
-    priority: int | None = None
+    priority: TaskPriority | None = None
     is_completed: bool | None = None
