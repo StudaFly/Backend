@@ -1,42 +1,74 @@
-name: Bug Report
-description: Signaler un bug
-title: "[Bug]: "
-labels: ["bug"]
+name: "Bug Report"
+description: "Report an issue or unexpected behavior in the API backend"
+title: "[BUG]: "
+labels: ["bug", "backend"]
 body:
+  - type: markdown
+    attributes:
+      value: "Please provide enough details to help us reproduce and fix the backend issue."
+
   - type: textarea
     id: description
     attributes:
-      label: Description du bug
-      placeholder: "Quand je fais X, il se passe Y au lieu de Z..."
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "e.g., Calling GET /mobilities/123/documents returns a 500 error instead of a 404..."
     validations:
       required: true
 
   - type: textarea
     id: reproduction
     attributes:
-      label: Étapes pour reproduire
+      label: "Steps to Reproduce & Request Payload"
+      description: "Provide steps, HTTP methods, endpoints, or sample payloads to reproduce."
       placeholder: |
-        1. Aller sur '...'
-        2. Cliquer sur '...'
-        3. Observer l'erreur
+        1. Send POST request to `/api/v1/auth/login` with payload `{ ... }`
+        2. Call `/api/v1/mobilities/`
+        3. See internal server error response
+    validations:
+      required: true
+
+  - type: input
+    id: endpoint
+    attributes:
+      label: "Affected Endpoint(s)"
+      placeholder: "e.g., GET /destinations/:id/budget"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: "Environment"
+      options:
+        - "Develop"
+        - "Production"
     validations:
       required: true
 
   - type: textarea
     id: expected
     attributes:
-      label: Comportement attendu
+      label: "Expected Behavior"
+      placeholder: "What was expected to happen?"
     validations:
       required: true
 
-  - type: dropdown
-    id: priority
+  - type: textarea
+    id: logs
     attributes:
-      label: Priorité
+      label: "Logs & Error Traces"
+      description: "Paste relevant traceback or FastAPI/Sentry logs here."
+      render: shell
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Severity"
       options:
-        - Critical
-        - High
-        - Medium
-        - Low
+        - "P0 - Critical (API Down / Data Corruption)"
+        - "P1 - High (Core Feature Broken)"
+        - "P2 - Medium (Minor Defect / Workaround available)"
+        - "P3 - Low (Nuisance / Cosmetic log)"
     validations:
       required: true
