@@ -1,36 +1,37 @@
-name: Task
-description: Tâche technique
-title: "[Task]: "
-labels: ["task"]
+name: "Technical Task & Maintenance"
+description: "Refactoring, DB migration, CI/CD, dependency updates, or documentation"
+title: "[TASK]: "
+labels: ["technical", "backend"]
 body:
   - type: dropdown
-    id: type
+    id: task_category
     attributes:
-      label: Type de tâche
+      label: "Task Category"
       options:
-        - Refactoring
-        - Dette technique
-        - Configuration
-        - Dépendances
-        - CI/CD
-        - Documentation
-        - Tests
+        - "Refactoring / Code Quality"
+        - "Database & Migration"
+        - "CI/CD & DevOps (AWS / Docker / GitHub Actions)"
+        - "Dependencies Update"
+        - "Testing & Coverage"
+        - "API Documentation (OpenAPI/Swagger)"
     validations:
       required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: "Task Description"
+      placeholder: "Explain the technical scope and why this work is needed."
     validations:
       required: true
 
   - type: textarea
-    id: acceptance
+    id: acceptance_criteria
     attributes:
-      label: Critères de complétion
+      label: "Acceptance Criteria"
       placeholder: |
-        - [ ] Les tests passent
-        - [ ] La CI est verte
+        - [ ] All unit/integration tests pass
+        - [ ] API documentation updated
+        - [ ] No regression on core endpoints
     validations:
       required: true

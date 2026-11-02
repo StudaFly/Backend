@@ -1,31 +1,43 @@
-name: Feature Request
-description: Proposer une nouvelle fonctionnalité
-title: "[Feature]: "
-labels: ["feature"]
+name: "Feature Request"
+description: "Propose a new API endpoint, database schema change, or backend service"
+title: "[FEAT]: "
+labels: ["feature", "backend"]
 body:
   - type: textarea
     id: problem
     attributes:
-      label: Problème à résoudre
-      placeholder: "En tant qu'utilisateur, je suis frustré quand..."
+      label: "Problem Statement / User Story"
+      placeholder: "As a user/admin, I need an endpoint to sync mobile checklist tasks so that..."
     validations:
       required: true
 
   - type: textarea
-    id: solution
+    id: proposed_solution
     attributes:
-      label: Solution proposée
+      label: "Proposed Backend Solution"
+      description: "Describe the API design, services involved (AWS S3, RDS, Claude API, etc.), or logic."
+      placeholder: "Expose POST /mobilities/:id/tasks with payload validation..."
     validations:
       required: true
+
+  - type: checkboxes
+    id: impacts
+    attributes:
+      label: "Impacted Technical Layers"
+      options:
+        - label: "Database Migration (PostgreSQL / Alembic)"
+        - label: "External Service / Integration (Claude API, Stripe, AWS S3)"
+        - label: "Authentication / Security / Permissions"
+        - label: "Background Tasks / Redis Queue"
 
   - type: dropdown
     id: priority
     attributes:
-      label: Priorité MoSCoW
+      label: "Priority (MoSCoW)"
       options:
-        - Must Have (MVP)
-        - Should Have (v1.0)
-        - Could Have (v2.0+)
-        - Won't Have
+        - "Must Have (MVP)"
+        - "Should Have"
+        - "Could Have"
+        - "Won't Have (For now)"
     validations:
       required: true
