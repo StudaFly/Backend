@@ -1,25 +1,22 @@
 ## Description
-
 Closes #
 
-## Type de changement
+## Type of Change
+- [ ] Bug fix (non-breaking change fixing an issue)
+- [ ] New feature (non-breaking change adding functionality)
+- [ ] Breaking change (fix or feature causing existing functionality to fail)
+- [ ] Refactoring / Tech Debt / Chore (no functional changes)
+- [ ] Documentation update
+- [ ] Database Migration
 
-- [ ] Bug fix
-- [ ] Nouvelle fonctionnalité
-- [ ] Breaking change
-- [ ] Refactoring
-- [ ] Documentation
-- [ ] Tests
+## How Has This Been Tested?
+- [ ] Unit tests added / updated (`pytest`)
+- [ ] Integration / API endpoint tests verified
+- [ ] Tested locally with Postman / OpenAPI Docs
 
-## Comment tester ?
-
-
-
-## Checklist
-
-- [ ] Mon code respecte les conventions du projet
-- [ ] J'ai testé mes changements localement
-- [ ] Les tests passent
-- [ ] La CI est verte
-
----
+## Pre-Merge Checklist
+- [ ] My code follows the project style guidelines (linting, formatting)
+- [ ] I have performed a self-review of my code
+- [ ] New and existing unit tests pass locally
+- [ ] Database migrations run cleanly (if applicable)
+- [ ] Environment variables or API keys are documented/updated if needed
