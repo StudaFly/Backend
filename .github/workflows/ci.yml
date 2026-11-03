@@ -26,6 +26,23 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     needs: lint
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: studafly
+          POSTGRES_PASSWORD: studafly
+          POSTGRES_DB: studafly_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U studafly"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql+asyncpg://studafly:studafly@localhost:5432/studafly_test
+      REQUIRE_TEST_DATABASE: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
