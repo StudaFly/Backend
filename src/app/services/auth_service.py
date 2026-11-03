@@ -1,10 +1,16 @@
 import logging
+from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.app.core.exceptions import ConflictError, NotFoundError, UnauthorizedError
+from src.app.core.exceptions import (
+    ConflictError,
+    NotFoundError,
+    StudaFlyException,
+    UnauthorizedError,
+)
 from src.app.core.security import (
     REFRESH_TOKEN_EXPIRE_DAYS,
     create_access_token,
@@ -13,14 +19,47 @@ from src.app.core.security import (
     hash_password,
     verify_password,
 )
+from src.app.models.enums import AccountType, UserStatus
 from src.app.models.user import User
-from src.app.schemas.user import AuthResponse, UserCreate, UserLogin, UserRead
-from src.app.services import cache_service
+from src.app.schemas.user import AuthResponse, UserCreate, UserLogin
+from src.app.services import cache_service, user_service
 
 logger = logging.getLogger(__name__)
 
 _VERIFY_TTL = 24 * 3600
 _REFRESH_TTL = REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600
+
+_BLOCKED_STATUSES = {
+    UserStatus.SUSPENDED: ("ACCOUNT_SUSPENDED", "This account is suspended"),
+    UserStatus.PENDING_DELETION: (
+        "ACCOUNT_PENDING_DELETION",
+        "This account is scheduled for deletion",
+    ),
+}
+
+
+def _session_key(user_id: UUID | str, session_id: str) -> str:
+    return f"auth:session:{user_id}:{session_id}"
+
+
+async def _issue_tokens(
+    db: AsyncSession, user: User, session_id: str | None = None
+) -> AuthResponse:
+    session_id = session_id or str(uuid4())
+    user_read = await user_service.build_user_read(db, user)
+    access_token = create_access_token(
+        user.id,
+        session_id=session_id,
+        token_version=user.token_version,
+        account_type=user.account_type.value,
+        org_id=user_read.organization.id if user_read.organization else None,
+        org_role=user_read.org_role.value if user_read.org_role else None,
+    )
+    refresh_token, jti = create_refresh_token(
+        user.id, session_id=session_id, token_version=user.token_version
+    )
+    await cache_service.set(_session_key(user.id, session_id), jti, ttl=_REFRESH_TTL)
+    return AuthResponse(access_token=access_token, refresh_token=refresh_token, user=user_read)
 
 
 async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
@@ -32,6 +71,7 @@ async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
         email=payload.email,
         password_hash=hash_password(payload.password),
         name=payload.name,
+        account_type=AccountType.STUDENT,
         email_verified=False,
     )
     db.add(user)
@@ -42,15 +82,7 @@ async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
     await cache_service.set(f"auth:verify:{verify_token}", str(user.id), ttl=_VERIFY_TTL)
     logger.info("[DEV] email verification token for %s: %s", user.email, verify_token)
 
-    access_token = create_access_token(user.id)
-    refresh_token, jti = create_refresh_token(user.id)
-    await cache_service.set(f"auth:refresh:{user.id}", jti, ttl=_REFRESH_TTL)
-
-    return AuthResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        user=UserRead.model_validate(user),
-    )
+    return await _issue_tokens(db, user)
 
 
 async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
@@ -61,15 +93,14 @@ async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
     if not verify_password(payload.password, user.password_hash):
         raise UnauthorizedError("Invalid email or password")
 
-    access_token = create_access_token(user.id)
-    refresh_token, jti = create_refresh_token(user.id)
-    await cache_service.set(f"auth:refresh:{user.id}", jti, ttl=_REFRESH_TTL)
+    if user.status in _BLOCKED_STATUSES:
+        code, message = _BLOCKED_STATUSES[user.status]
+        raise StudaFlyException(message, code=code, status_code=403)
 
-    return AuthResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        user=UserRead.model_validate(user),
-    )
+    user.last_login_at = datetime.now(UTC)
+    await db.commit()
+    await db.refresh(user)
+    return await _issue_tokens(db, user)
 
 
 async def refresh_tokens(db: AsyncSession, refresh_token: str) -> AuthResponse:
@@ -82,30 +113,32 @@ async def refresh_tokens(db: AsyncSession, refresh_token: str) -> AuthResponse:
         raise UnauthorizedError("Invalid token type")
 
     user_id = payload["sub"]
-    jti = payload.get("jti")
+    session_id = payload.get("sid")
+    if not session_id:
+        raise UnauthorizedError("Refresh token has been revoked or expired")
 
-    stored_jti = await cache_service.get(f"auth:refresh:{user_id}")
-    if not stored_jti or stored_jti != jti:
+    stored_jti = await cache_service.get(_session_key(user_id, session_id))
+    if not stored_jti or stored_jti != payload.get("jti"):
         raise UnauthorizedError("Refresh token has been revoked or expired")
 
     user = await db.get(User, UUID(user_id))
     if not user:
         raise UnauthorizedError("User not found")
+    if user.status != UserStatus.ACTIVE or payload.get("token_version") != user.token_version:
+        await cache_service.delete(_session_key(user_id, session_id))
+        raise UnauthorizedError("Refresh token has been revoked or expired")
 
-    await cache_service.delete(f"auth:refresh:{user_id}")
-    new_access = create_access_token(user.id)
-    new_refresh, new_jti = create_refresh_token(user.id)
-    await cache_service.set(f"auth:refresh:{user.id}", new_jti, ttl=_REFRESH_TTL)
-
-    return AuthResponse(
-        access_token=new_access,
-        refresh_token=new_refresh,
-        user=UserRead.model_validate(user),
-    )
+    return await _issue_tokens(db, user, session_id=session_id)
 
 
-async def logout(user_id: UUID) -> None:
-    await cache_service.delete(f"auth:refresh:{user_id}")
+async def logout(user_id: UUID, session_id: str | None) -> None:
+    if session_id:
+        await cache_service.delete(_session_key(user_id, session_id))
+
+
+async def revoke_all_sessions(user: User) -> None:
+    user.token_version += 1
+    await cache_service.delete_pattern(_session_key(user.id, "*"))
 
 
 async def verify_email(db: AsyncSession, token: str) -> None:

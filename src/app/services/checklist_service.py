@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from src.app.core.exceptions import ForbiddenError, NotFoundError
+from src.app.core.exceptions import NotFoundError
 from src.app.models.mobility import Mobility
 from src.app.models.task import Task
 from src.app.schemas.task import TaskCreate, TaskRead, TaskUpdate
@@ -15,25 +15,24 @@ async def _get_mobility_for_user(db: AsyncSession, user_id: UUID, mobility_id: U
     result = await db.execute(
         select(Mobility)
         .options(selectinload(Mobility.destination))
-        .where(Mobility.id == mobility_id)
+        .where(Mobility.id == mobility_id, Mobility.user_id == user_id)
     )
     mobility = result.scalar_one_or_none()
     if not mobility:
         raise NotFoundError("Mobility not found")
-    if mobility.user_id != user_id:
-        raise ForbiddenError()
     return mobility
 
 
 async def _get_task_for_user(db: AsyncSession, user_id: UUID, task_id: UUID) -> Task:
     result = await db.execute(
-        select(Task).options(selectinload(Task.mobility)).where(Task.id == task_id)
+        select(Task)
+        .join(Mobility, Task.mobility_id == Mobility.id)
+        .options(selectinload(Task.mobility))
+        .where(Task.id == task_id, Mobility.user_id == user_id)
     )
     task = result.scalar_one_or_none()
     if not task:
         raise NotFoundError("Task not found")
-    if task.mobility.user_id != user_id:
-        raise ForbiddenError()
     return task
 
 
