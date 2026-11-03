@@ -1,9 +1,11 @@
 import uuid
 from datetime import datetime
 
-from pydantic import EmailStr, field_validator
+from pydantic import EmailStr, Field, field_validator
 
+from src.app.models.enums import AccountType, OrgRole
 from src.app.schemas.common import StudaFlyBaseModel
+from src.app.schemas.organization import OrganizationSummary
 
 
 class UserCreate(StudaFlyBaseModel):
@@ -28,8 +30,13 @@ class UserRead(StudaFlyBaseModel):
     id: uuid.UUID
     email: str
     name: str
-    role: str
-    institution_id: uuid.UUID | None = None
+    account_type: AccountType
+    org_role: OrgRole | None = None
+    organization: OrganizationSummary | None = None
+    role: str = Field(description="Deprecated: use accountType and orgRole.")
+    institution_id: uuid.UUID | None = Field(
+        default=None, description="Deprecated: use organization.id."
+    )
     is_premium: bool
     email_verified: bool
     oauth_provider: str | None

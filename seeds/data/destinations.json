@@ -3,6 +3,7 @@
     "id": "11111111-0001-0001-0001-000000000001",
     "city": "Barcelone",
     "country": "Espagne",
+    "country_code": "ES",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 900, "max": 1300 },
@@ -32,6 +33,7 @@
     "id": "11111111-0001-0001-0001-000000000002",
     "city": "Madrid",
     "country": "Espagne",
+    "country_code": "ES",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 900, "max": 1350 },
@@ -60,6 +62,7 @@
     "id": "11111111-0001-0001-0001-000000000003",
     "city": "Lisbonne",
     "country": "Portugal",
+    "country_code": "PT",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 800, "max": 1200 },
@@ -88,6 +91,7 @@
     "id": "11111111-0001-0001-0001-000000000004",
     "city": "Rome",
     "country": "Italie",
+    "country_code": "IT",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 950, "max": 1400 },
@@ -116,6 +120,7 @@
     "id": "11111111-0001-0001-0001-000000000005",
     "city": "Milan",
     "country": "Italie",
+    "country_code": "IT",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1100, "max": 1600 },
@@ -144,6 +149,7 @@
     "id": "11111111-0001-0001-0001-000000000006",
     "city": "Berlin",
     "country": "Allemagne",
+    "country_code": "DE",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 900, "max": 1300 },
@@ -172,6 +178,7 @@
     "id": "11111111-0001-0001-0001-000000000007",
     "city": "Munich",
     "country": "Allemagne",
+    "country_code": "DE",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1100, "max": 1600 },
@@ -200,6 +207,7 @@
     "id": "11111111-0001-0001-0001-000000000008",
     "city": "Amsterdam",
     "country": "Pays-Bas",
+    "country_code": "NL",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1100, "max": 1600 },
@@ -228,6 +236,7 @@
     "id": "11111111-0001-0001-0001-000000000009",
     "city": "Prague",
     "country": "République Tchèque",
+    "country_code": "CZ",
     "cost_of_living": {
       "currency": "CZK",
       "monthly_budget": { "min": 600, "max": 900 },
@@ -256,6 +265,7 @@
     "id": "11111111-0001-0001-0001-000000000010",
     "city": "Vienne",
     "country": "Autriche",
+    "country_code": "AT",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 900, "max": 1300 },
@@ -284,6 +294,7 @@
     "id": "11111111-0001-0001-0001-000000000011",
     "city": "Dublin",
     "country": "Irlande",
+    "country_code": "IE",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1300, "max": 1900 },
@@ -312,6 +323,7 @@
     "id": "11111111-0001-0001-0001-000000000012",
     "city": "Stockholm",
     "country": "Suède",
+    "country_code": "SE",
     "cost_of_living": {
       "currency": "SEK",
       "monthly_budget": { "min": 1100, "max": 1600 },
@@ -340,6 +352,7 @@
     "id": "11111111-0001-0001-0001-000000000013",
     "city": "Copenhague",
     "country": "Danemark",
+    "country_code": "DK",
     "cost_of_living": {
       "currency": "DKK",
       "monthly_budget": { "min": 1200, "max": 1700 },
@@ -368,6 +381,7 @@
     "id": "11111111-0001-0001-0001-000000000014",
     "city": "Helsinki",
     "country": "Finlande",
+    "country_code": "FI",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1000, "max": 1400 },
@@ -396,6 +410,7 @@
     "id": "11111111-0001-0001-0001-000000000015",
     "city": "Varsovie",
     "country": "Pologne",
+    "country_code": "PL",
     "cost_of_living": {
       "currency": "PLN",
       "monthly_budget": { "min": 600, "max": 900 },
@@ -424,6 +439,7 @@
     "id": "11111111-0001-0001-0001-000000000016",
     "city": "Budapest",
     "country": "Hongrie",
+    "country_code": "HU",
     "cost_of_living": {
       "currency": "HUF",
       "monthly_budget": { "min": 600, "max": 900 },
@@ -452,6 +468,7 @@
     "id": "11111111-0001-0001-0001-000000000017",
     "city": "Bruxelles",
     "country": "Belgique",
+    "country_code": "BE",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 1000, "max": 1400 },
@@ -480,6 +497,7 @@
     "id": "11111111-0001-0001-0001-000000000018",
     "city": "Athènes",
     "country": "Grèce",
+    "country_code": "GR",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 750, "max": 1100 },
@@ -508,6 +526,7 @@
     "id": "11111111-0001-0001-0001-000000000019",
     "city": "Valence",
     "country": "Espagne",
+    "country_code": "ES",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 800, "max": 1150 },
@@ -536,6 +555,7 @@
     "id": "11111111-0001-0001-0001-000000000020",
     "city": "Porto",
     "country": "Portugal",
+    "country_code": "PT",
     "cost_of_living": {
       "currency": "EUR",
       "monthly_budget": { "min": 750, "max": 1100 },

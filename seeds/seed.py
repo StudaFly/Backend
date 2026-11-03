@@ -1,16 +1,17 @@
 """
 Main seed — StudaFly
 Usage:
-    python -m seeds.seed                  # seed destinations + institutions (idempotent)
+    python -m seeds.seed                  # seed destinations + organizations (idempotent)
     python -m seeds.seed --force          # update existing data
     python -m seeds.seed --dry-run        # simulate, write nothing
     python -m seeds.seed --dest           # destinations (+ country profiles) only
-    python -m seeds.seed --inst           # institutions only
+    python -m seeds.seed --org            # organizations only
 
 Data:
     data/destinations.json          cities (cost of living, guide) — fixed ids
     data/destination_profiles.json  country profiles (image, summary, facts, key steps) taken
                                     from the former web mock; creates the missing cities
+    data/organizations.json         B2B schools — fixed ids; join codes are generated on creation
 
 Prerequisites:
     - alembic upgrade head (tables created)
@@ -31,7 +32,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from src.app.core.config import settings
 from src.app.models.destination import Destination
-from src.app.models.institution import Institution
+from src.app.models.organization import Organization
+from src.app.services.organization_service import generate_join_code
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -58,6 +60,7 @@ async def seed_destinations(
                     Destination(
                         id=dest_id,
                         country=item["country"],
+                        country_code=item["country_code"],
                         city=item["city"],
                         cost_of_living=item.get("cost_of_living"),
                         guide_content=item.get("guide_content"),
@@ -68,6 +71,7 @@ async def seed_destinations(
         elif force:
             if not dry_run:
                 existing.country = item["country"]
+                existing.country_code = item["country_code"]
                 existing.city = item["city"]
                 existing.cost_of_living = item.get("cost_of_living")
                 existing.guide_content = item.get("guide_content")
@@ -85,6 +89,9 @@ def _profile_destination_id(country: str, city: str) -> UUID:
 
 def _apply_profile(destination: Destination, profile: dict, force: bool) -> bool:
     changed = False
+    if destination.country_code != profile["country_code"]:
+        destination.country_code = profile["country_code"]
+        changed = True
     for field in ("image_url", "summary", "facts"):
         if force or getattr(destination, field) is None:
             if getattr(destination, field) != profile[field]:
@@ -119,6 +126,7 @@ async def seed_destination_profiles(
                 destination = Destination(
                     id=_profile_destination_id(country, city),
                     country=country,
+                    country_code=profile["country_code"],
                     city=city,
                     cost_of_living=profile["cost_of_living"],
                     guide_content={"overview": profile["summary"]},
@@ -136,25 +144,28 @@ async def seed_destination_profiles(
     return created, updated
 
 
-async def seed_institutions(
+async def seed_organizations(
     db: AsyncSession, force: bool = False, dry_run: bool = False
 ) -> tuple[int, int]:
-    data = _load_json("institutions.json")
+    data = _load_json("organizations.json")
     created = updated = 0
 
     for item in data:
-        inst_id = UUID(item["id"])
-        result = await db.execute(select(Institution).where(Institution.id == inst_id))
+        org_id = UUID(item["id"])
+        result = await db.execute(select(Organization).where(Organization.id == org_id))
         existing = result.scalar_one_or_none()
 
         if existing is None:
             if not dry_run:
                 db.add(
-                    Institution(
-                        id=inst_id,
+                    Organization(
+                        id=org_id,
                         name=item["name"],
+                        slug=item["slug"],
                         logo_url=item.get("logo_url"),
-                        config=item.get("config"),
+                        branding=item.get("branding") or {},
+                        settings=item.get("settings") or {},
+                        join_code=generate_join_code(),
                     )
                 )
             created += 1
@@ -162,8 +173,10 @@ async def seed_institutions(
         elif force:
             if not dry_run:
                 existing.name = item["name"]
+                existing.slug = item["slug"]
                 existing.logo_url = item.get("logo_url")
-                existing.config = item.get("config")
+                existing.branding = item.get("branding") or {}
+                existing.settings = item.get("settings") or {}
             updated += 1
             print(f"  ~ {item['name']} (updated)")
         else:
@@ -174,7 +187,7 @@ async def seed_institutions(
 
 async def run(
     do_dest: bool = True,
-    do_inst: bool = True,
+    do_org: bool = True,
     force: bool = False,
     dry_run: bool = False,
 ) -> None:
@@ -196,9 +209,9 @@ async def run(
             created, updated = await seed_destination_profiles(db, force=force, dry_run=dry_run)
             print(f"   → {created} city(ies) created, {updated} enriched\n")
 
-        if do_inst:
-            print("── Institutions ─────────────────────────────────────────")
-            created, updated = await seed_institutions(db, force=force, dry_run=dry_run)
+        if do_org:
+            print("── Organizations ────────────────────────────────────────")
+            created, updated = await seed_organizations(db, force=force, dry_run=dry_run)
             print(f"   → {created} created, {updated} updated\n")
 
         if not dry_run:
@@ -215,16 +228,16 @@ def main() -> None:
     parser.add_argument("--force", action="store_true", help="Update existing data")
     parser.add_argument("--dry-run", action="store_true", help="Simulate, write nothing")
     parser.add_argument("--dest", action="store_true", help="Destinations only")
-    parser.add_argument("--inst", action="store_true", help="Institutions only")
+    parser.add_argument("--org", action="store_true", help="Organizations only")
     args = parser.parse_args()
 
-    do_dest = args.dest or (not args.dest and not args.inst)
-    do_inst = args.inst or (not args.dest and not args.inst)
+    do_dest = args.dest or (not args.dest and not args.org)
+    do_org = args.org or (not args.dest and not args.org)
 
     asyncio.run(
         run(
             do_dest=do_dest,
-            do_inst=do_inst,
+            do_org=do_org,
             force=args.force,
             dry_run=args.dry_run,
         )
