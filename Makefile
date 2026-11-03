@@ -34,8 +34,8 @@ seed-dry:
 seed-dest:
 	python -m seeds.seed --dest
 
-seed-inst:
-	python -m seeds.seed --inst
+seed-org:
+	python -m seeds.seed --org
 
 shell:
 	python -c "import asyncio; from src.app.db.session import AsyncSessionLocal; print('Shell ready')"
@@ -65,4 +65,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-inst shell docker-up docker-down docker-logs docker-ps
+.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org shell docker-up docker-down docker-logs docker-ps

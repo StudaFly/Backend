@@ -50,7 +50,7 @@ make seed-force  # re-applies the seed files over existing rows
 - `seeds/data/destination_profiles.json` — country profiles (image, summary, facts, key steps),
   migrated from the former web mock; applied to every city of the country and creates the listed
   cities that do not exist yet.
-- `seeds/data/institutions.json` — partner schools.
+- `seeds/data/organizations.json` — partner schools (B2B organizations).
 
 The Docker dev stack runs `alembic upgrade head` and `python -m seeds.seed` at startup.
 
