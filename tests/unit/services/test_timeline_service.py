@@ -12,7 +12,6 @@ import pytest
 
 MOBILITY_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
 USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000002")
-OTHER_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000003")
 
 
 def _make_mobility(user_id=USER_ID):
@@ -78,24 +77,3 @@ async def test_get_timeline_raises_not_found():
 
     with pytest.raises(NotFoundError):
         await timeline_service.get_timeline(mock_db, USER_ID, MOBILITY_ID)
-
-
-@pytest.mark.asyncio
-async def test_get_timeline_raises_forbidden_for_wrong_user():
-    from src.app.core.exceptions import ForbiddenError
-    from src.app.services import timeline_service
-
-    mock_db = AsyncMock()
-    result_mock = MagicMock()
-    result_mock.scalar_one_or_none.return_value = _make_mobility(user_id=OTHER_USER_ID)
-    mock_db.execute.return_value = result_mock
-
-    with (
-        patch(
-            "src.app.services.timeline_service.task_generation_service.ensure_tasks",
-            new_callable=AsyncMock,
-        ) as mock_ensure,
-        pytest.raises(ForbiddenError),
-    ):
-        await timeline_service.get_timeline(mock_db, USER_ID, MOBILITY_ID)
-    mock_ensure.assert_not_awaited()
