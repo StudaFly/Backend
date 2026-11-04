@@ -18,6 +18,8 @@ from src.app.db.session import get_db
 from src.app.main import app
 from src.app.services import cache_service
 
+from tests.db.school import build_school
+
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 TEST_DATABASE_URL = os.environ.get("TEST_DATABASE_URL") or make_url(settings.DATABASE_URL).set(
     database="studafly_test"
@@ -133,7 +135,12 @@ def fake_cache(monkeypatch) -> dict[str, str]:
         for key in fnmatch.filter(list(store), pattern):
             del store[key]
 
+    async def incr(key: str, ttl: int) -> int:
+        store[key] = str(int(store.get(key, 0)) + 1)
+        return int(store[key])
+
     monkeypatch.setattr(cache_service, "get", get)
+    monkeypatch.setattr(cache_service, "incr", incr)
     monkeypatch.setattr(cache_service, "set", set_)
     monkeypatch.setattr(cache_service, "delete", delete)
     monkeypatch.setattr(cache_service, "delete_pattern", delete_pattern)
@@ -158,3 +165,8 @@ async def api(db: AsyncSession, fake_cache) -> AsyncIterator[AsyncClient]:
     finally:
         app.dependency_overrides.pop(get_db, None)
         await engine.dispose()
+
+
+@pytest.fixture
+async def school(db):
+    return await build_school(db)

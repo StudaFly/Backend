@@ -1,12 +1,13 @@
-
 import uuid
 from datetime import date, timedelta
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.app.core.security import create_access_token, hash_password
+from src.app.models.contract import Contract
 from src.app.models.destination import Destination
 from src.app.models.enums import (
     AccountType,
+    ContractStatus,
     EnrollmentSource,
     EnrollmentStatus,
     OrganizationStatus,
@@ -114,11 +115,38 @@ async def make_mobility(db: AsyncSession, student: User, destination: Destinatio
     return mobility
 
 
-def auth_headers(user: User, session_id: str | None = None) -> dict[str, str]:
+def auth_headers(user: User, session_id: str | None = None, mfa: bool = False) -> dict[str, str]:
     token = create_access_token(
         user.id,
         session_id=session_id,
         token_version=user.token_version,
         account_type=user.account_type.value,
+        mfa=mfa,
     )
     return {"Authorization": f"Bearer {token}"}
+
+
+async def make_platform_admin(db: AsyncSession, **fields) -> User:
+    return await make_user(db, AccountType.PLATFORM_ADMIN, mfa_enabled=True, **fields)
+
+
+async def make_contract(
+    db: AsyncSession,
+    organization: Organization,
+    status: ContractStatus = ContractStatus.ACTIVE,
+    start: date | None = None,
+    end: date | None = None,
+    **fields,
+) -> Contract:
+    contract = Contract(
+        organization_id=organization.id,
+        plan=fields.pop("plan", "standard"),
+        status=status,
+        start_date=start or date.today() - timedelta(days=30),
+        end_date=end or date.today() + timedelta(days=335),
+        price_cents=fields.pop("price_cents", 0 if status == ContractStatus.PILOT else 100_000),
+        **fields,
+    )
+    db.add(contract)
+    await db.flush()
+    return contract

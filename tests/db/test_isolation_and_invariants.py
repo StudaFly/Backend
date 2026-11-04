@@ -1,6 +1,8 @@
 """Cross-student isolation (404, not 403), data invariants enforced by the database and the
 account-type / organization-role guards."""
 
+from types import SimpleNamespace
+
 import pytest
 from sqlalchemy.exc import IntegrityError
 from src.app.authz import load_actor, require_account_type, require_org_role
@@ -16,8 +18,11 @@ from tests.db.factories import (
     make_member,
     make_mobility,
     make_organization,
+    make_platform_admin,
     make_user,
 )
+
+GET_REQUEST = SimpleNamespace(method="GET")
 
 
 @pytest.fixture
@@ -64,7 +69,6 @@ async def test_another_students_mobility_is_not_found(
     assert (task.title, task.is_completed) == ("Visa", False)
 
 
-
 async def test_a_student_has_a_single_active_enrollment(db):
     first, second = await make_organization(db), await make_organization(db)
     student = await make_user(db)
@@ -99,17 +103,18 @@ async def test_join_codes_are_unique(db):
         await make_organization(db, join_code=organization.join_code)
 
 
-
 async def test_creating_a_destination_is_reserved_to_platform_admins(api, db):
     student = await make_user(db)
-    admin = await make_user(db, AccountType.PLATFORM_ADMIN)
+    admin = await make_platform_admin(db)
     await db.commit()
     payload = {"country": "Brésil", "countryCode": "BR", "city": "São Paulo"}
 
     refused = await api.post("/destinations", json=payload, headers=auth_headers(student))
-    created = await api.post("/destinations", json=payload, headers=auth_headers(admin))
+    without_mfa = await api.post("/destinations", json=payload, headers=auth_headers(admin))
+    created = await api.post("/destinations", json=payload, headers=auth_headers(admin, mfa=True))
 
     assert refused.status_code == 403
+    assert without_mfa.json()["error"]["code"] == "MFA_REQUIRED"
     assert created.status_code == 201
     assert created.json()["data"]["countryCode"] == "BR"
 
@@ -131,8 +136,8 @@ async def _staff_actor(db, org_role=OrgRole.ADVISOR, is_active=True, org_status=
 async def test_require_org_role_accepts_an_active_member(db):
     actor = await _staff_actor(db, OrgRole.MANAGER)
 
-    assert await require_org_role(OrgRole.MANAGER)(actor) is actor
-    assert await require_org_role()(actor) is actor
+    assert await require_org_role(OrgRole.MANAGER)(GET_REQUEST, actor, db) is actor
+    assert await require_org_role()(GET_REQUEST, actor, db) is actor
 
 
 @pytest.mark.parametrize(
@@ -149,4 +154,4 @@ async def test_require_org_role_refuses(db, org_role, is_active, org_status):
     actor = await _staff_actor(db, org_role, is_active, org_status)
 
     with pytest.raises(ForbiddenError):
-        await require_org_role(OrgRole.MANAGER)(actor)
+        await require_org_role(OrgRole.MANAGER)(GET_REQUEST, actor, db)
