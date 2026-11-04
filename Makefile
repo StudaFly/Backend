@@ -37,6 +37,15 @@ seed-dest:
 seed-org:
 	python -m seeds.seed --org
 
+platform-admin:
+	python -m src.app.cli create-platform-admin --email $(EMAIL)
+
+revoke-platform-admin:
+	python -m src.app.cli revoke-platform-admin --email $(EMAIL)
+
+maintenance:
+	python -m src.app.cli maintenance
+
 shell:
 	python -c "import asyncio; from src.app.db.session import AsyncSessionLocal; print('Shell ready')"
 
@@ -65,4 +74,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org shell docker-up docker-down docker-logs docker-ps
+.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org platform-admin revoke-platform-admin maintenance shell docker-up docker-down docker-logs docker-ps
