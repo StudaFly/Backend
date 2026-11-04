@@ -1,5 +1,6 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
+from typing import Literal
 
 from pydantic import EmailStr, Field, field_validator
 
@@ -26,6 +27,12 @@ class UserLogin(StudaFlyBaseModel):
     password: str
 
 
+class PremiumRead(StudaFlyBaseModel):
+    active: bool
+    source: Literal["purchase", "admin_grant", "organization", "grandfathered"] | None = None
+    until: date | None = None
+
+
 class UserRead(StudaFlyBaseModel):
     id: uuid.UUID
     email: str
@@ -37,7 +44,9 @@ class UserRead(StudaFlyBaseModel):
     institution_id: uuid.UUID | None = Field(
         default=None, description="Deprecated: use organization.id."
     )
-    is_premium: bool
+    premium: PremiumRead
+    is_premium: bool = Field(description="Deprecated: use premium.active.")
+    mfa_enabled: bool = False
     email_verified: bool
     oauth_provider: str | None
     avatar_emoji: str | None
@@ -60,6 +69,7 @@ class AuthResponse(StudaFlyBaseModel):
     user: UserRead
     access_token: str
     refresh_token: str
+    mfa_required: bool = False
 
 
 class RefreshRequest(StudaFlyBaseModel):
@@ -68,3 +78,32 @@ class RefreshRequest(StudaFlyBaseModel):
 
 class VerifyEmailRequest(StudaFlyBaseModel):
     token: str
+
+
+class ForgotPasswordRequest(StudaFlyBaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(StudaFlyBaseModel):
+    token: str
+    new_password: str
+
+    @field_validator("new_password")
+    @classmethod
+    def password_min_length(cls, v: str) -> str:
+        if len(v) < 8:
+            raise ValueError("Password must be at least 8 characters")
+        return v
+
+
+class MfaCodeRequest(StudaFlyBaseModel):
+    code: str
+
+
+class MfaSetupRead(StudaFlyBaseModel):
+    secret: str
+    otpauth_uri: str
+
+
+class MfaActivationResponse(AuthResponse):
+    backup_codes: list[str]

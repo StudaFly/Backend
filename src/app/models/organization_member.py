@@ -10,7 +10,6 @@ from src.app.models.enums import OrgRole, pg_enum
 
 
 class OrganizationMember(Base):
-
     __tablename__ = "organization_members"
 
     id: Mapped[uuid.UUID] = mapped_column(

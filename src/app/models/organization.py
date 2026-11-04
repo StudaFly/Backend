@@ -11,7 +11,6 @@ from src.app.models.enums import OrganizationStatus, pg_enum
 
 
 class Organization(Base):
-
     __tablename__ = "organizations"
 
     id: Mapped[uuid.UUID] = mapped_column(

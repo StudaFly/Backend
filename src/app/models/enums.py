@@ -40,6 +40,31 @@ class EnrollmentSource(StrEnum):
     MIGRATION = "migration"
 
 
+class InvitationKind(StrEnum):
+    STUDENT = "student"
+    STAFF = "staff"
+
+
+class InvitationStatus(StrEnum):
+    PENDING = "pending"
+    ACCEPTED = "accepted"
+    REVOKED = "revoked"
+    EXPIRED = "expired"
+
+
+class ContractStatus(StrEnum):
+    PILOT = "pilot"
+    ACTIVE = "active"
+    EXPIRED = "expired"
+    SUSPENDED = "suspended"
+    CANCELLED = "cancelled"
+
+
+class PremiumSource(StrEnum):
+    PURCHASE = "purchase"
+    ADMIN_GRANT = "admin_grant"
+
+
 def pg_enum(enum_cls: type[StrEnum], name: str) -> Enum:
     return Enum(
         enum_cls,

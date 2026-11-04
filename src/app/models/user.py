@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, Integer, String, Text, func
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -43,11 +44,11 @@ class User(Base):
         Boolean, default=False, server_default="false", nullable=False
     )
     mfa_secret: Mapped[str | None] = mapped_column(Text, nullable=True)
+    mfa_backup_codes: Mapped[list[str] | None] = mapped_column(JSONB, nullable=True)
     token_version: Mapped[int] = mapped_column(
         Integer, default=0, server_default="0", nullable=False
     )
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    is_premium: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     oauth_provider: Mapped[str | None] = mapped_column(String(50), nullable=True)
     avatar_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)

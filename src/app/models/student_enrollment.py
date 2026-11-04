@@ -10,7 +10,6 @@ from src.app.models.enums import EnrollmentSource, EnrollmentStatus, pg_enum
 
 
 class StudentEnrollment(Base):
-
     __tablename__ = "student_enrollments"
     __table_args__ = (
         Index(
