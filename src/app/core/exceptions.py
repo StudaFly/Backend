@@ -56,10 +56,10 @@ class ForbiddenError(StudaFlyException):
 
 
 class ConflictError(StudaFlyException):
-    def __init__(self, message: str):
+    def __init__(self, message: str, code: str = "CONFLICT"):
         super().__init__(
             message=message,
-            code="CONFLICT",
+            code=code,
             status_code=status.HTTP_409_CONFLICT,
         )
 

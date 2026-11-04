@@ -49,7 +49,11 @@ def create_access_token(
 
 
 def create_refresh_token(
-    user_id: UUID, *, session_id: str | None = None, token_version: int = 0
+    user_id: UUID,
+    *,
+    session_id: str | None = None,
+    token_version: int = 0,
+    mfa: bool = False,
 ) -> tuple[str, str]:
     jti = str(uuid4())
     expire = datetime.now(UTC) + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
@@ -60,6 +64,7 @@ def create_refresh_token(
         "jti": jti,
         "sid": session_id or str(uuid4()),
         "token_version": token_version,
+        "mfa": mfa,
     }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256"), jti
 

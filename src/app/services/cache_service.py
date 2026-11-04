@@ -34,3 +34,11 @@ async def delete_pattern(pattern: str) -> None:
     keys = [key async for key in redis.scan_iter(match=pattern)]
     if keys:
         await redis.delete(*keys)
+
+
+async def incr(key: str, ttl: int) -> int:
+    redis = get_redis()
+    value = await redis.incr(key)
+    if value == 1:
+        await redis.expire(key, ttl)
+    return value

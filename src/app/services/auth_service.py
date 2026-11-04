@@ -1,4 +1,6 @@
+import hashlib
 import logging
+import secrets
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
@@ -28,6 +30,8 @@ logger = logging.getLogger(__name__)
 
 _VERIFY_TTL = 24 * 3600
 _REFRESH_TTL = REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600
+_PASSWORD_SETUP_TTL = 7 * 24 * 3600
+_PASSWORD_RESET_TTL = 3600
 
 _BLOCKED_STATUSES = {
     UserStatus.SUSPENDED: ("ACCOUNT_SUSPENDED", "This account is suspended"),
@@ -42,10 +46,15 @@ def _session_key(user_id: UUID | str, session_id: str) -> str:
     return f"auth:session:{user_id}:{session_id}"
 
 
-async def _issue_tokens(
-    db: AsyncSession, user: User, session_id: str | None = None
+def _password_token_key(token: str) -> str:
+    return f"auth:password:{hashlib.sha256(token.encode()).hexdigest()}"
+
+
+async def issue_tokens(
+    db: AsyncSession, user: User, session_id: str | None = None, mfa: bool = False
 ) -> AuthResponse:
     session_id = session_id or str(uuid4())
+    mfa = mfa and user.account_type == AccountType.PLATFORM_ADMIN and user.mfa_enabled
     user_read = await user_service.build_user_read(db, user)
     access_token = create_access_token(
         user.id,
@@ -54,12 +63,18 @@ async def _issue_tokens(
         account_type=user.account_type.value,
         org_id=user_read.organization.id if user_read.organization else None,
         org_role=user_read.org_role.value if user_read.org_role else None,
+        mfa=mfa,
     )
     refresh_token, jti = create_refresh_token(
-        user.id, session_id=session_id, token_version=user.token_version
+        user.id, session_id=session_id, token_version=user.token_version, mfa=mfa
     )
     await cache_service.set(_session_key(user.id, session_id), jti, ttl=_REFRESH_TTL)
-    return AuthResponse(access_token=access_token, refresh_token=refresh_token, user=user_read)
+    return AuthResponse(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        user=user_read,
+        mfa_required=user.account_type == AccountType.PLATFORM_ADMIN and not mfa,
+    )
 
 
 async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
@@ -82,7 +97,7 @@ async def register(db: AsyncSession, payload: UserCreate) -> AuthResponse:
     await cache_service.set(f"auth:verify:{verify_token}", str(user.id), ttl=_VERIFY_TTL)
     logger.info("[DEV] email verification token for %s: %s", user.email, verify_token)
 
-    return await _issue_tokens(db, user)
+    return await issue_tokens(db, user)
 
 
 async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
@@ -100,7 +115,7 @@ async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
     user.last_login_at = datetime.now(UTC)
     await db.commit()
     await db.refresh(user)
-    return await _issue_tokens(db, user)
+    return await issue_tokens(db, user)
 
 
 async def refresh_tokens(db: AsyncSession, refresh_token: str) -> AuthResponse:
@@ -128,7 +143,7 @@ async def refresh_tokens(db: AsyncSession, refresh_token: str) -> AuthResponse:
         await cache_service.delete(_session_key(user_id, session_id))
         raise UnauthorizedError("Refresh token has been revoked or expired")
 
-    return await _issue_tokens(db, user, session_id=session_id)
+    return await issue_tokens(db, user, session_id=session_id, mfa=bool(payload.get("mfa")))
 
 
 async def logout(user_id: UUID, session_id: str | None) -> None:
@@ -155,14 +170,34 @@ async def verify_email(db: AsyncSession, token: str) -> None:
     await cache_service.delete(f"auth:verify:{token}")
 
 
+async def send_password_setup(user: User) -> str:
+    token = secrets.token_urlsafe(32)
+    await cache_service.set(_password_token_key(token), str(user.id), ttl=_PASSWORD_SETUP_TTL)
+    logger.info("[DEV] password setup token for %s: %s", user.email, token)
+    return token
+
+
 async def forgot_password(db: AsyncSession, email: str) -> None:
-    # TODO: generate reset token, store in Redis, send via SES
-    raise NotImplementedError
+    user = await db.scalar(select(User).where(User.email == email))
+    if not user or user.status != UserStatus.ACTIVE:
+        return
+    token = secrets.token_urlsafe(32)
+    await cache_service.set(_password_token_key(token), str(user.id), ttl=_PASSWORD_RESET_TTL)
+    logger.info("[DEV] password reset token for %s: %s", user.email, token)
 
 
 async def reset_password(db: AsyncSession, token: str, new_password: str) -> None:
-    # TODO: validate reset token from Redis (single-use), update password hash
-    raise NotImplementedError
+    key = _password_token_key(token)
+    user_id = await cache_service.get(key)
+    user = await db.get(User, UUID(user_id)) if user_id else None
+    if not user or user.status != UserStatus.ACTIVE:
+        raise NotFoundError("This link is invalid or has expired")
+
+    user.password_hash = hash_password(new_password)
+    user.email_verified = True
+    await revoke_all_sessions(user)
+    await db.commit()
+    await cache_service.delete(key)
 
 
 async def oauth_login(db: AsyncSession, provider: str, code: str) -> dict:

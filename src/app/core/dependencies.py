@@ -49,7 +49,20 @@ async def get_current_user(
     return user
 
 
-async def require_premium(current_user=Depends(get_current_user)):
-    if not current_user.is_premium:
+async def get_optional_user(
+    credentials: HTTPAuthorizationCredentials | None = Depends(security),
+    db: AsyncSession = Depends(get_db),
+):
+    if credentials is None:
+        return None
+    return await get_current_user(await get_access_payload(credentials), db)
+
+
+async def require_premium(
+    current_user=Depends(get_current_user), db: AsyncSession = Depends(get_db)
+):
+    from src.app.services.entitlements import premium_for
+
+    if not (await premium_for(db, current_user.id)).active:
         raise ForbiddenError("Premium subscription required")
     return current_user

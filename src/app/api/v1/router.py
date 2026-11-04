@@ -1,15 +1,18 @@
 from fastapi import APIRouter
 
 from src.app.api.v1 import (
-    admin,
     auth,
     budget,
     checklist,
     destinations,
     documents,
     guide,
+    invitations,
     mobilities,
     notifications,
+    org,
+    organizations,
+    platform_admin,
     reference,
     timeline,
     users,
@@ -29,4 +32,7 @@ api_router.include_router(budget.router, prefix="/destinations", tags=["Budget"]
 api_router.include_router(guide.router, prefix="/destinations", tags=["Guide"])
 api_router.include_router(documents.router, prefix="", tags=["Documents"])
 api_router.include_router(notifications.router, prefix="/notifications", tags=["Notifications"])
-api_router.include_router(admin.router, prefix="/admin", tags=["Admin"])
+api_router.include_router(platform_admin.router, prefix="/admin", tags=["Platform admin"])
+api_router.include_router(org.router, prefix="/org", tags=["Organization space"])
+api_router.include_router(organizations.router, prefix="/organizations", tags=["Organizations"])
+api_router.include_router(invitations.router, prefix="/invitations", tags=["Invitations"])

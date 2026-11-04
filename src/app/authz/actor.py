@@ -12,7 +12,6 @@ from src.app.models.user import User
 
 @dataclass(frozen=True)
 class Actor:
-
     user: User
     membership: OrganizationMember | None = None
     organization: Organization | None = None

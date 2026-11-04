@@ -4,13 +4,14 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.authz.actor import load_actor
-from src.app.core.exceptions import NotFoundError
+from src.app.core.exceptions import ConflictError, NotFoundError
 from src.app.models.enums import AccountType, EnrollmentStatus, OrgRole
 from src.app.models.organization import Organization
 from src.app.models.student_enrollment import StudentEnrollment
 from src.app.models.user import User
 from src.app.schemas.organization import OrganizationSummary
-from src.app.schemas.user import UserRead, UserUpdate
+from src.app.schemas.user import PremiumRead, UserRead, UserUpdate
+from src.app.services import entitlements
 
 _LEGACY_ROLES = {
     AccountType.STUDENT: "student",
@@ -42,6 +43,7 @@ async def get_organization_context(
 
 async def build_user_read(db: AsyncSession, user: User) -> UserRead:
     organization, org_role = await get_organization_context(db, user)
+    premium = await entitlements.premium_for(db, user.id)
     return UserRead(
         id=user.id,
         email=user.email,
@@ -51,7 +53,9 @@ async def build_user_read(db: AsyncSession, user: User) -> UserRead:
         organization=OrganizationSummary.model_validate(organization) if organization else None,
         role=_LEGACY_ROLES[user.account_type],
         institution_id=organization.id if organization else None,
-        is_premium=user.is_premium,
+        premium=PremiumRead(active=premium.active, source=premium.source, until=premium.until),
+        is_premium=premium.active,
+        mfa_enabled=user.mfa_enabled,
         email_verified=user.email_verified,
         oauth_provider=user.oauth_provider,
         avatar_emoji=user.avatar_emoji,
@@ -59,6 +63,17 @@ async def build_user_read(db: AsyncSession, user: User) -> UserRead:
         enable_notifications=user.enable_notifications,
         created_at=user.created_at,
     )
+
+
+async def create_account(
+    db: AsyncSession, email: str, name: str, account_type: AccountType
+) -> User:
+    if await db.scalar(select(User.id).where(User.email == email)):
+        raise ConflictError("An account with this email already exists", code="EMAIL_TAKEN")
+    user = User(email=email, name=name, account_type=account_type)
+    db.add(user)
+    await db.flush()
+    return user
 
 
 async def get_by_id(db: AsyncSession, user_id: UUID) -> UserRead:
@@ -94,11 +109,3 @@ async def update(db: AsyncSession, user_id: UUID, payload: UserUpdate) -> UserRe
     await db.commit()
     await db.refresh(user)
     return await build_user_read(db, user)
-
-
-async def delete(db: AsyncSession, user_id: UUID) -> None:
-    user = await db.get(User, user_id)
-    if not user:
-        raise NotFoundError("User not found")
-    await db.delete(user)
-    await db.commit()

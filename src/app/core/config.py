@@ -4,6 +4,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     APP_ENV: str = "development"
     SECRET_KEY: str = "changeme-in-production-must-be-at-least-32-chars!!"
+    MFA_ENCRYPTION_KEY: str = ""
+    ACCOUNT_DELETION_DELAY_DAYS: int = 30
+    AUDIT_RETENTION_DAYS: int = 365
     API_V1_PREFIX: str = "/api/v1"
     CORS_ORIGINS: list[str] = [
         "http://localhost:5173",
