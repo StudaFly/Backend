@@ -19,7 +19,6 @@ FAKE_ID = "00000000-0000-0000-0000-000000000001"
 @pytest.mark.parametrize(
     "method,path",
     [
-        ("post", f"{PREFIX}/auth/oauth/google"),
         ("post", f"{PREFIX}/auth/oauth/microsoft"),
         ("post", f"{PREFIX}/auth/oauth/apple"),
         ("post", f"{PREFIX}/auth/forgot-password"),
@@ -88,3 +87,23 @@ def test_validation_error_uses_envelope_and_hides_input():
     assert error["message"].startswith("email:")
     assert all("input" not in detail for detail in error["details"])
     assert "secret-short" not in response.text
+
+
+@pytest.mark.parametrize(
+    "body",
+    [{}, {"idToken": "a", "code": "b"}, {"idToken": ""}],
+    ids=["empty", "both", "blank"],
+)
+def test_google_oauth_requires_exactly_one_credential(body):
+    response = client.post(f"{PREFIX}/auth/oauth/google", json=body)
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "VALIDATION_ERROR"
+
+
+def test_google_oauth_not_configured_returns_503(monkeypatch):
+    from src.app.core.config import settings
+
+    monkeypatch.setattr(settings, "GOOGLE_CLIENT_ID", "")
+    response = client.post(f"{PREFIX}/auth/oauth/google", json={"idToken": "token"})
+    assert response.status_code == 503
+    assert response.json()["error"]["code"] == "OAUTH_NOT_CONFIGURED"

@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from pydantic import EmailStr, field_validator
+from pydantic import EmailStr, field_validator, model_validator
 
 from src.app.schemas.common import StudaFlyBaseModel
 
@@ -53,6 +53,21 @@ class AuthResponse(StudaFlyBaseModel):
     user: UserRead
     access_token: str
     refresh_token: str
+    # True when the account was just created (OAuth sign-up): clients run the onboarding.
+    is_new_user: bool = False
+
+
+class GoogleAuthRequest(StudaFlyBaseModel):
+    """Either an ID token (mobile, native sign-in) or an authorization code (web popup)."""
+
+    id_token: str | None = None
+    code: str | None = None
+
+    @model_validator(mode="after")
+    def exactly_one_credential(self) -> "GoogleAuthRequest":
+        if bool(self.id_token) == bool(self.code):
+            raise ValueError("Provide either idToken or code")
+        return self
 
 
 class RefreshRequest(StudaFlyBaseModel):
