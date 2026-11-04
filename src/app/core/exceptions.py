@@ -74,6 +74,15 @@ class UnauthorizedError(StudaFlyException):
         )
 
 
+class ServiceUnavailableError(StudaFlyException):
+    def __init__(self, message: str, code: str = "SERVICE_UNAVAILABLE"):
+        super().__init__(
+            message=message,
+            code=code,
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+        )
+
+
 def _error_response(
     status_code: int,
     code: str,
