@@ -37,6 +37,12 @@ seed-dest:
 seed-org:
 	python -m seeds.seed --org
 
+seed-roles-demo:
+	python -m seeds.roles_demo --reset
+
+demo-check:
+	python -m seeds.demo_check
+
 platform-admin:
 	python -m src.app.cli create-platform-admin --email $(EMAIL)
 
@@ -74,4 +80,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org platform-admin revoke-platform-admin maintenance shell docker-up docker-down docker-logs docker-ps
+.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org seed-roles-demo demo-check platform-admin revoke-platform-admin maintenance shell docker-up docker-down docker-logs docker-ps

@@ -579,5 +579,107 @@
         "santé": "SNS 24 : 808 24 24 24"
       }
     }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000021",
+    "city": "Buenos Aires",
+    "country": "Argentine",
+    "country_code": "AR",
+    "cost_of_living": {
+      "currency": "ARS",
+      "monthly_budget": {
+        "min": 550,
+        "max": 900
+      },
+      "rent": {
+        "shared": 300,
+        "studio": 480
+      },
+      "food": 180,
+      "transport": 20,
+      "misc": 110
+    },
+    "guide_content": {
+      "overview": "Buenos Aires mêle architecture européenne, tango et vie nocturne tardive. L'UBA et l'ITBA accueillent de nombreux étudiants en échange.",
+      "housing": "Chercher via les groupes d'expatriés et Zonaprop. Palermo, Recoleta et Almagro sont prisés des étudiants.",
+      "transport": "La carte SUBE sert pour le métro (Subte), les bus (colectivos) et les trains.",
+      "tips": [
+        "L'inflation est forte : suivre le taux de change et prévoir plusieurs moyens de paiement",
+        "On dîne rarement avant 21 h",
+        "Les asados du dimanche sont une institution"
+      ],
+      "useful_contacts": {
+        "urgences": "911",
+        "santé": "SAME : 107"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000022",
+    "city": "Mexico",
+    "country": "Mexique",
+    "country_code": "MX",
+    "cost_of_living": {
+      "currency": "MXN",
+      "monthly_budget": {
+        "min": 600,
+        "max": 1000
+      },
+      "rent": {
+        "shared": 320,
+        "studio": 550
+      },
+      "food": 200,
+      "transport": 15,
+      "misc": 120
+    },
+    "guide_content": {
+      "overview": "Mexico est une mégapole culturelle à 2 240 m d'altitude, avec l'UNAM et le Tec de Monterrey parmi les universités partenaires.",
+      "housing": "Roma, Condesa et Coyoacán sont appréciés des étudiants. Visiter avant de signer un bail.",
+      "transport": "Carte de mobilité intégrée pour le métro, le Metrobús et les vélos Ecobici.",
+      "tips": [
+        "L'altitude fatigue les premiers jours : bien s'hydrater",
+        "Boire de l'eau en bouteille",
+        "Les marchés (tianguis) sont les moins chers pour manger"
+      ],
+      "useful_contacts": {
+        "urgences": "911",
+        "santé": "Locatel : 55 5658 1111"
+      }
+    }
+  },
+  {
+    "id": "11111111-0001-0001-0001-000000000023",
+    "city": "Casablanca",
+    "country": "Maroc",
+    "country_code": "MA",
+    "cost_of_living": {
+      "currency": "MAD",
+      "monthly_budget": {
+        "min": 500,
+        "max": 850
+      },
+      "rent": {
+        "shared": 260,
+        "studio": 450
+      },
+      "food": 170,
+      "transport": 25,
+      "misc": 100
+    },
+    "guide_content": {
+      "overview": "Casablanca est le cœur économique du Maroc, entre océan Atlantique, quartiers Art déco et grandes écoles de commerce et d'ingénieurs.",
+      "housing": "Maârif, Gauthier et Racine sont proches des écoles. Avito.ma pour les annonces.",
+      "transport": "Tramway et busway couvrent le centre ; les petits taxis rouges sont nombreux.",
+      "tips": [
+        "Le français est très parlé dans les études et les affaires",
+        "Négocier le prix du taxi avant de partir ou exiger le compteur",
+        "Le vendredi après-midi, beaucoup de services ferment plus tôt"
+      ],
+      "useful_contacts": {
+        "urgences": "19 (police), 15 (ambulance)",
+        "santé": "SAMU : 141"
+      }
+    }
   }
 ]

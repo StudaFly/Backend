@@ -2,7 +2,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 
-from sqlalchemy import func, or_, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.models.contract import Contract
@@ -87,6 +87,11 @@ async def premium_for_users(
             StudentEnrollment.status.in_((EnrollmentStatus.ACTIVE, EnrollmentStatus.REVOKED)),
             created_on >= Contract.start_date,
             created_on <= Contract.end_date,
+            ~and_(
+                Contract.status.in_(CURRENT_CONTRACT_STATUSES),
+                Contract.start_date <= today,
+                Contract.end_date >= today,
+            ),
             func.date(StudentEnrollment.joined_at) <= Contract.end_date,
             or_(
                 StudentEnrollment.ended_at.is_(None),

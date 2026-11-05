@@ -209,3 +209,16 @@ async def test_batch_computation_matches_single_lookups(db, ended_contract):
 
     assert batch[covered.id] == await entitlements.premium_for(db, covered.id)
     assert batch[free.id] == entitlements.NO_PREMIUM
+
+
+async def test_a_current_contract_is_reported_as_organization_premium(api, db):
+    organization = await make_organization(db)
+    contract = await make_contract(db, organization, ContractStatus.PILOT)
+    student = await make_user(db)
+    enrollment = await make_enrollment(db, organization, student)
+    enrollment.joined_at = datetime.now(UTC) - timedelta(days=5)
+    mobility = await make_mobility(db, student, await make_destination(db))
+    mobility.return_date = contract.end_date + timedelta(days=200)
+    await db.commit()
+
+    assert (await _premium(api, student))["source"] == "organization"
