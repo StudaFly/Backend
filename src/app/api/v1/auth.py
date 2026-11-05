@@ -13,6 +13,7 @@ from src.app.schemas.user import (
     MfaActivationResponse,
     MfaCodeRequest,
     MfaSetupRead,
+    GoogleAuthRequest,
     RefreshRequest,
     ResetPasswordRequest,
     UserCreate,
@@ -61,21 +62,21 @@ async def logout(
     return {"data": None, "message": "Logged out successfully"}
 
 
-@router.post("/oauth/google")
-async def oauth_google():
-    # TODO: implement via auth_service.oauth_login("google", code)
-    raise NotImplementedError
+@router.post("/oauth/google", response_model=ResponseBase[AuthResponse])
+async def oauth_google(payload: GoogleAuthRequest, db: AsyncSession = Depends(get_db)):
+    auth = await auth_service.google_login(db, payload)
+    return ResponseBase(data=auth, message="Login successful")
 
 
 @router.post("/oauth/microsoft")
 async def oauth_microsoft():
-    # TODO: implement via auth_service.oauth_login("microsoft", code)
+    # TODO: implement like oauth_google
     raise NotImplementedError
 
 
 @router.post("/oauth/apple")
 async def oauth_apple():
-    # TODO: implement via auth_service.oauth_login("apple", code)
+    # TODO: implement like oauth_google
     raise NotImplementedError
 
 

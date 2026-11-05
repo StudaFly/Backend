@@ -51,6 +51,10 @@ class User(Base):
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     oauth_provider: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    # Google account identifier ("sub" claim): stable even if the Google email changes.
+    google_id: Mapped[str | None] = mapped_column(
+        String(255), unique=True, nullable=True, index=True
+    )
     avatar_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)
     phone: Mapped[str | None] = mapped_column(String(20), nullable=True)
     enable_notifications: Mapped[bool] = mapped_column(

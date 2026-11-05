@@ -28,6 +28,7 @@ def test_import_services():
     for mod in [
         "src.app.services.audit_service",
         "src.app.services.auth_service",
+        "src.app.services.google_oauth_service",
         "src.app.services.budget_service",
         "src.app.services.cache_service",
         "src.app.services.checklist_service",
