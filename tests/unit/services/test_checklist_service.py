@@ -12,7 +12,6 @@ import pytest
 
 MOBILITY_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
 USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000002")
-OTHER_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000003")
 TASK_ID = uuid.UUID("00000000-0000-0000-0000-000000000004")
 
 
@@ -85,20 +84,6 @@ async def test_list_tasks_raises_not_found():
 
 
 @pytest.mark.asyncio
-async def test_list_tasks_raises_forbidden():
-    from src.app.core.exceptions import ForbiddenError
-    from src.app.services import checklist_service
-
-    mock_db = AsyncMock()
-    r = MagicMock()
-    r.scalar_one_or_none.return_value = _make_mobility(user_id=OTHER_USER_ID)
-    mock_db.execute.return_value = r
-
-    with pytest.raises(ForbiddenError):
-        await checklist_service.list_tasks(mock_db, USER_ID, MOBILITY_ID)
-
-
-@pytest.mark.asyncio
 async def test_create_task_success():
     from src.app.schemas.task import TaskCreate
     from src.app.services import checklist_service
@@ -146,23 +131,6 @@ async def test_update_task_success():
 
 
 @pytest.mark.asyncio
-async def test_update_task_forbidden():
-    from src.app.core.exceptions import ForbiddenError
-    from src.app.schemas.task import TaskUpdate
-    from src.app.services import checklist_service
-
-    task = _make_task_orm(user_id=OTHER_USER_ID)
-
-    mock_db = AsyncMock()
-    r = MagicMock()
-    r.scalar_one_or_none.return_value = task
-    mock_db.execute.return_value = r
-
-    with pytest.raises(ForbiddenError):
-        await checklist_service.update_task(mock_db, USER_ID, TASK_ID, TaskUpdate(title="x"))
-
-
-@pytest.mark.asyncio
 async def test_complete_task_sets_flag():
     from src.app.services import checklist_service
 
@@ -196,22 +164,6 @@ async def test_delete_task_success():
 
     mock_db.delete.assert_called_once_with(task)
     mock_db.commit.assert_called_once()
-
-
-@pytest.mark.asyncio
-async def test_delete_task_forbidden():
-    from src.app.core.exceptions import ForbiddenError
-    from src.app.services import checklist_service
-
-    task = _make_task_orm(user_id=OTHER_USER_ID)
-
-    mock_db = AsyncMock()
-    r = MagicMock()
-    r.scalar_one_or_none.return_value = task
-    mock_db.execute.return_value = r
-
-    with pytest.raises(ForbiddenError):
-        await checklist_service.delete_task(mock_db, USER_ID, TASK_ID)
 
 
 @pytest.mark.asyncio

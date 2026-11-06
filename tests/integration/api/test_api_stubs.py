@@ -21,16 +21,11 @@ FAKE_ID = "00000000-0000-0000-0000-000000000001"
     [
         ("post", f"{PREFIX}/auth/oauth/microsoft"),
         ("post", f"{PREFIX}/auth/oauth/apple"),
-        ("post", f"{PREFIX}/auth/forgot-password"),
-        ("post", f"{PREFIX}/auth/reset-password"),
         ("get", f"{PREFIX}/mobilities/{FAKE_ID}/documents"),
         ("post", f"{PREFIX}/mobilities/{FAKE_ID}/documents"),
         ("get", f"{PREFIX}/documents/{FAKE_ID}"),
         ("delete", f"{PREFIX}/documents/{FAKE_ID}"),
         ("get", f"{PREFIX}/notifications"),
-        ("get", f"{PREFIX}/admin/students"),
-        ("get", f"{PREFIX}/admin/stats"),
-        ("post", f"{PREFIX}/admin/tasks"),
     ],
 )
 def test_unimplemented_endpoint_returns_501(method, path):
@@ -55,6 +50,12 @@ def test_unimplemented_endpoint_returns_501(method, path):
         ("get", f"{PREFIX}/mobilities/{FAKE_ID}/tasks"),
         ("patch", f"{PREFIX}/tasks/{FAKE_ID}"),
         ("delete", f"{PREFIX}/tasks/{FAKE_ID}"),
+        ("post", f"{PREFIX}/auth/mfa/setup"),
+        ("post", f"{PREFIX}/auth/mfa/verify"),
+        ("get", f"{PREFIX}/admin/overview"),
+        ("get", f"{PREFIX}/admin/users"),
+        ("get", f"{PREFIX}/admin/organizations"),
+        ("get", f"{PREFIX}/admin/audit-logs"),
     ],
 )
 def test_protected_endpoint_without_token_returns_401(method, path):

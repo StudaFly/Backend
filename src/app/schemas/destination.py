@@ -1,5 +1,7 @@
 import uuid
 
+from pydantic import Field
+
 from src.app.schemas.common import StudaFlyBaseModel
 
 
@@ -13,6 +15,7 @@ class DestinationFacts(StudaFlyBaseModel):
 
 class DestinationCreate(StudaFlyBaseModel):
     country: str
+    country_code: str = Field(pattern=r"^[A-Z]{2}$", description="ISO 3166-1 alpha-2")
     city: str
     image_url: str | None = None
     summary: str | None = None
@@ -22,6 +25,7 @@ class DestinationCreate(StudaFlyBaseModel):
 class DestinationRead(StudaFlyBaseModel):
     id: uuid.UUID
     country: str
+    country_code: str | None = None
     city: str
     image_url: str | None = None
     summary: str | None = None

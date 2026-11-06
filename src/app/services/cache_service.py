@@ -27,3 +27,18 @@ async def set(key: str, value: str, ttl: int | None = None) -> None:
 
 async def delete(key: str) -> None:
     await get_redis().delete(key)
+
+
+async def delete_pattern(pattern: str) -> None:
+    redis = get_redis()
+    keys = [key async for key in redis.scan_iter(match=pattern)]
+    if keys:
+        await redis.delete(*keys)
+
+
+async def incr(key: str, ttl: int) -> int:
+    redis = get_redis()
+    value = await redis.incr(key)
+    if value == 1:
+        await redis.expire(key, ttl)
+    return value

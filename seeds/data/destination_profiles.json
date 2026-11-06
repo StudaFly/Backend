@@ -2,6 +2,7 @@
   {
     "slug": "espagne",
     "country": "Espagne",
+    "country_code": "ES",
     "cities": [
       "Barcelone",
       "Madrid"
@@ -59,6 +60,7 @@
   {
     "slug": "allemagne",
     "country": "Allemagne",
+    "country_code": "DE",
     "cities": [
       "Berlin",
       "Munich"
@@ -116,6 +118,7 @@
   {
     "slug": "royaume-uni",
     "country": "Royaume-Uni",
+    "country_code": "GB",
     "cities": [
       "Londres",
       "Édimbourg"
@@ -173,6 +176,7 @@
   {
     "slug": "coree-du-sud",
     "country": "Corée du Sud",
+    "country_code": "KR",
     "cities": [
       "Daegu",
       "Séoul"
@@ -230,6 +234,7 @@
   {
     "slug": "irlande",
     "country": "Irlande",
+    "country_code": "IE",
     "cities": [
       "Dublin",
       "Cork"
@@ -287,6 +292,7 @@
   {
     "slug": "portugal",
     "country": "Portugal",
+    "country_code": "PT",
     "cities": [
       "Lisbonne",
       "Porto"
@@ -344,6 +350,7 @@
   {
     "slug": "canada",
     "country": "Canada",
+    "country_code": "CA",
     "cities": [
       "Montréal",
       "Toronto"
@@ -401,6 +408,7 @@
   {
     "slug": "japon",
     "country": "Japon",
+    "country_code": "JP",
     "cities": [
       "Tokyo",
       "Kyoto"
@@ -458,6 +466,7 @@
   {
     "slug": "etats-unis",
     "country": "États-Unis",
+    "country_code": "US",
     "cities": [
       "New York",
       "Los Angeles",
@@ -516,6 +525,7 @@
   {
     "slug": "australie",
     "country": "Australie",
+    "country_code": "AU",
     "cities": [
       "Sydney",
       "Melbourne"
@@ -573,6 +583,7 @@
   {
     "slug": "chine",
     "country": "Chine",
+    "country_code": "CN",
     "cities": [
       "Pékin",
       "Shanghai"
@@ -630,6 +641,7 @@
   {
     "slug": "singapour",
     "country": "Singapour",
+    "country_code": "SG",
     "cities": [
       "Singapour"
     ],
@@ -686,6 +698,7 @@
   {
     "slug": "marseille",
     "country": "France",
+    "country_code": "FR",
     "cities": [
       "Marseille"
     ],

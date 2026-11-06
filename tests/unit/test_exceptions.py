@@ -105,11 +105,15 @@ def test_unauthorized_error_sets_bearer_challenge():
     assert resp.headers["www-authenticate"] == "Bearer"
 
 
-async def test_require_admin_rejects_students():
+async def test_require_account_type_rejects_other_account_types():
     from types import SimpleNamespace
 
     import pytest
-    from src.app.core.dependencies import require_admin
+    from src.app.authz import Actor, require_account_type
+    from src.app.models.enums import AccountType
+
+    dependency = require_account_type(AccountType.PLATFORM_ADMIN)
+    student = Actor(user=SimpleNamespace(account_type=AccountType.STUDENT))
 
     with pytest.raises(ForbiddenError):
-        await require_admin(SimpleNamespace(role="student"))
+        await dependency(student)
