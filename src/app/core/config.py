@@ -39,6 +39,11 @@ class Settings(BaseSettings):
     STRIPE_SECRET_KEY: str = ""
     STRIPE_WEBHOOK_SECRET: str = ""
 
+    PUSH_NOTIFICATIONS_ENABLED: bool = True
+    EXPO_PUSH_URL: str = "https://exp.host/--/api/v2/push/send"
+    # Optional: only needed if "enhanced push security" is turned on in the Expo project.
+    EXPO_ACCESS_TOKEN: str = ""
+
     FCM_SERVER_KEY: str = ""
     APNS_KEY_ID: str = ""
     APNS_TEAM_ID: str = ""

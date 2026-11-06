@@ -25,10 +25,12 @@ from src.app.models.enums import (
     EnrollmentStatus,
     InvitationKind,
     InvitationStatus,
+    NotificationType,
     OrganizationStatus,
     OrgRole,
 )
 from src.app.models.invitation import Invitation
+from src.app.models.notification import Notification
 from src.app.models.organization import Organization
 from src.app.models.organization_member import OrganizationMember
 from src.app.models.student_enrollment import StudentEnrollment
@@ -40,7 +42,13 @@ from src.app.schemas.invitation import (
 )
 from src.app.schemas.org import ImportLine, ImportReport, InvitationRead
 from src.app.schemas.organization import OrganizationSummary
-from src.app.services import audit_service, auth_service, organization_service, user_service
+from src.app.services import (
+    audit_service,
+    auth_service,
+    notification_service,
+    organization_service,
+    user_service,
+)
 from src.app.services.audit_service import RequestMeta
 
 logger = logging.getLogger(__name__)
@@ -69,6 +77,33 @@ def _read(invitation: Invitation) -> InvitationRead:
 
 def _log_link(email: str, token: str) -> None:
     logger.info("[DEV] invitation link for %s: /invitations/%s", email, token)
+
+
+async def _notify_existing_student(
+    db: AsyncSession, invitation: Invitation, organization_name: str
+) -> Notification | None:
+    """In-app heads-up for a student who already has an account (the link comes by email)."""
+    user_id = await db.scalar(
+        select(User.id).where(
+            func.lower(User.email) == invitation.email,
+            User.account_type == AccountType.STUDENT,
+        )
+    )
+    if user_id is None:
+        return None
+    return await notification_service.notify(
+        db,
+        user_id,
+        NotificationType.ORGANIZATION_INVITATION,
+        f"{organization_name} t'invite à rejoindre son espace",
+        "Ouvre le lien d'invitation reçu par e-mail pour rejoindre ton école.",
+        {"organizationId": str(invitation.organization_id), "invitationId": str(invitation.id)},
+        dedupe_key=f"invitation:{invitation.id}:{invitation.expires_at.isoformat()}",
+    )
+
+
+async def _organization_name(db: AsyncSession, organization_id: uuid.UUID) -> str:
+    return await db.scalar(select(Organization.name).where(Organization.id == organization_id))
 
 
 async def _issue(
@@ -144,6 +179,9 @@ async def invite_student(
     invitation, token, resent = await _issue(
         db, actor.organization_id, email, InvitationKind.STUDENT, actor.user.id
     )
+    notification = await _notify_existing_student(
+        db, invitation, await _organization_name(db, actor.organization_id)
+    )
     audit_service.record(
         db,
         actor=actor.user,
@@ -156,6 +194,7 @@ async def invite_student(
     )
     await db.commit()
     _log_link(email, token)
+    await notification_service.deliver(db, [notification])
     await db.refresh(invitation)
     return _read(invitation)
 
@@ -229,6 +268,8 @@ async def import_csv(
     rows = _parse_csv(content)
     lines: list[ImportLine] = []
     tokens: list[tuple[str, str]] = []
+    notifications: list[Notification | None] = []
+    organization_name = await _organization_name(db, actor.organization_id)
     seen: set[str] = set()
     for line, email in rows:
         try:
@@ -244,7 +285,7 @@ async def import_csv(
         if obstacle:
             lines.append(ImportLine(line=line, email=email, status=obstacle))
             continue
-        _, token, resent = await _issue(
+        invitation, token, resent = await _issue(
             db,
             actor.organization_id,
             email,
@@ -252,6 +293,7 @@ async def import_csv(
             actor.user.id,
             from_csv=True,
         )
+        notifications.append(await _notify_existing_student(db, invitation, organization_name))
         tokens.append((email, token))
         lines.append(ImportLine(line=line, email=email, status="resent" if resent else "invited"))
 
@@ -274,6 +316,7 @@ async def import_csv(
     await db.commit()
     for email, token in tokens:
         _log_link(email, token)
+    await notification_service.deliver(db, notifications)
     return report
 
 
@@ -399,9 +442,25 @@ async def accept(
 
     invitation.status = InvitationStatus.ACCEPTED
     invitation.accepted_at = datetime.now(UTC)
+    notification = None
+    if invitation.invited_by and invitation.invited_by != user.id:
+        notification = await notification_service.notify(
+            db,
+            invitation.invited_by,
+            NotificationType.INVITATION_ACCEPTED,
+            "Invitation acceptée",
+            f"{user.name} a rejoint {organization.name}.",
+            {
+                "organizationId": str(organization.id),
+                "invitationId": str(invitation.id),
+                "userId": str(user.id),
+                "kind": invitation.kind.value,
+            },
+        )
     if invitation.kind == InvitationKind.STAFF:
         await auth_service.revoke_all_sessions(user)
     await db.commit()
+    await notification_service.deliver(db, [notification])
     if invitation.kind == InvitationKind.STAFF:
         auth = await auth_service.issue_tokens(db, user)
     return InvitationAcceptResult(

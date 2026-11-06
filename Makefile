@@ -52,6 +52,9 @@ revoke-platform-admin:
 maintenance:
 	python -m src.app.cli maintenance
 
+reminders:
+	python -m src.app.cli send-reminders
+
 shell:
 	python -c "import asyncio; from src.app.db.session import AsyncSessionLocal; print('Shell ready')"
 
@@ -80,4 +83,4 @@ docker-logs:
 docker-ps:
 	$(COMPOSE) ps
 
-.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org seed-roles-demo demo-check platform-admin revoke-platform-admin maintenance shell docker-up docker-down docker-logs docker-ps
+.PHONY: run dev services services-stop docker-reset test lint format migrate migration db-setup seed seed-force seed-dry seed-dest seed-org seed-roles-demo demo-check platform-admin revoke-platform-admin maintenance reminders shell docker-up docker-down docker-logs docker-ps

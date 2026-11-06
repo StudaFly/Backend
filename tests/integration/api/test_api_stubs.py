@@ -25,7 +25,6 @@ FAKE_ID = "00000000-0000-0000-0000-000000000001"
         ("post", f"{PREFIX}/mobilities/{FAKE_ID}/documents"),
         ("get", f"{PREFIX}/documents/{FAKE_ID}"),
         ("delete", f"{PREFIX}/documents/{FAKE_ID}"),
-        ("get", f"{PREFIX}/notifications"),
     ],
 )
 def test_unimplemented_endpoint_returns_501(method, path):
@@ -50,6 +49,12 @@ def test_unimplemented_endpoint_returns_501(method, path):
         ("get", f"{PREFIX}/mobilities/{FAKE_ID}/tasks"),
         ("patch", f"{PREFIX}/tasks/{FAKE_ID}"),
         ("delete", f"{PREFIX}/tasks/{FAKE_ID}"),
+        ("get", f"{PREFIX}/notifications"),
+        ("get", f"{PREFIX}/notifications/unread-count"),
+        ("post", f"{PREFIX}/notifications/read-all"),
+        ("patch", f"{PREFIX}/notifications/{FAKE_ID}/read"),
+        ("delete", f"{PREFIX}/notifications/{FAKE_ID}"),
+        ("post", f"{PREFIX}/notifications/push-tokens"),
         ("post", f"{PREFIX}/auth/mfa/setup"),
         ("post", f"{PREFIX}/auth/mfa/verify"),
         ("get", f"{PREFIX}/admin/overview"),

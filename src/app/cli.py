@@ -8,7 +8,12 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 
 from src.app.core.config import settings
 from src.app.core.exceptions import StudaFlyException
-from src.app.services import account_service, contract_service, platform_admin_service
+from src.app.services import (
+    account_service,
+    contract_service,
+    notification_service,
+    platform_admin_service,
+)
 
 
 async def _with_session(action: Callable[[AsyncSession], Awaitable]):
@@ -64,6 +69,8 @@ async def _maintenance(db: AsyncSession, tasks: tuple[str, ...]) -> dict:
         results["skipped_accounts"] = report.skipped
     if "audit" in tasks:
         results["purged_audit_logs"] = await account_service.purge_audit_logs(db)
+    if "reminders" in tasks:
+        results["deadline_reminders"] = await notification_service.send_deadline_reminders(db)
     return results
 
 
@@ -85,7 +92,10 @@ def main(argv: list[str] | None = None) -> None:
     revoke.add_argument("--email", required=True)
     commands.add_parser("expire-contracts", help="Mark ended contracts as expired")
     commands.add_parser("purge-deleted-users", help="Delete accounts whose grace period is over")
-    commands.add_parser("maintenance", help="Daily jobs: contracts, invitations, purge, audit")
+    commands.add_parser("send-reminders", help="Notify students about upcoming task deadlines")
+    commands.add_parser(
+        "maintenance", help="Daily jobs: contracts, invitations, purge, audit, reminders"
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -97,8 +107,10 @@ def main(argv: list[str] | None = None) -> None:
             run_maintenance("contracts")
         elif args.command == "purge-deleted-users":
             run_maintenance("accounts")
+        elif args.command == "send-reminders":
+            run_maintenance("reminders")
         else:
-            run_maintenance("contracts", "invitations", "accounts", "audit")
+            run_maintenance("contracts", "invitations", "accounts", "audit", "reminders")
     except StudaFlyException as exc:
         sys.exit(f"Error: {exc.message}")
 

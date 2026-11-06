@@ -65,6 +65,19 @@ class PremiumSource(StrEnum):
     ADMIN_GRANT = "admin_grant"
 
 
+class NotificationType(StrEnum):
+    TASK_DUE_SOON = "task_due_soon"
+    TASK_DUE_TODAY = "task_due_today"
+    TASK_OVERDUE = "task_overdue"
+    ORGANIZATION_INVITATION = "organization_invitation"
+    INVITATION_ACCEPTED = "invitation_accepted"
+
+
+class PushPlatform(StrEnum):
+    IOS = "ios"
+    ANDROID = "android"
+
+
 def pg_enum(enum_cls: type[StrEnum], name: str) -> Enum:
     return Enum(
         enum_cls,

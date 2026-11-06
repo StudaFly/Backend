@@ -10,6 +10,7 @@ from src.app.models.notification import Notification
 from src.app.models.organization import Organization
 from src.app.models.organization_member import OrganizationMember
 from src.app.models.premium_grant import PremiumGrant
+from src.app.models.push_token import PushToken
 from src.app.models.student_enrollment import StudentEnrollment
 from src.app.models.student_note import StudentNote
 from src.app.models.task import Task
@@ -28,6 +29,7 @@ __all__ = [
     "Organization",
     "OrganizationMember",
     "PremiumGrant",
+    "PushToken",
     "StudentEnrollment",
     "StudentNote",
     "Task",

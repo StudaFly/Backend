@@ -69,7 +69,8 @@ make seed-roles-demo                              # demo schools, staff, student
 make demo-check                                   # smoke check of the running API against a fresh demo
 make platform-admin EMAIL=founder@example.com     # create or promote a platform admin (CLI only)
 make revoke-platform-admin EMAIL=founder@example.com
-make maintenance                                  # daily: expire contracts/invitations, GDPR purge, audit retention
+make maintenance                                  # daily: expire contracts/invitations, GDPR purge, audit retention, deadline reminders
+make reminders                                    # only the task deadline notifications (in-app + push)
 ```
 
 Every demo account uses the password printed by `make seed-roles-demo`. Password setup links and
