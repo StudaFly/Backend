@@ -23,16 +23,49 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 
-def create_access_token(user_id: UUID) -> str:
+def create_access_token(
+    user_id: UUID,
+    *,
+    session_id: str | None = None,
+    token_version: int = 0,
+    account_type: str = "student",
+    org_id: UUID | None = None,
+    org_role: str | None = None,
+    mfa: bool = False,
+) -> str:
     expire = datetime.now(UTC) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    payload = {"sub": str(user_id), "exp": expire, "type": "access"}
+    payload = {
+        "sub": str(user_id),
+        "exp": expire,
+        "type": "access",
+        "sid": session_id or str(uuid4()),
+        "token_version": token_version,
+        "account_type": account_type,
+        "org_id": str(org_id) if org_id else None,
+        "org_role": org_role,
+        "mfa": mfa,
+    }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
 
-def create_refresh_token(user_id: UUID) -> tuple[str, str]:
+def create_refresh_token(
+    user_id: UUID,
+    *,
+    session_id: str | None = None,
+    token_version: int = 0,
+    mfa: bool = False,
+) -> tuple[str, str]:
     jti = str(uuid4())
     expire = datetime.now(UTC) + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
-    payload = {"sub": str(user_id), "exp": expire, "type": "refresh", "jti": jti}
+    payload = {
+        "sub": str(user_id),
+        "exp": expire,
+        "type": "refresh",
+        "jti": jti,
+        "sid": session_id or str(uuid4()),
+        "token_version": token_version,
+        "mfa": mfa,
+    }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256"), jti
 
 

@@ -3,9 +3,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.app.core.dependencies import require_admin
+from src.app.authz import Actor, require_platform_admin
 from src.app.db.session import get_db
-from src.app.models.user import User
 from src.app.schemas.common import ResponseBase
 from src.app.schemas.destination import DestinationCreate, DestinationDetail, DestinationRead
 from src.app.services import destination_service
@@ -28,7 +27,7 @@ async def list_destinations(
 async def create_destination(
     payload: DestinationCreate,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(require_admin),
+    actor: Actor = Depends(require_platform_admin),
 ) -> ResponseBase[DestinationRead]:
     destination = await destination_service.create(db, payload=payload)
     return ResponseBase(data=destination, message="Destination created successfully")

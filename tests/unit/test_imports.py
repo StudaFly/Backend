@@ -26,15 +26,19 @@ def test_import_schemas():
 
 def test_import_services():
     for mod in [
-        "src.app.services.admin_service",
+        "src.app.services.audit_service",
         "src.app.services.auth_service",
+        "src.app.services.google_oauth_service",
         "src.app.services.budget_service",
         "src.app.services.cache_service",
         "src.app.services.checklist_service",
         "src.app.services.document_service",
         "src.app.services.guide_service",
+        "src.app.services.mfa_service",
         "src.app.services.mobility_service",
         "src.app.services.notification_service",
+        "src.app.services.organization_service",
+        "src.app.services.platform_admin_service",
         "src.app.services.storage_service",
         "src.app.services.timeline_service",
         "src.app.services.user_service",

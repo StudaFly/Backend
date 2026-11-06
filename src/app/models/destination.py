@@ -19,6 +19,7 @@ class Destination(Base):
         PGUUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     country: Mapped[str] = mapped_column(String(100), nullable=False)
+    country_code: Mapped[str | None] = mapped_column(String(2), nullable=True, index=True)
     city: Mapped[str] = mapped_column(String(100), nullable=False)
     image_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
     summary: Mapped[str | None] = mapped_column(Text, nullable=True)

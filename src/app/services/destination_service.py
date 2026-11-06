@@ -41,6 +41,7 @@ async def create(db: AsyncSession, payload: DestinationCreate) -> DestinationRea
 
     destination = Destination(
         country=payload.country,
+        country_code=payload.country_code,
         city=payload.city,
         image_url=payload.image_url,
         summary=payload.summary,

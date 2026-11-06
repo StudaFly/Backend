@@ -40,6 +40,8 @@ addopts = "-v"
 [tool.coverage.run]
 source = ["src"]
 branch = true
+# SQLAlchemy's asyncio layer runs on greenlets: without this, awaited DB code is not traced.
+concurrency = ["thread", "greenlet"]
 
 [tool.coverage.report]
 fail_under = 70

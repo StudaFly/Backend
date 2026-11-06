@@ -50,13 +50,32 @@ make seed-force  # re-applies the seed files over existing rows
 - `seeds/data/destination_profiles.json` — country profiles (image, summary, facts, key steps),
   migrated from the former web mock; applied to every city of the country and creates the listed
   cities that do not exist yet.
-- `seeds/data/institutions.json` — partner schools.
+- `seeds/data/organizations.json` — partner schools (B2B organizations).
 
 The Docker dev stack runs `alembic upgrade head` and `python -m seeds.seed` at startup.
 
 Shared endpoints for the clients: `GET /api/v1/reference` (mobility types, task categories and
 priorities, avatars), `GET /api/v1/stats` (landing page figures), `GET /api/v1/health`,
 `GET /api/v1/mobilities/{id}/progress` (dashboard figures).
+
+## Roles and organizations
+
+Three account types: `student` (public sign-up), `org_staff` (school international relations team:
+`manager` or `advisor`, scoped by destination countries) and `platform_admin` (StudaFly team, web only,
+TOTP MFA required on every `/admin` route). Authorization lives in `src/app/authz/`.
+
+```bash
+make seed-roles-demo                              # demo schools, staff, students (local/test only)
+make demo-check                                   # smoke check of the running API against a fresh demo
+make platform-admin EMAIL=founder@example.com     # create or promote a platform admin (CLI only)
+make revoke-platform-admin EMAIL=founder@example.com
+make maintenance                                  # daily: expire contracts/invitations, GDPR purge, audit retention, deadline reminders
+make reminders                                    # only the task deadline notifications (in-app + push)
+```
+
+Every demo account uses the password printed by `make seed-roles-demo`. Password setup links and
+invitation links are written to the API log (`[DEV] …`) until emails are sent through SES.
+`MFA_ENCRYPTION_KEY` (Fernet key) is required in production.
 
 ## Parcours generation
 
@@ -69,7 +88,7 @@ fallback whenever the AI call fails.
 ## Tests
 
 ```bash
-# Run tests
+# Run tests (tests/db need PostgreSQL: `make services`; they are skipped otherwise)
 pytest
 
 # With coverage

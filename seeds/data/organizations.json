@@ -2,10 +2,13 @@
   {
     "id": "22222222-0001-0001-0001-000000000001",
     "name": "Epitech",
+    "slug": "epitech",
     "logo_url": null,
-    "config": {
+    "branding": {
       "primary_color": "#2563EB",
-      "accent_color": "#1D4ED8",
+      "accent_color": "#1D4ED8"
+    },
+    "settings": {
       "custom_tasks": [
         {
           "title": "Valider le départ avec le service des relations internationales",
@@ -33,10 +36,13 @@
   {
     "id": "22222222-0001-0001-0001-000000000002",
     "name": "Sciences Po Paris",
+    "slug": "sciences-po-paris",
     "logo_url": null,
-    "config": {
+    "branding": {
       "primary_color": "#DC2626",
-      "accent_color": "#B91C1C",
+      "accent_color": "#B91C1C"
+    },
+    "settings": {
       "custom_tasks": [
         {
           "title": "Déposer le dossier de mobilité Sciences Po",
@@ -64,10 +70,13 @@
   {
     "id": "22222222-0001-0001-0001-000000000003",
     "name": "INSA Lyon",
+    "slug": "insa-lyon",
     "logo_url": null,
-    "config": {
+    "branding": {
       "primary_color": "#0369A1",
-      "accent_color": "#0284C7",
+      "accent_color": "#0284C7"
+    },
+    "settings": {
       "custom_tasks": [
         {
           "title": "Soumettre le dossier de candidature DRI INSA Lyon",
@@ -95,10 +104,13 @@
   {
     "id": "22222222-0001-0001-0001-000000000004",
     "name": "Université Paris-Saclay",
+    "slug": "universite-paris-saclay",
     "logo_url": null,
-    "config": {
+    "branding": {
       "primary_color": "#7C3AED",
-      "accent_color": "#6D28D9",
+      "accent_color": "#6D28D9"
+    },
+    "settings": {
       "custom_tasks": [
         {
           "title": "Remplir le dossier de candidature Erasmus+ Paris-Saclay",
@@ -126,10 +138,13 @@
   {
     "id": "22222222-0001-0001-0001-000000000005",
     "name": "emlyon business school",
+    "slug": "emlyon-business-school",
     "logo_url": null,
-    "config": {
+    "branding": {
       "primary_color": "#B45309",
-      "accent_color": "#92400E",
+      "accent_color": "#92400E"
+    },
+    "settings": {
       "custom_tasks": [
         {
           "title": "Compléter le dossier de départ emlyon",

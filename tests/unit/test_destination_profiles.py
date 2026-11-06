@@ -1,6 +1,7 @@
 """Destination profiles: seed data (ex front mock) and how they are applied / served."""
 
 import json
+import re
 import uuid
 from datetime import date, datetime
 from pathlib import Path
@@ -11,9 +12,8 @@ import pytest
 from src.app.schemas.mobility import MobilityRead
 from src.app.services import budget_service, destination_service, guide_service
 
-PROFILES = json.loads(
-    (Path(__file__).parents[2] / "seeds" / "data" / "destination_profiles.json").read_text()
-)
+DATA_DIR = Path(__file__).parents[2] / "seeds" / "data"
+PROFILES = json.loads((DATA_DIR / "destination_profiles.json").read_text(encoding="utf-8"))
 
 
 def test_profiles_are_complete():
@@ -42,15 +42,26 @@ def test_profiles_keep_the_decided_city_mapping():
     assert cities["Canada"] == ["Montréal", "Toronto"]
 
 
+def test_seed_destinations_have_iso_country_codes():
+    destinations = json.loads((DATA_DIR / "destinations.json").read_text(encoding="utf-8"))
+    for item in [*PROFILES, *destinations]:
+        assert re.fullmatch(r"[A-Z]{2}", item["country_code"]), item["country"]
+
+
 def test_seed_apply_profile_fills_gaps_only_without_force():
     from seeds.seed import _apply_profile
 
     profile = PROFILES[0]
     destination = SimpleNamespace(
-        image_url="custom.jpg", summary=None, facts=None, guide_content={"overview": "x"}
+        country_code=None,
+        image_url="custom.jpg",
+        summary=None,
+        facts=None,
+        guide_content={"overview": "x"},
     )
 
     assert _apply_profile(destination, profile, force=False) is True
+    assert destination.country_code == profile["country_code"]
     assert destination.image_url == "custom.jpg"
     assert destination.summary == profile["summary"]
     assert destination.guide_content["key_steps"] == profile["key_steps"]

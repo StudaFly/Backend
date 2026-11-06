@@ -144,3 +144,27 @@ def test_task_read_computes_days_until_deadline():
     assert TaskRead(**base, deadline=date.today() + timedelta(days=5)).days_until_deadline == 5
     assert TaskRead(**base, deadline=date.today() - timedelta(days=2)).days_until_deadline == -2
     assert TaskRead(**base, deadline=None).model_dump(by_alias=True)["daysUntilDeadline"] is None
+
+
+def test_google_auth_request_accepts_camel_case_id_token():
+    from src.app.schemas.user import GoogleAuthRequest
+
+    assert GoogleAuthRequest.model_validate({"idToken": "tok"}).id_token == "tok"
+    assert GoogleAuthRequest.model_validate({"code": "c"}).code == "c"
+
+
+def test_google_auth_request_requires_exactly_one_credential():
+    from src.app.schemas.user import GoogleAuthRequest
+
+    with pytest.raises(ValidationError):
+        GoogleAuthRequest()
+    with pytest.raises(ValidationError):
+        GoogleAuthRequest(id_token="tok", code="c")
+
+
+def test_auth_response_exposes_is_new_user_in_camel_case():
+    from src.app.schemas.user import AuthResponse
+
+    fields = AuthResponse.model_fields
+    assert fields["is_new_user"].default is False
+    assert fields["is_new_user"].alias == "isNewUser"

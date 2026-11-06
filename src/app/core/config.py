@@ -4,6 +4,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     APP_ENV: str = "development"
     SECRET_KEY: str = "changeme-in-production-must-be-at-least-32-chars!!"
+    MFA_ENCRYPTION_KEY: str = ""
+    ACCOUNT_DELETION_DELAY_DAYS: int = 30
+    AUDIT_RETENTION_DAYS: int = 365
     API_V1_PREFIX: str = "/api/v1"
     CORS_ORIGINS: list[str] = [
         "http://localhost:5173",
@@ -35,6 +38,11 @@ class Settings(BaseSettings):
 
     STRIPE_SECRET_KEY: str = ""
     STRIPE_WEBHOOK_SECRET: str = ""
+
+    PUSH_NOTIFICATIONS_ENABLED: bool = True
+    EXPO_PUSH_URL: str = "https://exp.host/--/api/v2/push/send"
+    # Optional: only needed if "enhanced push security" is turned on in the Expo project.
+    EXPO_ACCESS_TOKEN: str = ""
 
     FCM_SERVER_KEY: str = ""
     APNS_KEY_ID: str = ""

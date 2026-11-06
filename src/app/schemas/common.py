@@ -14,6 +14,10 @@ class StudaFlyBaseModel(BaseModel):
     )
 
 
+class StrictInput(StudaFlyBaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
 class ResponseBase(StudaFlyBaseModel, Generic[T]):
     data: T
     message: str = "OK"

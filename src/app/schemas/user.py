@@ -1,9 +1,12 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
+from typing import Literal
 
-from pydantic import EmailStr, field_validator
+from pydantic import EmailStr, Field, field_validator, model_validator
 
+from src.app.models.enums import AccountType, OrgRole
 from src.app.schemas.common import StudaFlyBaseModel
+from src.app.schemas.organization import OrganizationSummary
 
 
 class UserCreate(StudaFlyBaseModel):
@@ -24,13 +27,26 @@ class UserLogin(StudaFlyBaseModel):
     password: str
 
 
+class PremiumRead(StudaFlyBaseModel):
+    active: bool
+    source: Literal["purchase", "admin_grant", "organization", "grandfathered"] | None = None
+    until: date | None = None
+
+
 class UserRead(StudaFlyBaseModel):
     id: uuid.UUID
     email: str
     name: str
-    role: str
-    institution_id: uuid.UUID | None = None
-    is_premium: bool
+    account_type: AccountType
+    org_role: OrgRole | None = None
+    organization: OrganizationSummary | None = None
+    role: str = Field(description="Deprecated: use accountType and orgRole.")
+    institution_id: uuid.UUID | None = Field(
+        default=None, description="Deprecated: use organization.id."
+    )
+    premium: PremiumRead
+    is_premium: bool = Field(description="Deprecated: use premium.active.")
+    mfa_enabled: bool = False
     email_verified: bool
     oauth_provider: str | None
     avatar_emoji: str | None
@@ -53,6 +69,22 @@ class AuthResponse(StudaFlyBaseModel):
     user: UserRead
     access_token: str
     refresh_token: str
+    mfa_required: bool = False
+    # True when the account was just created (OAuth sign-up): clients run the onboarding.
+    is_new_user: bool = False
+
+
+class GoogleAuthRequest(StudaFlyBaseModel):
+    """Either an ID token (mobile, native sign-in) or an authorization code (web popup)."""
+
+    id_token: str | None = None
+    code: str | None = None
+
+    @model_validator(mode="after")
+    def exactly_one_credential(self) -> "GoogleAuthRequest":
+        if bool(self.id_token) == bool(self.code):
+            raise ValueError("Provide either idToken or code")
+        return self
 
 
 class RefreshRequest(StudaFlyBaseModel):
@@ -61,3 +93,32 @@ class RefreshRequest(StudaFlyBaseModel):
 
 class VerifyEmailRequest(StudaFlyBaseModel):
     token: str
+
+
+class ForgotPasswordRequest(StudaFlyBaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(StudaFlyBaseModel):
+    token: str
+    new_password: str
+
+    @field_validator("new_password")
+    @classmethod
+    def password_min_length(cls, v: str) -> str:
+        if len(v) < 8:
+            raise ValueError("Password must be at least 8 characters")
+        return v
+
+
+class MfaCodeRequest(StudaFlyBaseModel):
+    code: str
+
+
+class MfaSetupRead(StudaFlyBaseModel):
+    secret: str
+    otpauth_uri: str
+
+
+class MfaActivationResponse(AuthResponse):
+    backup_codes: list[str]

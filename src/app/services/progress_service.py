@@ -5,7 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from src.app.core.exceptions import ForbiddenError, NotFoundError
+from src.app.core.exceptions import NotFoundError
 from src.app.core.reference import TASK_CATEGORIES
 from src.app.models.mobility import Mobility
 from src.app.models.task import Task
@@ -23,13 +23,11 @@ async def get_progress(
     result = await db.execute(
         select(Mobility)
         .options(selectinload(Mobility.destination))
-        .where(Mobility.id == mobility_id)
+        .where(Mobility.id == mobility_id, Mobility.user_id == user_id)
     )
     mobility = result.scalar_one_or_none()
     if not mobility:
         raise NotFoundError("Mobility not found")
-    if mobility.user_id != user_id:
-        raise ForbiddenError()
 
     await task_generation_service.ensure_tasks(db, mobility)
     tasks_result = await db.execute(
