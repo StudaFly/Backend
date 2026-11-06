@@ -5,11 +5,13 @@ Google verification is mocked (see test_google_oauth_service.py), as is the data
 
 import uuid
 from datetime import datetime
+from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-from src.app.core.exceptions import UnauthorizedError
+from src.app.core.exceptions import StudaFlyException, UnauthorizedError
+from src.app.models.enums import AccountType, UserStatus
 from src.app.models.user import User
 from src.app.schemas.user import GoogleAuthRequest
 from src.app.services import auth_service
@@ -26,8 +28,8 @@ def _user(**overrides) -> User:
         "email": "lucas@gmail.com",
         "password_hash": "bcrypt-hash",
         "name": "Lucas M.",
-        "role": "student",
-        "is_premium": False,
+        "account_type": AccountType.STUDENT,
+        "status": UserStatus.ACTIVE,
         "email_verified": False,
         "oauth_provider": None,
         "google_id": None,
@@ -46,13 +48,19 @@ def _db(*scalar_results):
     async def fake_refresh(user):
         # Column defaults are applied by the database on INSERT.
         user.id = user.id or uuid.uuid4()
-        user.role = user.role or "student"
-        user.is_premium = bool(user.is_premium)
+        user.account_type = user.account_type or AccountType.STUDENT
+        user.status = user.status or UserStatus.ACTIVE
         user.enable_notifications = user.enable_notifications is not False
         user.created_at = user.created_at or datetime(2026, 11, 4)
 
     db.refresh.side_effect = fake_refresh
     return db
+
+
+async def _fake_issue_tokens(db, user, is_new_user=False, **_):
+    return SimpleNamespace(
+        user=user, is_new_user=is_new_user, access_token="access", refresh_token="refresh"
+    )
 
 
 @pytest.fixture(autouse=True)
@@ -70,7 +78,7 @@ def google():
             new_callable=AsyncMock,
             return_value="exchanged-id-token",
         ) as exchange,
-        patch.object(auth_service.cache_service, "set", new_callable=AsyncMock),
+        patch.object(auth_service, "issue_tokens", side_effect=_fake_issue_tokens),
     ):
         yield {"verify": verify, "exchange": exchange}
 
@@ -88,7 +96,8 @@ async def test_first_sign_in_creates_account():
     assert created.google_id == "google-sub-123"
     assert created.oauth_provider == "google"
     assert created.email_verified is True
-    db.commit.assert_awaited_once()
+    assert created.account_type == AccountType.STUDENT
+    assert created.last_login_at is not None
     assert auth.is_new_user is True
     assert auth.access_token and auth.refresh_token
     assert auth.user.oauth_provider == "google"
@@ -115,8 +124,8 @@ async def test_known_google_account_signs_in():
 
     assert auth.user.id == existing.id
     assert auth.is_new_user is False
+    assert existing.last_login_at is not None
     db.add.assert_not_called()
-    db.commit.assert_not_awaited()
 
 
 @pytest.mark.asyncio
@@ -131,7 +140,6 @@ async def test_existing_email_account_is_linked():
     assert existing.oauth_provider == "google"
     assert existing.password_hash == "bcrypt-hash"
     db.add.assert_not_called()
-    db.commit.assert_awaited_once()
     assert auth.user.id == existing.id
     assert auth.is_new_user is False
 
@@ -190,3 +198,28 @@ async def test_concurrent_first_sign_in_retries_lookup():
     db.rollback.assert_awaited_once()
     assert auth.user.id == created_meanwhile.id
     assert auth.is_new_user is False
+
+
+@pytest.mark.asyncio
+async def test_suspended_google_account_is_refused():
+    existing = _user(google_id="google-sub-123", status=UserStatus.SUSPENDED)
+    db = _db(existing)
+
+    with pytest.raises(StudaFlyException) as error:
+        await auth_service.google_login(db, GoogleAuthRequest(id_token="tok"))
+
+    assert error.value.code == "ACCOUNT_SUSPENDED"
+    db.commit.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_account_pending_deletion_is_not_linked():
+    existing = _user(status=UserStatus.PENDING_DELETION)
+    db = _db(None, existing)
+
+    with pytest.raises(StudaFlyException) as error:
+        await auth_service.google_login(db, GoogleAuthRequest(id_token="tok"))
+
+    assert error.value.code == "ACCOUNT_PENDING_DELETION"
+    assert existing.google_id is None
+    db.commit.assert_not_awaited()

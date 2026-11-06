@@ -3,8 +3,8 @@
 Google sign-in: store the Google account identifier ("sub" claim) to find the user
 again even if the email of the Google account changes.
 
-Revision ID: e5f6a1b2c3d4
-Revises: d4e5f6a1b2c3
+Revision ID: 9f80e7e7254a
+Revises: f2a3b4c5d6e7
 Create Date: 2026-11-04 00:00:00.000000
 
 """
@@ -13,8 +13,8 @@ from collections.abc import Sequence
 import sqlalchemy as sa
 from alembic import op
 
-revision: str = "e5f6a1b2c3d4"
-down_revision: str | None = "d4e5f6a1b2c3"
+revision: str = "9f80e7e7254a"
+down_revision: str | None = "f2a3b4c5d6e7"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 

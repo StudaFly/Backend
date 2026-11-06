@@ -24,15 +24,8 @@ from src.app.core.security import (
 )
 from src.app.models.enums import AccountType, UserStatus
 from src.app.models.user import User
-from src.app.schemas.user import AuthResponse, UserCreate, UserLogin
-from src.app.services import cache_service, user_service, google_oauth_service
-from src.app.schemas.user import (
-    AuthResponse,
-    GoogleAuthRequest,
-    UserCreate,
-    UserLogin,
-    UserRead,
-)
+from src.app.schemas.user import AuthResponse, GoogleAuthRequest, UserCreate, UserLogin
+from src.app.services import cache_service, google_oauth_service, user_service
 
 logger = logging.getLogger(__name__)
 
@@ -58,8 +51,18 @@ def _password_token_key(token: str) -> str:
     return f"auth:password:{hashlib.sha256(token.encode()).hexdigest()}"
 
 
+def _ensure_can_sign_in(user: User) -> None:
+    if user.status in _BLOCKED_STATUSES:
+        code, message = _BLOCKED_STATUSES[user.status]
+        raise StudaFlyException(message, code=code, status_code=403)
+
+
 async def issue_tokens(
-    db: AsyncSession, user: User, session_id: str | None = None, mfa: bool = False
+    db: AsyncSession,
+    user: User,
+    session_id: str | None = None,
+    mfa: bool = False,
+    is_new_user: bool = False,
 ) -> AuthResponse:
     session_id = session_id or str(uuid4())
     mfa = mfa and user.account_type == AccountType.PLATFORM_ADMIN and user.mfa_enabled
@@ -82,18 +85,6 @@ async def issue_tokens(
         refresh_token=refresh_token,
         user=user_read,
         mfa_required=user.account_type == AccountType.PLATFORM_ADMIN and not mfa,
-    )
-
-
-async def _issue_tokens(user: User, *, is_new_user: bool = False) -> AuthResponse:
-    access_token = create_access_token(user.id)
-    refresh_token, jti = create_refresh_token(user.id)
-    await cache_service.set(f"auth:refresh:{user.id}", jti, ttl=_REFRESH_TTL)
-
-    return AuthResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        user=UserRead.model_validate(user),
         is_new_user=is_new_user,
     )
 
@@ -129,9 +120,7 @@ async def login(db: AsyncSession, payload: UserLogin) -> AuthResponse:
     if not verify_password(payload.password, user.password_hash):
         raise UnauthorizedError("Invalid email or password")
 
-    if user.status in _BLOCKED_STATUSES:
-        code, message = _BLOCKED_STATUSES[user.status]
-        raise StudaFlyException(message, code=code, status_code=403)
+    _ensure_can_sign_in(user)
 
     user.last_login_at = datetime.now(UTC)
     await db.commit()
@@ -234,7 +223,10 @@ async def google_login(db: AsyncSession, payload: GoogleAuthRequest) -> AuthResp
         await db.rollback()
         user, is_new_user = await _find_or_create_google_user(db, identity)
 
-    return await _issue_tokens(user, is_new_user=is_new_user)
+    user.last_login_at = datetime.now(UTC)
+    await db.commit()
+    await db.refresh(user)
+    return await issue_tokens(db, user, is_new_user=is_new_user)
 
 
 async def _find_or_create_google_user(
@@ -242,12 +234,14 @@ async def _find_or_create_google_user(
 ) -> tuple[User, bool]:
     user = await db.scalar(select(User).where(User.google_id == identity.sub))
     if user:
+        _ensure_can_sign_in(user)
         return user, False
 
     # Same email as an existing account (email/password…): Google verified the
     # address, so the Google account is linked to it. The password stays valid.
     user = await db.scalar(select(User).where(func.lower(User.email) == identity.email.lower()))
     if user:
+        _ensure_can_sign_in(user)
         user.google_id = identity.sub
         user.email_verified = True
         user.oauth_provider = user.oauth_provider or "google"
@@ -259,6 +253,7 @@ async def _find_or_create_google_user(
         email=identity.email,
         name=identity.name or identity.email.split("@")[0],
         password_hash=None,
+        account_type=AccountType.STUDENT,
         email_verified=True,
         oauth_provider="google",
         google_id=identity.sub,

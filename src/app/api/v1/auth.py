@@ -10,10 +10,10 @@ from src.app.schemas.common import ResponseBase
 from src.app.schemas.user import (
     AuthResponse,
     ForgotPasswordRequest,
+    GoogleAuthRequest,
     MfaActivationResponse,
     MfaCodeRequest,
     MfaSetupRead,
-    GoogleAuthRequest,
     RefreshRequest,
     ResetPasswordRequest,
     UserCreate,
